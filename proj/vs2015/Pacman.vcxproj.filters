@@ -41,5 +41,8 @@
     <ClInclude Include="..\..\include\CustomEnum.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Vector2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

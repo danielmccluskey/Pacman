@@ -30,7 +30,7 @@ float movementSpeed = 25/tileWidth;
 //Tiles for collision
 int tileTop, tileBottom, tileRight, tileLeft;
 int mapXPos, mapYPos;
-//Structure for the Pacman
+
 
 
 
@@ -157,7 +157,7 @@ int main(int argv, char* argc[])
 
 		do
 		{
-			 //Gets position of the Pacman in the level.
+			//Gets position of the Pacman in the level.
 			TileProperties tileQuery;//Defines a new class thing, this was the only way I could figure out how to use classes, will fix in future
 			
 
@@ -169,7 +169,7 @@ int main(int argv, char* argc[])
 
 			//Movement for Blinky (Red)
 			GetTiles(tileQuery,blinky.SpriteID);//Gets surrounding tiles for collision detection
-			blinky.SetGhostDirection(blinky, movementSpeed, UG::KEY_UP, UG::KEY_S, UG::KEY_A, UG::KEY_D, tileTop, tileRight, tileLeft, tileBottom);//Sets direction Randomly
+			blinky.SetGhostDirection(blinky, movementSpeed, tileTop, tileRight, tileLeft, tileBottom);//Sets direction Randomly
 			blinky.MoveGhost(blinky, movementSpeed, tileTop, tileRight, tileLeft, tileBottom);//Decides whether to move ghost depending on direction and collision
 			UG::MoveSprite(blinky.SpriteID, blinky.ghostXPos, blinky.ghostYPos);//Moves Ghost
 
@@ -177,48 +177,35 @@ int main(int argv, char* argc[])
 
 			//Movement for Pinky (Red)
 			GetTiles(tileQuery, pinky.SpriteID);//Gets surrounding tiles for collision detection
-			pinky.SetGhostDirection(pinky, movementSpeed, UG::KEY_UP, UG::KEY_S, UG::KEY_A, UG::KEY_D, tileTop, tileRight, tileLeft, tileBottom);//Sets direction Randomly
+			pinky.SetGhostDirection(pinky, movementSpeed, tileTop, tileRight, tileLeft, tileBottom);//Sets direction Randomly
 			pinky.MoveGhost(pinky, movementSpeed, tileTop, tileRight, tileLeft, tileBottom);//Decides whether to move ghost depending on direction and collision
 			UG::MoveSprite(pinky.SpriteID, pinky.ghostXPos, pinky.ghostYPos);//Moves Ghost
 
 
 			//Movement for Inky (Red)
 			GetTiles(tileQuery, inky.SpriteID);//Gets surrounding tiles for collision detection
-			inky.SetGhostDirection(inky, movementSpeed, UG::KEY_UP, UG::KEY_S, UG::KEY_A, UG::KEY_D, tileTop, tileRight, tileLeft, tileBottom);//Sets direction Randomly
+			inky.SetGhostDirection(inky, movementSpeed, tileTop, tileRight, tileLeft, tileBottom);//Sets direction Randomly
 			inky.MoveGhost(inky, movementSpeed, tileTop, tileRight, tileLeft, tileBottom);//Decides whether to move ghost depending on direction and collision
 			UG::MoveSprite(inky.SpriteID, inky.ghostXPos, inky.ghostYPos);//Moves Ghost
 
 
 			//Movement for Clyde (Red)
 			GetTiles(tileQuery, clyde.SpriteID);//Gets surrounding tiles for collision detection
-			clyde.SetGhostDirection(clyde, movementSpeed, UG::KEY_UP, UG::KEY_S, UG::KEY_A, UG::KEY_D, tileTop, tileRight, tileLeft, tileBottom);//Sets direction Randomly
+			clyde.SetGhostDirection(clyde, movementSpeed, tileTop, tileRight, tileLeft, tileBottom);//Sets direction Randomly
 			clyde.MoveGhost(clyde, movementSpeed, tileTop, tileRight, tileLeft, tileBottom);//Decides whether to move ghost depending on direction and collision
 			UG::MoveSprite(clyde.SpriteID, clyde.ghostXPos, clyde.ghostYPos);//Moves Ghost
 
-			//pinky.SetGhostDirection;
-			//inky.SetGhostDirection;
-			//clyde.SetGhostDirection;
 
+
+			//Debug
 			
-			//pinky.MoveGhost;
-			//inky.MoveGhost;
-			//clyde.MoveGhost;
-			
-
-			std::cout << "Tile Top: " << tileTop << std::endl;
-			std::cout << "Tile Bottom: " << tileBottom << std::endl;
-			std::cout << "Tile Left: " << tileLeft << std::endl;
-			std::cout << "Tile Right: " << tileRight << std::endl;
-
-			std::cout << "\nxPos: " << pacSprite.pacXPos << std::endl;
-			std::cout << "yPos: " << pacSprite.pacYPos << "\n\n\n" << std::endl;
-
-			std::cout << "\nMoving: " << pacSprite.moving << std::endl;
-			std::cout << "Next Pos: " << pacSprite.nextTile << "\n\n\n" << std::endl;
-			std::cout << "Dir: " << pacSprite.playerDirection[0] << std::endl;
-			std::cout << "Dir: " << pacSprite.playerDirection[1] << std::endl;
-			std::cout << "Dir: " << pacSprite.playerDirection[2] << std::endl;
-			std::cout << "Dir: " << pacSprite.playerDirection[3] << std::endl;
+			std::cout << "Dir: " << blinky.ghostDirection[0] << std::endl;
+			std::cout << "Dir: " << blinky.ghostDirection[1] << std::endl;
+			std::cout << "Dir: " << blinky.ghostDirection[2] << std::endl;
+			std::cout << "Dir: " << blinky.ghostDirection[3] << std::endl;
+			std::cout << "random: " << blinky.randomNumber << std::endl;
+			std::cout << "currentdir: " << blinky.GetDirection() << std::endl;
+			std::cout << blinky.GetTile((blinky.ghostXPos / blinky.tileWidths) - 1, (blinky.ghostYPos / blinky.tileWidths) - 2) << std::endl;
 
 
 			UG::ClearScreen();
@@ -242,6 +229,10 @@ void GetTiles(TileProperties& tileQuery, int spriteID)
 	tileLeft = tileQuery.GetTile((mapXPos - 2), mapYPos - 1);
 	tileRight = tileQuery.GetTile((mapXPos), mapYPos - 1);
 	tileBottom = tileQuery.GetTile(mapXPos - 1, (mapYPos - 2));
+}
+void Debug()
+{
+
 }
 
 
