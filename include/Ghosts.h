@@ -14,7 +14,7 @@ public:
 		moving = false;
 	}
 
-
+	int randomNumber = 0;
 	float ghostXPos = 128;
 	float ghostYPos = 64;
 	int SpriteID;
@@ -27,6 +27,7 @@ public:
 
 	void CreateGhost(int ghostType);
 	int GetTile(int x, int y);
+	int GetDirection();
 	void SetGhostDirection(GhostProperties& ghostSprite, float movementspeed, short a_upKey, short a_downKey, short a_leftKey, short a_rightKey, int tileTop, int tileRight, int tileLeft, int tileBottom);
 	void MoveGhost(GhostProperties& ghostSprite, float movementspeed, int tileTop, int tileRight, int tileLeft, int tileBottom);
 

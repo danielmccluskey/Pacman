@@ -220,6 +220,7 @@ int main(int argv, char* argc[])
 			std::cout << "Dir: " << pacSprite.playerDirection[2] << std::endl;
 			std::cout << "Dir: " << pacSprite.playerDirection[3] << std::endl;
 
+
 			UG::ClearScreen();
 		} while (UG::Process());
 
