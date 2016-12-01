@@ -16,87 +16,95 @@ void PacmanProperties::SetPlayerDirection(PacmanProperties& pacSprite, float mov
 	{
 		if (UG::IsKeyDown(a_upKey) && tileTop == 8)
 		{
-			pacSprite.nextTile = pacSprite.pacYPos + tileWidths;
-			pacSprite.playerDirection[north] = true;
-			pacSprite.moving = true;
-			UG::SetSpriteUVCoordinates(pacSprite.SpriteID, 0, 0, .5f, .5f);
+			initialise();
+			playerDirection[north] = true;
 		}
-		else if (UG::IsKeyDown(a_downKey) && tileBottom == 8)
+		if (UG::IsKeyDown(a_downKey) && tileBottom == 8)
 		{
-
-			pacSprite.nextTile = pacSprite.pacYPos - tileWidths;
-			pacSprite.playerDirection[south] = true;
-			pacSprite.moving = true;
-			UG::SetSpriteUVCoordinates(pacSprite.SpriteID, 0, .5f, .5f, 1);
-
-
+			initialise();
+			playerDirection[south] = true;
 		}
-		else if (UG::IsKeyDown(a_leftKey) && tileLeft == 8)
+		if (UG::IsKeyDown(a_leftKey) && tileLeft == 8)
 		{
-			pacSprite.nextTile = pacSprite.pacXPos - tileWidths;
-			pacSprite.playerDirection[west] = true;
-			pacSprite.moving = true;
-			UG::SetSpriteUVCoordinates(pacSprite.SpriteID, .5f, .5f, 1, 1);
+			initialise();
+			playerDirection[west] = true;
 		}
-		else if (UG::IsKeyDown(a_rightKey) && tileRight == 8)
+		if (UG::IsKeyDown(a_rightKey) && tileRight == 8)
 		{
-			pacSprite.nextTile = pacSprite.pacXPos + tileWidths;
-			pacSprite.playerDirection[east] = true;
-			pacSprite.moving = true;
+			initialise();
+			playerDirection[east] = true;
+		}
 
-			UG::SetSpriteUVCoordinates(pacSprite.SpriteID, 1, .5f, .5f, 1);
+
+		if (playerDirection[north] == true && tileTop == 8)
+		{
+			nextTile = pacSprite.pacYPos + tileWidths;
+			moving = true;
+			UG::SetSpriteUVCoordinates(SpriteID, 0, 0, .5f, .5f);
+		}
+		else if (playerDirection[south] == true && tileBottom == 8)
+		{
+			nextTile = pacSprite.pacYPos - tileWidths;
+			moving = true;
+			UG::SetSpriteUVCoordinates(SpriteID, 0, .5f, .5f, 1);
+		}
+		else if (playerDirection[west] == true && tileLeft == 8)
+		{
+			nextTile = pacXPos - tileWidths;
+			moving = true;
+			UG::SetSpriteUVCoordinates(SpriteID, .5f, .5f, 1, 1);
+		}
+		else if (playerDirection[east] == true && tileRight == 8)
+		{
+			nextTile = pacXPos + tileWidths;
+			moving = true;
+			UG::SetSpriteUVCoordinates(SpriteID, 1, .5f, .5f, 1);
 
 		}
 	}
 }
 void PacmanProperties::MovePlayer(PacmanProperties& pacSprite, float movementspeed, int tileTop, int tileRight, int tileLeft, int tileBottom)
 {
-	if (pacSprite.moving == true)
+	if (moving == true)
 	{
-		if (pacSprite.playerDirection[north] == true)
+		if (playerDirection[north] == true)
 		{
-			pacSprite.pacYPos += movementspeed;
-			if (pacSprite.pacYPos >= pacSprite.nextTile)
+			pacYPos += movementspeed;
+			if (pacYPos >= nextTile)
 			{
-				pacSprite.pacYPos = pacSprite.nextTile;
-				pacSprite.moving = false;
-				pacSprite.initialise();
+				pacYPos = nextTile;
+				moving = false;
+				
 				
 			}
 		}
-		else if (pacSprite.playerDirection[south] == true)
+		else if (playerDirection[south] == true)
 		{
-			pacSprite.pacYPos -= movementspeed;
-			if (pacSprite.pacYPos <= pacSprite.nextTile)
+			pacYPos -= movementspeed;
+			if (pacYPos <= nextTile)
 			{
-				pacSprite.pacYPos = pacSprite.nextTile;
-				pacSprite.moving = false;
-				pacSprite.initialise();
+				pacYPos = nextTile;
+				moving = false;
 				
 
 			}
 		}
-		else if (pacSprite.playerDirection[east] == true)
+		else if (playerDirection[east] == true)
 		{
-			pacSprite.pacXPos += movementspeed;
-			if (pacSprite.pacXPos >= pacSprite.nextTile)
+			pacXPos += movementspeed;
+			if (pacXPos >= nextTile)
 			{
-				pacSprite.pacXPos = pacSprite.nextTile;
-				pacSprite.moving = false;
-				pacSprite.initialise();
-
+				pacXPos = nextTile;
+				moving = false;
 			}
 		}
-		else if (pacSprite.playerDirection[west] == true)
+		else if (playerDirection[west] == true)
 		{
-			pacSprite.pacXPos -= movementspeed;
-			if (pacSprite.pacXPos <= pacSprite.nextTile)
+			pacXPos -= movementspeed;
+			if (pacXPos <= nextTile)
 			{
-				pacSprite.pacXPos = pacSprite.nextTile;
-				pacSprite.moving = false;
-				pacSprite.initialise();
-				
-				
+				pacXPos = nextTile;
+				moving = false;			
 
 			}
 		}

@@ -84,7 +84,7 @@ void GhostProperties::CreateGhost(int ghostType)
 
 int GhostProperties::GetDirection()
 {
-	for (int i = 0; i < 4; ++i)
+	for (int i = 0; i < 3; ++i)
 	{
 		if (ghostDirection[i] == true)
 		{
@@ -92,13 +92,32 @@ int GhostProperties::GetDirection()
 		}
 	}
 }
-void GhostProperties::SetGhostDirection(GhostProperties& ghostSprite, float movementspeed, short a_upKey, short a_downKey, short a_leftKey, short a_rightKey, int tileTop, int tileRight, int tileLeft, int tileBottom)
+
+
+
+void GhostProperties::ChangeDirection(int currentDirection, int currentTile)
 {
+	if (currentTile == 2)
+	{
+		
+		
+
+
+	}
+}
+void GhostProperties::SetGhostDirection(GhostProperties& ghostSprite, float movementspeed, int tileTop, int tileRight, int tileLeft, int tileBottom)
+{
+
+	
 	
 	if (moving == false)
 	{
-		
-		int randomNumber = rand() % 4;
+		int currentDirection = GetDirection();
+		int currentTile = GetTile((ghostXPos / tileWidths) - 1, (ghostYPos / tileWidths) - 2);
+		if (currentTile == 2)
+		{
+			randomNumber = rand() % 3;
+		}
 		
 		if (randomNumber == 0 && tileTop == 8)
 		{
@@ -129,6 +148,7 @@ void GhostProperties::SetGhostDirection(GhostProperties& ghostSprite, float move
 
 
 		}
+		
 	}
 }
 void GhostProperties::MoveGhost(GhostProperties& ghostSprite, float movementspeed, int tileTop, int tileRight, int tileLeft, int tileBottom)
