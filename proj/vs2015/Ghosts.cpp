@@ -1,6 +1,7 @@
 #include "UGFW.h"
 #include "Ghosts.h"
 #include "stdlib.h"
+#include <iostream>
 #include "CustomEnum.h"
 
 int ghostMap[1008] =
@@ -80,11 +81,25 @@ void GhostProperties::CreateGhost(int ghostType)
 	UG::DrawSprite(SpriteID);
 	
 }
+
+int GhostProperties::GetDirection()
+{
+	for (int i = 0; i < 4; ++i)
+	{
+		if (ghostDirection[i] == true)
+		{
+			return i;
+		}
+	}
+}
 void GhostProperties::SetGhostDirection(GhostProperties& ghostSprite, float movementspeed, short a_upKey, short a_downKey, short a_leftKey, short a_rightKey, int tileTop, int tileRight, int tileLeft, int tileBottom)
 {
+	
 	if (moving == false)
 	{
+		
 		int randomNumber = rand() % 4;
+		
 		if (randomNumber == 0 && tileTop == 8)
 		{
 			ghostSprite.nextTile = ghostSprite.ghostYPos + tileWidths;
