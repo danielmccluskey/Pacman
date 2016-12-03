@@ -15,10 +15,10 @@ public:
 	}
 
 
-	float pacXPos = 32;
-	float pacYPos = 64;
+	float fX = 32;
+	float fY = 64;
 	int SpriteID;
-	int iPacWidth = 16;
+	int SpriteWidth = 16;
 
 	bool moving;
 	bool playerDirection[4];

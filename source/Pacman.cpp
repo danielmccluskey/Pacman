@@ -4,7 +4,7 @@
 //Creating Sprite
 void PacmanProperties::CreatePacman()
 {
-	SpriteID = UG::CreateSprite("./images/pacman/pacman.png", iPacWidth, iPacWidth, true);
+	SpriteID = UG::CreateSprite("./images/pacman/pacman.png", SpriteWidth, SpriteWidth, true);
 	UG::DrawSprite(SpriteID);
 
 	
@@ -14,6 +14,7 @@ void PacmanProperties::SetPlayerDirection(PacmanProperties& pacSprite, float mov
 {
 	if (moving == false)
 	{
+
 		if (UG::IsKeyDown(a_upKey) && tileTop == 8)
 		{
 			initialise();
@@ -38,25 +39,25 @@ void PacmanProperties::SetPlayerDirection(PacmanProperties& pacSprite, float mov
 
 		if (playerDirection[north] == true && tileTop == 8)
 		{
-			nextTile = pacSprite.pacYPos + tileWidths;
+			nextTile = fY + tileWidths;
 			moving = true;
 			UG::SetSpriteUVCoordinates(SpriteID, 0, 0, .5f, .5f);
 		}
 		else if (playerDirection[south] == true && tileBottom == 8)
 		{
-			nextTile = pacSprite.pacYPos - tileWidths;
+			nextTile = fY - tileWidths;
 			moving = true;
 			UG::SetSpriteUVCoordinates(SpriteID, 0, .5f, .5f, 1);
 		}
 		else if (playerDirection[west] == true && tileLeft == 8)
 		{
-			nextTile = pacXPos - tileWidths;
+			nextTile = fX - tileWidths;
 			moving = true;
 			UG::SetSpriteUVCoordinates(SpriteID, .5f, .5f, 1, 1);
 		}
 		else if (playerDirection[east] == true && tileRight == 8)
 		{
-			nextTile = pacXPos + tileWidths;
+			nextTile = fX + tileWidths;
 			moving = true;
 			UG::SetSpriteUVCoordinates(SpriteID, 1, .5f, .5f, 1);
 
@@ -69,10 +70,10 @@ void PacmanProperties::MovePlayer(PacmanProperties& pacSprite, float movementspe
 	{
 		if (playerDirection[north] == true)
 		{
-			pacYPos += movementspeed;
-			if (pacYPos >= nextTile)
+			fY += movementspeed;
+			if (fY >= nextTile)
 			{
-				pacYPos = nextTile;
+				fY = nextTile;
 				moving = false;
 				
 				
@@ -80,10 +81,10 @@ void PacmanProperties::MovePlayer(PacmanProperties& pacSprite, float movementspe
 		}
 		else if (playerDirection[south] == true)
 		{
-			pacYPos -= movementspeed;
-			if (pacYPos <= nextTile)
+			fY -= movementspeed;
+			if (fY <= nextTile)
 			{
-				pacYPos = nextTile;
+				fY = nextTile;
 				moving = false;
 				
 
@@ -91,19 +92,19 @@ void PacmanProperties::MovePlayer(PacmanProperties& pacSprite, float movementspe
 		}
 		else if (playerDirection[east] == true)
 		{
-			pacXPos += movementspeed;
-			if (pacXPos >= nextTile)
+			fX += movementspeed;
+			if (fX >= nextTile)
 			{
-				pacXPos = nextTile;
+				fX = nextTile;
 				moving = false;
 			}
 		}
 		else if (playerDirection[west] == true)
 		{
-			pacXPos -= movementspeed;
-			if (pacXPos <= nextTile)
+			fX -= movementspeed;
+			if (fX <= nextTile)
 			{
-				pacXPos = nextTile;
+				fX = nextTile;
 				moving = false;			
 
 			}
