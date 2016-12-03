@@ -1,13 +1,20 @@
-﻿  main.cpp
-c:\users\s1600056\downloads\new folder\source\main.cpp(42): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\s1600056\downloads\new folder\source\main.cpp(131): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\s1600056\downloads\new folder\source\main.cpp(146): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\s1600056\downloads\new folder\source\main.cpp(149): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\s1600056\downloads\new folder\source\main.cpp(152): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\s1600056\downloads\new folder\source\main.cpp(155): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\s1600056\downloads\new folder\source\main.cpp(208): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\s1600056\downloads\new folder\source\main.cpp(226): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\s1600056\downloads\new folder\source\main.cpp(227): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Pacman.vcxproj -> C:\Users\s1600056\Downloads\New folder\proj\vs2015\..\..\bin\x64\Debug\Pacman.exe
-  xcopy "C:\Users\s1600056\Downloads\New folder\scripts\..\resources\"*.* "C:\Users\s1600056\Downloads\New folder\proj\vs2015\..\..\bin\x64\Debug\" /s /y /d /r 
+﻿  Ghosts.cpp
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman\proj\vs2015\ghosts.cpp(54): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman\proj\vs2015\ghosts.cpp(55): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman\proj\vs2015\ghosts.cpp(69): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman\proj\vs2015\ghosts.cpp(75): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman\proj\vs2015\ghosts.cpp(81): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman\proj\vs2015\ghosts.cpp(87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman\proj\vs2015\ghosts.cpp(164): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman\proj\vs2015\ghosts.cpp(172): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman\proj\vs2015\ghosts.cpp(179): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman\proj\vs2015\ghosts.cpp(189): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman\proj\vs2015\ghosts.cpp(210): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman\proj\vs2015\ghosts.cpp(223): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman\proj\vs2015\ghosts.cpp(236): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman\proj\vs2015\ghosts.cpp(248): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman\proj\vs2015\ghosts.cpp(107): warning C4715: 'GhostProperties::GetDirection': not all control paths return a value
+  Pacman.vcxproj -> C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman\proj\vs2015\..\..\bin\x64\Debug\Pacman.exe
+  Pacman.vcxproj -> ..\..\bin\x64\Debug\Pacman.pdb (Full PDB)
+  xcopy "C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman\scripts\..\resources\"*.* "C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman\proj\vs2015\..\..\bin\x64\Debug\" /s /y /d /r 
   0 File(s) copied
