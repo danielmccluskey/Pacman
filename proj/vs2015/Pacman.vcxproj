@@ -22,6 +22,7 @@
     <ClCompile Include="..\..\source\main.cpp" />
     <ClCompile Include="..\..\source\MapCreation.cpp" />
     <ClCompile Include="..\..\source\Pacman.cpp" />
+    <ClCompile Include="..\..\source\Pellets.cpp" />
     <ClCompile Include="Ghosts.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -29,6 +30,7 @@
     <ClInclude Include="..\..\include\Ghosts.h" />
     <ClInclude Include="..\..\include\MapCreation.h" />
     <ClInclude Include="..\..\include\Pacman.h" />
+    <ClInclude Include="..\..\include\Pellets.h" />
     <ClInclude Include="..\..\include\Vector2.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

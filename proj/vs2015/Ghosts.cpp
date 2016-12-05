@@ -58,7 +58,7 @@ void GhostProperties::GetTiles()
 	tileRight = GetTile((mapXPos), mapYPos - 1);
 	tileBottom = GetTile(mapXPos - 1, (mapYPos - 2));
 	tileCurrent = GetTile((mapXPos)-1, mapYPos - 1);
-	std::cout << tileCurrent << std::endl;
+	
 }
 
 void GhostProperties::CreateGhost(int ghostType)
@@ -105,29 +105,13 @@ int GhostProperties::GetDirection()
 		}
 	}
 }
-
-
-
-void GhostProperties::ChangeDirection(int currentDirection, int currentTile)
-{
-	if (currentTile == 2)
-	{
-		
-		
-
-
-	}
-}
 void GhostProperties::SetGhostDirection(GhostProperties& ghostSprite, float movementspeed)
 {
 	GetTiles();
-
 	if (moving == false )
-	{
-		
+	{		
 		if (tileCurrent == 2)
-		{
-			
+		{			
 			int openDirections[4] = { -1, -1 ,-1 ,-1 };
 			int i = 0;
 			if (tileTop != 0 && lastDirection != 2)
@@ -144,8 +128,7 @@ void GhostProperties::SetGhostDirection(GhostProperties& ghostSprite, float move
 			{
 				openDirections[i] = 1;
 				++i;
-			}
-			
+			}			
 			if (tileLeft != 0 && lastDirection != 1)
 			{
 				openDirections[i] = 3;
@@ -155,107 +138,81 @@ void GhostProperties::SetGhostDirection(GhostProperties& ghostSprite, float move
 			do
 			{
 				randomDirection = openDirections[(rand() % i)];
-			} while (randomDirection == -1);
-			
-			
+			} while (randomDirection == -1);			
 		}
 		if (randomDirection == 0)
 		{
-			ghostSprite.nextTile = ghostSprite.fY + tileWidths;
-			ghostSprite.ghostDirection[north] = true;
-			ghostSprite.moving = true;
+			nextTile = fY + tileWidths;
+			ghostDirection[north] = true;
+			moving = true;
 			lastDirection = 0;
-		}
-		
+		}		
 		else if (randomDirection == 3)
 		{
-			ghostSprite.nextTile = ghostSprite.fX - tileWidths;
-			ghostSprite.ghostDirection[west] = true;
-			ghostSprite.moving = true;
+			nextTile = fX - tileWidths;
+			ghostDirection[west] = true;
+			moving = true;
 			lastDirection = 3;
 		}
 		else if (randomDirection == 1)
 		{
-			ghostSprite.nextTile = ghostSprite.fX + tileWidths;
-			ghostSprite.ghostDirection[east] = true;
-			ghostSprite.moving = true;
+			nextTile = fX + tileWidths;
+			ghostDirection[east] = true;
+			moving = true;
 			lastDirection = 1;
-
-
 		}
 		else if (randomDirection == 2)
 		{
-
-			ghostSprite.nextTile = ghostSprite.fY - tileWidths;
-			ghostSprite.ghostDirection[south] = true;
-			ghostSprite.moving = true;
+			nextTile = fY - tileWidths;
+			ghostDirection[south] = true;
+			moving = true;
 			lastDirection = 2;
-
-
-		}
-		
-				
-		
+		}		
 	}
 }
 void GhostProperties::MoveGhost(GhostProperties& ghostSprite, float movementspeed)
 {
-	if (ghostSprite.moving == true)
+	if (moving == true)
 	{
-		if (ghostSprite.ghostDirection[north] == true)
+		if (ghostDirection[north] == true)
 		{
-			ghostSprite.fY += movementspeed;
-			if (ghostSprite.fY >= ghostSprite.nextTile)
+			fY += movementspeed;
+			if (fY >= nextTile)
 			{
-				ghostSprite.fY = ghostSprite.nextTile;
-				ghostSprite.moving = false;
-				ghostSprite.initialise();
-				
-				
-
+				fY = nextTile;
+				moving = false;
+				initialise();
 			}
 		}
-		else if (ghostSprite.ghostDirection[south] == true)
+		else if (ghostDirection[south] == true)
 		{
-			ghostSprite.fY -= movementspeed;
-			if (ghostSprite.fY <= ghostSprite.nextTile)
+			fY -= movementspeed;
+			if (fY <= nextTile)
 			{
-				ghostSprite.fY = ghostSprite.nextTile;
-				ghostSprite.moving = false;
-				ghostSprite.initialise();
-				
-
-
+				fY = nextTile;
+				moving = false;
+				initialise();
 			}
 		}
-		else if (ghostSprite.ghostDirection[east] == true )
+		else if (ghostDirection[east] == true )
 		{
-			ghostSprite.fX += movementspeed;
-			if (ghostSprite.fX >= ghostSprite.nextTile)
+			fX += movementspeed;
+			if (fX >= nextTile)
 			{
-				ghostSprite.fX = ghostSprite.nextTile;
-				ghostSprite.moving = false;
-				ghostSprite.initialise();
-				
-
+				fX = nextTile;
+				moving = false;
+				initialise();
 			}
 		}
-		else if (ghostSprite.ghostDirection[west] == true)
+		else if (ghostDirection[west] == true)
 		{
-			ghostSprite.fX -= movementspeed;
-			if (ghostSprite.fX <= ghostSprite.nextTile)
+			fX -= movementspeed;
+			if (fX <= nextTile)
 			{
-				ghostSprite.fX = ghostSprite.nextTile;
-				ghostSprite.moving = false;
-				ghostSprite.initialise();
-				
-
-
-
+				fX = nextTile;
+				moving = false;
+				initialise();
 			}
 		}
-		
-
-
 	}
 }

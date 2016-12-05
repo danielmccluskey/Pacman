@@ -24,12 +24,21 @@ public:
 	bool playerDirection[4];
 	int nextTile;
 	int tileWidths;
+	int mapXPos;
+	int mapYPos;
 
-
+	//Tiles
+	int tileTop;
+	int tileLeft;
+	int tileRight;
+	int tileBottom;
+	int tileCurrent;
 
 	void CreatePacman();
-	void SetPlayerDirection(PacmanProperties& pacSprite, float movementspeed, short a_upKey, short a_downKey, short a_leftKey, short a_rightKey, int tileTop, int tileRight, int tileLeft, int tileBottom);
-	void MovePlayer(PacmanProperties& pacSprite, float movementspeed, int tileTop, int tileRight, int tileLeft, int tileBottom);
+	int GetTile(int x, int y);
+	void GetTiles();
+	void SetPlayerDirection(PacmanProperties& pacSprite, float movementspeed, short a_upKey, short a_downKey, short a_leftKey, short a_rightKey);
+	void MovePlayer(PacmanProperties& pacSprite, float movementspeed);
 
 
 private:

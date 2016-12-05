@@ -33,7 +33,6 @@ public:
 	int GetDirection();
 	void SetGhostDirection(GhostProperties& ghostSprite, float movementspeed);
 	void MoveGhost(GhostProperties& ghostSprite, float movementspeed);
-	void ChangeDirection(int currentDirection, int currentTile);
 
 
 	//Tiles
