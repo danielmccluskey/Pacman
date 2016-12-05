@@ -87,7 +87,7 @@ void PelletProperties::DestroyPellets(PelletProperties *pellet, int x, int y)
 
 PelletProperties& PelletProperties::GetPellet(PelletProperties *pellet, int x, int y)
 {
-	return pellet[x * 28 + y];
+	return pellet[(y * 28) + x];
 }
 int PelletProperties::GetTile(int x, int y)
 {

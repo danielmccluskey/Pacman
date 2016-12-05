@@ -17,6 +17,15 @@
 // Last Edited by: (See BitBucket Commits: )
 //==============================================================================================================================
 
+typedef enum GameStates
+{
+	MENU,
+	GAMEPLAY,
+	GAMEOVER
+}GameState;
+
+
+
 //Screen sizes
 int iScreenWidth = 0;
 int iScreenHeight = 0;
@@ -26,7 +35,7 @@ int iScreenHeight = 0;
 //Positions
 float xPos, yPos = 0;
 float tileWidth = 16;
-int pelletCount = 300;
+int pelletCount = mapWidth*mapHeight;
 //Movement Speed for the player, Divided by tileWidth to keep it Grid aligned
 float movementSpeed = 25/tileWidth;
 
@@ -133,12 +142,6 @@ int main(int argv, char* argc[])
 		PelletProperties test;
 		test.DrawPellets(pellet);
 		
-	/*	tileType = pellet.GetTile(x, y);
-		if (tileType != 0)
-		{
-			pellet.CreatePellet("./images/pacman/pellet.png", x, y);
-		}
-		Enemy &rcurrentEnemy = getEnemy(a_penemyArray, icol, irow);*/
 		//Creating Pacman Sprite
 		PacmanProperties pacSprite;
 		pacSprite.CreatePacman();
@@ -157,17 +160,8 @@ int main(int argv, char* argc[])
 		inky.CreateGhost(2);
 		clyde.CreateGhost(3);
 
-		blinky.initialise();
-		blinky.tileWidths = tileWidth;
 
-		pinky.initialise();
-		pinky.tileWidths = tileWidth;
-
-		inky.initialise();
-		inky.tileWidths = tileWidth;
-
-		clyde.initialise();
-		clyde.tileWidths = tileWidth;
+		
 
 		blinky.moving = false;
 		do
