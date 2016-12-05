@@ -19,7 +19,7 @@ public:
 	int nextTile;
 	int tileWidths;
 
-
+	int pelletsCollected = 0;
 
 	void CreatePellet(char* imagePath, int iTileX, int iTileY);
 	void DrawPellets(PelletProperties *pellet);
