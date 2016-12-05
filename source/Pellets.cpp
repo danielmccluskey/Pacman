@@ -79,6 +79,8 @@ void PelletProperties::DestroyPellets(PelletProperties *pellet, int x, int y)
 	if (currentTile == 1)
 	{
 		PelletProperties &currentPellet = GetPellet(pellet, x, y);
+		pelletMap[(y * 28) + x] = 2;
+		++pelletsCollected;
 		UG::StopDrawingSprite(currentPellet.SpriteID);
 		UG::DestroySprite(currentPellet.SpriteID);
 	}

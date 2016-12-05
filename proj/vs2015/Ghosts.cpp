@@ -216,3 +216,14 @@ void GhostProperties::MoveGhost(GhostProperties& ghostSprite, float movementspee
 		}
 	}
 }
+void GhostProperties::Pacmancollide(GhostProperties& ghostSprite, int x, int y)
+{
+	if (x <= fX && (x + tileWidths) >= fX)
+	{
+		if (x <= fY && (y + tileWidths) >= fY)
+		{
+			std::cout << "COLLIDE" << std::endl;
+		}
+	}
+
+}

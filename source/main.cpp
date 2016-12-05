@@ -52,7 +52,7 @@ int main(int argv, char* argc[])
 	if (UG::Create((mapWidth*tileWidth), (mapHeight*tileWidth), false, "Pacman", 100, 100))
 	{
 
-
+		UG::AddFont("./fonts/invaders.fnt");
 
 		
 		//The following is the code that draws out the tiles from the Array map
@@ -209,10 +209,18 @@ int main(int argv, char* argc[])
 
 			test.DestroyPellets(pellet, pacSprite.mapXPos - 1, pacSprite.mapYPos - 1);
 
+			//Test Collisoon with Ghosts
+			blinky.Pacmancollide(blinky, pacSprite.fX, pacSprite.fY);
+			pinky.Pacmancollide(pinky, pacSprite.fX, pacSprite.fY);
+			inky.Pacmancollide(inky, pacSprite.fX, pacSprite.fY);
+			clyde.Pacmancollide(clyde, pacSprite.fX, pacSprite.fY);
 
+			std::ostringstream ssConverter;
 
+			ssConverter << "Pellets Collected: " << test.pelletsCollected;
 
-
+			UG::SetFont("./fonts/invaders.fnt");
+			UG::DrawString(ssConverter.str().c_str(), (int)(mapWidth * 0.19f), mapHeight - 2, 1.f);
 
 
 
