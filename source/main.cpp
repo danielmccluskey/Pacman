@@ -4,6 +4,7 @@
 #include "Ghosts.h"
 #include "Pacman.h"
 #include "CustomEnum.h"
+#include "Pellets.h"
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -20,27 +21,31 @@
 int iScreenWidth = 0;
 int iScreenHeight = 0;
 
+//Amount of Pellets on map
+
 //Positions
 float xPos, yPos = 0;
 float tileWidth = 16;
-
+int pelletCount = 300;
 //Movement Speed for the player, Divided by tileWidth to keep it Grid aligned
 float movementSpeed = 25/tileWidth;
 
-//Tiles for collision
-int tileTop, tileBottom, tileRight, tileLeft, tileCurrent;
-int mapXPos, mapYPos;
-
-
-
-
-void GetTiles(TileProperties& tileQuery, int spriteID);
-
+struct PelletStruct
+{
+	int SpriteID = -1;
+	int fX;
+	int fY;
+};
+void DestroyPellets(PacmanProperties& pacSprite, PelletProperties *pellet);
 int main(int argv, char* argc[])
 {
 	//Creation of the PacMan Window, Width and height is the size of the Map array multiplied by the tile images resolution.
 	if (UG::Create((mapWidth*tileWidth), (mapHeight*tileWidth), false, "Pacman", 100, 100))
 	{
+
+
+
+		
 		//The following is the code that draws out the tiles from the Array map
 		for (int y = 0; y < mapHeight; ++y)  //Counts through the Y axis of the array each time the X axis completes a row
 		{
@@ -120,10 +125,20 @@ int main(int argv, char* argc[])
 				}
 				break;
 				}
-
 			}
 		}
 
+		//Drawing Pellets (Taken and modified from the Enemy Movement example on Bitbucket (https://bitbucket.org/GlosGP/enemymovementsimple/src/9c2c9d6d828c20d1e69586ddd92ad9b4dca0ebc0/source/main.cpp?at=default&fileviewer=file-view-default)
+		PelletProperties *pellet = new PelletProperties[pelletCount];
+		PelletProperties test;
+		test.DrawPellets(pellet);
+		
+	/*	tileType = pellet.GetTile(x, y);
+		if (tileType != 0)
+		{
+			pellet.CreatePellet("./images/pacman/pellet.png", x, y);
+		}
+		Enemy &rcurrentEnemy = getEnemy(a_penemyArray, icol, irow);*/
 		//Creating Pacman Sprite
 		PacmanProperties pacSprite;
 		pacSprite.CreatePacman();
@@ -158,18 +173,18 @@ int main(int argv, char* argc[])
 		do
 		{
 			//Gets position of the Pacman in the level.
-			TileProperties tileQuery;//Defines a new class thing, this was the only way I could figure out how to use classes, will fix in future
+			
 			
 
 			//Movement for Pacman
-			GetTiles(tileQuery, pacSprite.SpriteID); //Gets the tiles around the Pacman for collision detection
-			pacSprite.SetPlayerDirection(pacSprite, movementSpeed, UG::KEY_W, UG::KEY_S, UG::KEY_A, UG::KEY_D, tileTop, tileRight, tileLeft, tileBottom); //Sets direction on keypress
-			pacSprite.MovePlayer(pacSprite, movementSpeed, tileTop, tileRight, tileLeft, tileBottom);//Decides whether to move Pacman depending on direction and collision
+			//GetTiles(tileQuery, pacSprite.SpriteID); //Gets the tiles around the Pacman for collision detection
+			pacSprite.SetPlayerDirection(pacSprite, movementSpeed, UG::KEY_W, UG::KEY_S, UG::KEY_A, UG::KEY_D); //Sets direction on keypress
+			pacSprite.MovePlayer(pacSprite, movementSpeed);//Decides whether to move Pacman depending on direction and collision
 			UG::MoveSprite(pacSprite.SpriteID, pacSprite.fX, pacSprite.fY);//Moves pacman
 			
 
 			//Movement for Blinky (Red)
-			GetTiles(tileQuery,blinky.SpriteID);//Gets surrounding tiles for collision detection
+			//GetTiles(tileQuery,blinky.SpriteID);//Gets surrounding tiles for collision detection
 			blinky.SetGhostDirection(blinky, movementSpeed);//Sets direction Randomly
 			blinky.MoveGhost(blinky, movementSpeed);//Decides whether to move ghost depending on direction and collision
 			UG::MoveSprite(blinky.SpriteID, blinky.fX, blinky.fY);//Moves Ghost
@@ -177,24 +192,33 @@ int main(int argv, char* argc[])
 
 
 			//Movement for Pinky (Red)
-			GetTiles(tileQuery, pinky.SpriteID);//Gets surrounding tiles for collision detection
+			//GetTiles(tileQuery, pinky.SpriteID);//Gets surrounding tiles for collision detection
 			pinky.SetGhostDirection(pinky, movementSpeed);//Sets direction Randomly
 			pinky.MoveGhost(pinky, movementSpeed);//Decides whether to move ghost depending on direction and collision
 			UG::MoveSprite(pinky.SpriteID, pinky.fX, pinky.fY);//Moves Ghost
 
 
 			//Movement for Inky (Red)
-			GetTiles(tileQuery, inky.SpriteID);//Gets surrounding tiles for collision detection
+			//GetTiles(tileQuery, inky.SpriteID);//Gets surrounding tiles for collision detection
 			inky.SetGhostDirection(inky, movementSpeed);//Sets direction Randomly
 			inky.MoveGhost(inky, movementSpeed);//Decides whether to move ghost depending on direction and collision
 			UG::MoveSprite(inky.SpriteID, inky.fX, inky.fY);//Moves Ghost
 
 
 			//Movement for Clyde (Red)
-			GetTiles(tileQuery, clyde.SpriteID);//Gets surrounding tiles for collision detection
+		//	GetTiles(tileQuery, clyde.SpriteID);//Gets surrounding tiles for collision detection
 			clyde.SetGhostDirection(clyde, movementSpeed);//Sets direction Randomly
 			clyde.MoveGhost(clyde, movementSpeed);//Decides whether to move ghost depending on direction and collision
 			UG::MoveSprite(clyde.SpriteID, clyde.fX, clyde.fY);//Moves Ghost
+
+			//Pellets
+
+			test.DestroyPellets(pellet, pacSprite.mapXPos - 1, pacSprite.mapYPos - 1);
+
+
+
+
+
 
 
 
@@ -212,29 +236,21 @@ int main(int argv, char* argc[])
 			UG::ClearScreen();
 		} while (UG::Process());
 
-		/*UG::StopDrawingSprite(pacSprite.SpriteID);
+		
+		delete[] pellet;
+		UG::StopDrawingSprite(pacSprite.SpriteID);
 		UG::DestroySprite(pacSprite.SpriteID);
-		UG::Dispose();*/
+		UG::Dispose();
 
 
 	}
 	return 0;
 }
 
-void GetTiles(TileProperties& tileQuery, int spriteID)
-{
-	UG::GetSpritePosition(spriteID, xPos, yPos);
-	mapXPos = (xPos) / tileWidth;
-	mapYPos = (yPos) / tileWidth;
-	tileTop = tileQuery.GetTile(mapXPos - 1, (mapYPos));
-	tileLeft = tileQuery.GetTile((mapXPos - 2), mapYPos - 1);
-	tileRight = tileQuery.GetTile((mapXPos), mapYPos - 1);
-	tileBottom = tileQuery.GetTile(mapXPos - 1, (mapYPos - 2));
-	tileCurrent = tileQuery.GetTile((mapXPos) - 1, mapYPos - 1);
-}
-void Debug()
+void DestroyPellets(PacmanProperties& pacSprite, PelletProperties *pellet)
 {
 	
+
+	
+
 }
-
-
