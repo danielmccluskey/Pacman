@@ -90,7 +90,7 @@ void GhostProperties::CreateGhost(int ghostType)
 		fY = 160;
 		break;
 	}
-	
+	initialise();
 	UG::DrawSprite(SpriteID);
 	
 }

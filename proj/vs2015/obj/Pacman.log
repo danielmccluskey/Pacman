@@ -1,11 +1,10 @@
 ﻿  main.cpp
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman\source\main.cpp(43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman\source\main.cpp(146): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman\source\main.cpp(161): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman\source\main.cpp(164): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman\source\main.cpp(167): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman\source\main.cpp(170): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Pacman.vcxproj -> C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman\proj\vs2015\..\..\bin\x64\Debug\Pacman.exe
-  Pacman.vcxproj -> ..\..\bin\x64\Debug\Pacman.pdb (Full PDB)
-  xcopy "C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman\scripts\..\resources\"*.* "C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman\proj\vs2015\..\..\bin\x64\Debug\" /s /y /d /r 
+c:\users\s1600056\downloads\new folder (2)\source\main.cpp(52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\s1600056\downloads\new folder (2)\source\main.cpp(149): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Pellets.cpp
+c:\users\s1600056\downloads\new folder (2)\source\pellets.cpp(49): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\s1600056\downloads\new folder (2)\source\pellets.cpp(67): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+  Pacman.vcxproj -> C:\Users\s1600056\Downloads\New folder (2)\proj\vs2015\..\..\bin\x64\Debug\Pacman.exe
+  xcopy "C:\Users\s1600056\Downloads\New folder (2)\scripts\..\resources\"*.* "C:\Users\s1600056\Downloads\New folder (2)\proj\vs2015\..\..\bin\x64\Debug\" /s /y /d /r 
   0 File(s) copied

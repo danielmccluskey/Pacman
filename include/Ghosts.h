@@ -25,7 +25,7 @@ public:
 	bool moving;
 	bool ghostDirection[4];
 	int nextTile;
-	int tileWidths;
+	int tileWidths = 16;
 
 	void CreateGhost(int ghostType);
 	int GetTile(int x, int y);
