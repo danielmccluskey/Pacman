@@ -5,237 +5,183 @@
 #include "Pacman.h"
 #include "CustomEnum.h"
 #include "Pellets.h"
+
+
+#include "windows.h"
 #include <iostream>
 #include <string>
 #include <sstream>
+#pragma comment(lib, "winmm.lib")
 
 //==============================================================================================================================
 // File: Pong
 // Author: Daniel McCluskey
 // Date Created: 17/10/16
 // Brief: This is a small recreation of the game Pacman using the UOG Framework.
-// Last Edited by: (See BitBucket Commits: )
+// Last Edited by: (See BitBucket Commits: https://bitbucket.org/Danielmclovin/ct4019-pacman)
 //==============================================================================================================================
 
+
+//Definition of the Gamestates enumeration
 typedef enum GameStates
 {
+	SPLASH,
 	MENU,
 	GAMEPLAY,
 	GAMEOVER
 }GameState;
 
 
-
-//Screen sizes
-int iScreenWidth = 0;
-int iScreenHeight = 0;
-
-//Amount of Pellets on map
-
-//Positions
+//Positions (Will convert to Vector 2 class later)
 float xPos, yPos = 0;
-float tileWidth = 16;
-int pelletCount = mapWidth*mapHeight;
-//Movement Speed for the player, Divided by tileWidth to keep it Grid aligned
-float movementSpeed = 25/tileWidth;
 
-struct PelletStruct
-{
-	int SpriteID = -1;
-	int fX;
-	int fY;
-};
-void DestroyPellets(PacmanProperties& pacSprite, PelletProperties *pellet);
+//Width of the tiles
+float tileWidth = 16;
+
+//Holds the amount of pellets on the map to make initialising the Array easier.
+int pelletCount = mapWidth*mapHeight;
+
+int splashSprite;
+
+//Movement Speed for the player, Divided by tileWidth to keep it Grid aligned
+float movementSpeed = 19/tileWidth;
+void playSound(char* filePath);
 int main(int argv, char* argc[])
 {
+	
 	//Creation of the PacMan Window, Width and height is the size of the Map array multiplied by the tile images resolution.
 	if (UG::Create((mapWidth*tileWidth), (mapHeight*tileWidth), false, "Pacman", 100, 100))
 	{
-
+		
+		//Adds the font for the text displayed on Screen.
 		UG::AddFont("./fonts/invaders.fnt");
 
-		
-		//The following is the code that draws out the tiles from the Array map
-		for (int y = 0; y < mapHeight; ++y)  //Counts through the Y axis of the array each time the X axis completes a row
-		{
-			for (int x = 0; x < mapWidth; ++x) //Counts through the X axis
-			{
-				TileProperties newTile; //Defines a new class thing, this was the only way I could figure out how to use classes, will fix in future
-				int tileType = newTile.GetTile(x, y); //Finds what type of tile needs to be placed at current place in map.
+		//Draws the background map with individual tiled images
+		TileProperties newTile;
+		newTile.DrawMap();
 
-				switch (tileType) //Switch statement to actually create the tiles and draw them.
-				{
-				case bottom:
-				{
-					
-					newTile.SetTile("./images/walls/bottom.png", x, y);
-
-				}
-				break;
-				case left:
-				{
-					newTile.SetTile("./images/walls/left.png", x, y);
-
-				}
-				break;
-				case right:
-				{
-					newTile.SetTile("./images/walls/right.png", x, y);
-				}
-				break;
-				case top:
-				{
-					newTile.SetTile("./images/walls/top.png", x, y);
-				}
-				break;
-				case blank:
-				{
-					newTile.SetTile("./images/blank.png", x, y);
-				}
-				break;
-				case corner1:
-				{
-					newTile.SetTile("./images/corners/1.png", x, y);
-				}
-				break;
-				case corner2:
-				{
-					newTile.SetTile("./images/corners/2.png", x, y);
-				}
-				break;
-				case corner3:
-				{
-					newTile.SetTile("./images/corners/3.png", x, y);
-				}
-				break;
-				case corner4:
-				{
-					newTile.SetTile("./images/corners/4.png", x, y);
-				}
-				break;
-				case island1:
-				{
-					newTile.SetTile("./images/islands/1.png", x, y);
-				}
-				break;
-				case island2:
-				{
-					newTile.SetTile("./images/islands/2.png", x, y);
-				}
-				break;
-				case island3:
-				{
-					newTile.SetTile("./images/islands/3.png", x, y);
-				}
-				break;
-				case island4:
-				{
-					newTile.SetTile("./images/islands/4.png", x, y);
-				}
-				break;
-				}
-			}
-		}
-
-		//Drawing Pellets (Taken and modified from the Enemy Movement example on Bitbucket (https://bitbucket.org/GlosGP/enemymovementsimple/src/9c2c9d6d828c20d1e69586ddd92ad9b4dca0ebc0/source/main.cpp?at=default&fileviewer=file-view-default)
-		PelletProperties *pellet = new PelletProperties[pelletCount];
-		PelletProperties test;
-		test.DrawPellets(pellet);
+		//Drawing Pellets (Method used and modified from the Enemy Movement example on Bitbucket by Jstewart2: (https://bitbucket.org/GlosGP/enemymovementsimple/src/9c2c9d6d828c20d1e69586ddd92ad9b4dca0ebc0/source/main.cpp?at=default&fileviewer=file-view-default)
+		PelletProperties *pellet = new PelletProperties[pelletCount]; //Creates new class member using array
+		pellet[0].DrawPellets(pellet); //Draws the pellets on to the screen
 		
 		//Creating Pacman Sprite
-		PacmanProperties pacSprite;
-		pacSprite.CreatePacman();
-		pacSprite.initialise();
-		pacSprite.tileWidths = tileWidth;
-		UG::MoveSprite(pacSprite.SpriteID, 32, 64);
+		PacmanProperties pacSprite; //Creates new class member.
+		pacSprite.CreatePacman(); //Creates the sprite and draws it.
 		
-
+		
 		//Creating Ghosts
-		GhostProperties blinky;
-		GhostProperties pinky;
-		GhostProperties inky;
-		GhostProperties clyde;
-		blinky.CreateGhost(0);
-		pinky.CreateGhost(1);
-		inky.CreateGhost(2);
-		clyde.CreateGhost(3);
-
+		GhostProperties blinky; //Creates a new class member for the ghost Blinky
+		GhostProperties pinky;//Creates a new class member for the ghost Pinky
+		GhostProperties inky;//Creates a new class member for the ghost Inky
+		GhostProperties clyde;//Creates a new class member for the ghost Clyde
 
 		
+		blinky.CreateGhost(0);//Creates the Sprite and moves Blinky to their starting position
+		pinky.CreateGhost(1);//Creates the Sprite and moves Pinky to their starting position
+		inky.CreateGhost(2);//Creates the Sprite and moves Inky to their starting position
+		clyde.CreateGhost(3);//Creates the Sprite and moves Clyde ghost to their starting position
+		float ftime = 0;
 
-		blinky.moving = false;
+		int currentState = SPLASH;
+		bool start = false;
+		splashSprite = UG::CreateSprite("./images/backgrounds/splash.png", 448, 576, true);
+		UG::DrawSprite(splashSprite);
+		UG::MoveSprite(splashSprite, ((mapWidth*tileWidth)*0.5f), ((mapHeight*tileWidth)*0.5f));
 		do
 		{
-			//Gets position of the Pacman in the level.
-			
-			
+			switch (currentState)
+			{
+			case SPLASH:
+				
+				UG::ClearScreen();
+				
+				
+				if (ftime >= 2)
+				{
+					ftime = 0;
+					
+					UG::ClearScreen();
 
-			//Movement for Pacman
-			//GetTiles(tileQuery, pacSprite.SpriteID); //Gets the tiles around the Pacman for collision detection
-			pacSprite.SetPlayerDirection(pacSprite, movementSpeed, UG::KEY_W, UG::KEY_S, UG::KEY_A, UG::KEY_D); //Sets direction on keypress
-			pacSprite.MovePlayer(pacSprite, movementSpeed);//Decides whether to move Pacman depending on direction and collision
-			UG::MoveSprite(pacSprite.SpriteID, pacSprite.fX, pacSprite.fY);//Moves pacman
-			
+					PlaySound(TEXT("./sounds/intro.wav"), NULL, SND_FILENAME);//Plays sound without lag but doesn't return until sound has finished.
+					//Plays sound and returns instantly but is extremely laggy.
+					UG::MoveSprite(splashSprite, (mapWidth*tileWidth)+(448/2),0);
+					currentState = GAMEPLAY;
+					
+					
+					
+				}
+				
+				ftime += 0.2f;
+				break;
 
-			//Movement for Blinky (Red)
-			//GetTiles(tileQuery,blinky.SpriteID);//Gets surrounding tiles for collision detection
-			blinky.SetGhostDirection(blinky, movementSpeed);//Sets direction Randomly
-			blinky.MoveGhost(blinky, movementSpeed);//Decides whether to move ghost depending on direction and collision
-			UG::MoveSprite(blinky.SpriteID, blinky.fX, blinky.fY);//Moves Ghost
-
-
-
-			//Movement for Pinky (Red)
-			//GetTiles(tileQuery, pinky.SpriteID);//Gets surrounding tiles for collision detection
-			pinky.SetGhostDirection(pinky, movementSpeed);//Sets direction Randomly
-			pinky.MoveGhost(pinky, movementSpeed);//Decides whether to move ghost depending on direction and collision
-			UG::MoveSprite(pinky.SpriteID, pinky.fX, pinky.fY);//Moves Ghost
-
-
-			//Movement for Inky (Red)
-			//GetTiles(tileQuery, inky.SpriteID);//Gets surrounding tiles for collision detection
-			inky.SetGhostDirection(inky, movementSpeed);//Sets direction Randomly
-			inky.MoveGhost(inky, movementSpeed);//Decides whether to move ghost depending on direction and collision
-			UG::MoveSprite(inky.SpriteID, inky.fX, inky.fY);//Moves Ghost
-
-
-			//Movement for Clyde (Red)
-		//	GetTiles(tileQuery, clyde.SpriteID);//Gets surrounding tiles for collision detection
-			clyde.SetGhostDirection(clyde, movementSpeed);//Sets direction Randomly
-			clyde.MoveGhost(clyde, movementSpeed);//Decides whether to move ghost depending on direction and collision
-			UG::MoveSprite(clyde.SpriteID, clyde.fX, clyde.fY);//Moves Ghost
-
-			//Pellets
-
-			test.DestroyPellets(pellet, pacSprite.mapXPos - 1, pacSprite.mapYPos - 1);
-
-			//Test Collisoon with Ghosts
-			blinky.Pacmancollide(blinky, pacSprite.fX, pacSprite.fY);
-			pinky.Pacmancollide(pinky, pacSprite.fX, pacSprite.fY);
-			inky.Pacmancollide(inky, pacSprite.fX, pacSprite.fY);
-			clyde.Pacmancollide(clyde, pacSprite.fX, pacSprite.fY);
-
-			std::ostringstream ssConverter;
-
-			ssConverter << "Pellets Collected: " << test.pelletsCollected;
-
-			UG::SetFont("./fonts/invaders.fnt");
-			UG::DrawString(ssConverter.str().c_str(), (int)(mapWidth * 0.19f), mapHeight - 2, 1.f);
-
-
-
-			//Debug
-			
-			/*std::cout << "Dir: " << blinky.ghostDirection[0] << std::endl;
-			std::cout << "Dir: " << blinky.ghostDirection[1] << std::endl;
-			std::cout << "Dir: " << blinky.ghostDirection[2] << std::endl;
-			std::cout << "Dir: " << blinky.ghostDirection[3] << std::endl;
-			std::cout << "random: " << blinky.randomNumber << std::endl;
-			std::cout << "currentdir: " << blinky.GetDirection() << std::endl;
-			std::cout << "moving: " << blinky.moving << std::endl;*/
+			case MENU:
 			
 
-			UG::ClearScreen();
+			case GAMEPLAY:
+			{
+				
+				//Handling Pacmans movement
+				pacSprite.SetPlayerDirection(pacSprite, movementSpeed, UG::KEY_W, UG::KEY_S, UG::KEY_A, UG::KEY_D); //Sets direction on keypress
+				pacSprite.MovePlayer(pacSprite, movementSpeed);//Decides whether to move Pacman depending on direction and collision
+				if (start == false)
+				{
+					
+					start = true;
+				}
+
+															   //Movement for Blinky (Red)
+				blinky.SetGhostDirection(blinky, movementSpeed);//Sets direction Randomly
+				blinky.MoveGhost(blinky, movementSpeed);//Decides whether to move ghost depending on direction and collision
+
+														//Movement for Pinky (Red)
+				pinky.SetGhostDirection(pinky, movementSpeed);//Sets direction Randomly
+				pinky.MoveGhost(pinky, movementSpeed);//Decides whether to move ghost depending on direction and collision
+
+													  //Movement for Inky (Red)
+				inky.SetGhostDirection(inky, movementSpeed);//Sets direction Randomly
+				inky.MoveGhost(inky, movementSpeed);//Decides whether to move ghost depending on direction and collision
+
+													//Movement for Clyde (Red)
+				clyde.SetGhostDirection(clyde, movementSpeed);//Sets direction Randomly
+				clyde.MoveGhost(clyde, movementSpeed);//Decides whether to move ghost depending on direction and collision
+
+													  //Pellets
+				pellet[0].DestroyPellets(pellet, pacSprite.mapXPos - 1, pacSprite.mapYPos - 1);
+
+				//Test Collison with Ghosts
+				bool collide[4] = { false, false, false, false };
+				collide[0] = blinky.Pacmancollide(blinky, pacSprite.fX, pacSprite.fY);
+				collide[1] = pinky.Pacmancollide(pinky, pacSprite.fX, pacSprite.fY);
+				collide[2] = inky.Pacmancollide(inky, pacSprite.fX, pacSprite.fY);
+				collide[3] = clyde.Pacmancollide(clyde, pacSprite.fX, pacSprite.fY);
+
+				for (int i = 0; i < 4; i++)
+				{
+					if (collide[i] == true)
+					{
+						std::cout << "COLLIDE" << std::endl;
+						PlaySound(TEXT("./sounds/death.wav"), NULL, SND_FILENAME);
+						UG::MoveSprite(splashSprite, ((mapWidth*tileWidth)*0.5f), ((mapHeight*tileWidth)*0.5f));
+						currentState = SPLASH;
+					}
+				}
+				std::ostringstream ssConverter;
+
+				ssConverter << "Pellets Collected: " << pellet[0].pelletsCollected;
+
+				UG::SetFont("./fonts/invaders.fnt");
+				UG::DrawString(ssConverter.str().c_str(), (int)(mapWidth * 0.19f), mapHeight - 2, 1.f);
+
+				UG::ClearScreen();
+				break;
+			}
+				break;
+			case GAMEOVER:
+				break;
+			}
+			
+			
+			
 		} while (UG::Process());
 
 		
@@ -248,11 +194,8 @@ int main(int argv, char* argc[])
 	}
 	return 0;
 }
-
-void DestroyPellets(PacmanProperties& pacSprite, PelletProperties *pellet)
+void playSound(char* filePath)
 {
-	
-
-	
+	PlaySound(TEXT(filePath), NULL, SND_ASYNC);
 
 }
