@@ -4,6 +4,7 @@
 #include "stdlib.h"
 #include <iostream>
 #include "CustomEnum.h"
+#include "windows.h"
 int ghostMap[1008] =
 {
 	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -215,15 +216,21 @@ void GhostProperties::MoveGhost(GhostProperties& ghostSprite, float movementspee
 			}
 		}
 	}
+	UG::MoveSprite(SpriteID, fX, fY);//Moves Ghost
 }
-void GhostProperties::Pacmancollide(GhostProperties& ghostSprite, int x, int y)
+bool GhostProperties::Pacmancollide(GhostProperties& ghostSprite, int x, int y)
 {
 	if (x <= fX && (x + tileWidths) >= fX)
 	{
-		if (x <= fY && (y + tileWidths) >= fY)
+		if (y <= fY && (y + tileWidths) >= fY)
 		{
-			std::cout << "COLLIDE" << std::endl;
+			
+			return true;
 		}
+	}
+	else
+	{
+		return false;
 	}
 
 }

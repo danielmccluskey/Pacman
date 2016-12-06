@@ -13,6 +13,7 @@ public:
 	
 	int GetTile(int x, int y);
 	void SetTile(char* imagePath, int tileX, int tileY);
+	void DrawMap();
 
 private:
 	int SpriteID = 0;

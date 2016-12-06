@@ -2,6 +2,7 @@
 #include "UGFW.h"
 #include "stdlib.h"
 #include "CustomEnum.h"
+#include "windows.h"
 #include <iostream>
 
 int pacmanMap[1008] =
@@ -49,7 +50,11 @@ void PacmanProperties::CreatePacman()
 {
 	SpriteID = UG::CreateSprite("./images/pacman/pacman.png", SpriteWidth, SpriteWidth, true);
 	UG::DrawSprite(SpriteID);	
+	initialise(); //Sets the variables for pacman. (Will move to class)
+	UG::MoveSprite(SpriteID, 32, 64); //Moves Pacman to starting Position
 }
+
+
 
 int PacmanProperties::GetTile(int x, int y)
 {
@@ -150,7 +155,7 @@ void PacmanProperties::MovePlayer(PacmanProperties& pacSprite, float movementspe
 			{
 				fY = nextTile;
 				moving = false;
-				
+				PlaySound(TEXT("./sounds/chomp2.wav"), NULL, SND_ASYNC);
 				
 			}
 		}
@@ -161,7 +166,7 @@ void PacmanProperties::MovePlayer(PacmanProperties& pacSprite, float movementspe
 			{
 				fY = nextTile;
 				moving = false;
-				
+				PlaySound(TEXT("./sounds/chomp2.wav"), NULL, SND_ASYNC);
 
 			}
 		}
@@ -172,6 +177,7 @@ void PacmanProperties::MovePlayer(PacmanProperties& pacSprite, float movementspe
 			{
 				fX = nextTile;
 				moving = false;
+				PlaySound(TEXT("./sounds/chomp2.wav"), NULL, SND_ASYNC);
 			}
 		}
 		else if (playerDirection[west] == true)
@@ -180,12 +186,14 @@ void PacmanProperties::MovePlayer(PacmanProperties& pacSprite, float movementspe
 			if (fX <= nextTile)
 			{
 				fX = nextTile;
-				moving = false;			
+				moving = false;		
+				PlaySound(TEXT("./sounds/chomp2.wav"), NULL, SND_ASYNC);
 
 			}
 		}
 		
 	}
+	UG::MoveSprite(SpriteID, fX, fY);
 }
 
 
