@@ -87,6 +87,10 @@ int main(int argv, char* argc[])
 		splashSprite = UG::CreateSprite("./images/backgrounds/splash.png", 448, 576, true);
 		UG::DrawSprite(splashSprite);
 		UG::MoveSprite(splashSprite, ((mapWidth*tileWidth)*0.5f), ((mapHeight*tileWidth)*0.5f));
+
+		int slidingSprite = UG::CreateSprite("./images/backgrounds/slide.png", 156, 26, true);
+		UG::DrawSprite(slidingSprite);
+		UG::MoveSprite(slidingSprite, ((mapWidth*tileWidth)+(156/2)), ((mapHeight*tileWidth)*0.55f));
 		do
 		{
 			switch (currentState)
@@ -95,21 +99,28 @@ int main(int argv, char* argc[])
 				
 				UG::ClearScreen();
 				
-				
-				if (ftime >= 2)
+				if (ftime == 0)
+				{
+					PlaySound(TEXT("./sounds/intro.wav"), NULL, SND_ASYNC);
+				}
+				if (ftime >= 50)
 				{
 					ftime = 0;
 					
 					UG::ClearScreen();
 
-					PlaySound(TEXT("./sounds/intro.wav"), NULL, SND_FILENAME);//Plays sound without lag but doesn't return until sound has finished.
+					//Plays sound without lag but doesn't return until sound has finished.
 					//Plays sound and returns instantly but is extremely laggy.
 					UG::MoveSprite(splashSprite, (mapWidth*tileWidth)+(448/2),0);
+					
 					currentState = GAMEPLAY;
-					
-					
+
+					break;
+							
 					
 				}
+				UG::GetSpritePosition(slidingSprite, xPos, yPos);
+				UG::MoveSprite(slidingSprite,xPos-2.5f, yPos);
 				
 				ftime += 0.2f;
 				break;
