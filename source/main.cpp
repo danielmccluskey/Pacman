@@ -5,6 +5,7 @@
 #include "Pacman.h"
 #include "CustomEnum.h"
 #include "Pellets.h"
+#include "GameStates.h"
 
 
 #include "windows.h"
@@ -38,14 +39,16 @@ float xPos, yPos = 0;
 //Width of the tiles
 float tileWidth = 16;
 
+//Co-ords of the Center of the screen
+int iCenterX = (mapWidth*tileWidth)*0.5f;
+int iCenterY = (mapHeight*tileWidth)*0.5f;
+
 //Holds the amount of pellets on the map to make initialising the Array easier.
 int pelletCount = mapWidth*mapHeight;
 
-int splashSprite;
-
 //Movement Speed for the player, Divided by tileWidth to keep it Grid aligned
 float movementSpeed = 19/tileWidth;
-void playSound(char* filePath);
+void playSound(int spriteID);
 int main(int argv, char* argc[])
 {
 	
@@ -84,96 +87,144 @@ int main(int argv, char* argc[])
 
 		int currentState = SPLASH;
 		bool start = false;
-		splashSprite = UG::CreateSprite("./images/backgrounds/splash.png", 448, 576, true);
-		UG::DrawSprite(splashSprite);
-		UG::MoveSprite(splashSprite, ((mapWidth*tileWidth)*0.5f), ((mapHeight*tileWidth)*0.5f));
 
-		int slidingSprite = UG::CreateSprite("./images/backgrounds/slide.png", 156, 26, true);
-		UG::DrawSprite(slidingSprite);
-		UG::MoveSprite(slidingSprite, ((mapWidth*tileWidth)+(156/2)), ((mapHeight*tileWidth)*0.55f));
+		GameStateProperties menuSprite;
+		menuSprite.CreateSprite("./images/backgrounds/menu.png", iCenterX, iCenterY, (mapWidth*tileWidth), (mapHeight*tileWidth));
+
+		GameStateProperties selectSprite;
+		selectSprite.CreateSprite("./images/backgrounds/selection.png", iCenterX, iCenterY, 234, 49);
+
+		GameStateProperties splashSprite;
+		splashSprite.CreateSprite("./images/backgrounds/splash.png", iCenterX, iCenterY, (mapWidth*tileWidth), (mapHeight*tileWidth));
+
+		GameStateProperties slidingSprite;
+		slidingSprite.CreateSprite("./images/backgrounds/slide.png", ((mapWidth*tileWidth) + (156 / 2)), ((mapHeight*tileWidth)*0.55f), 156, 26);
+
+
+
+		int menuState = 0;
+
+
 		do
 		{
 			switch (currentState)
 			{
 			case SPLASH:
-				
+			{
 				UG::ClearScreen();
 				
 				if (ftime == 0)
 				{
 					PlaySound(TEXT("./sounds/intro.wav"), NULL, SND_ASYNC);
-				}
-				if (ftime >= 50)
+				}//Plays Sound
+				if (ftime >= 50) //Exits the Splash screen and goes to menu
 				{
 					ftime = 0;
-					
-					UG::ClearScreen();
-
-					//Plays sound without lag but doesn't return until sound has finished.
-					//Plays sound and returns instantly but is extremely laggy.
-					UG::MoveSprite(splashSprite, (mapWidth*tileWidth)+(448/2),0);
-					
-					currentState = GAMEPLAY;
-
+					UG::MoveSprite(slidingSprite.SpriteID, ((mapWidth*tileWidth) + (156 / 2)), ((mapHeight*tileWidth)*0.55f));
+					splashSprite.HideSprite();
+					slidingSprite.HideSprite();					
+					currentState = MENU;
 					break;
-							
-					
 				}
-				UG::GetSpritePosition(slidingSprite, xPos, yPos);
-				UG::MoveSprite(slidingSprite,xPos-2.5f, yPos);
-				
+
+				UG::GetSpritePosition(slidingSprite.SpriteID, xPos, yPos);
+				UG::MoveSprite(slidingSprite.SpriteID, xPos - 2.5f, yPos);
+
 				ftime += 0.2f;
 				break;
+			}
 
 			case MENU:
-			
+			{
+				if (UG::IsKeyDown(UG::KEY_S))
+				{
+					++menuState;
+					PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
+					
+				}
+				if (UG::IsKeyDown(UG::KEY_W))
+				{
+					--menuState;
+					PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
 
+				}
+				if (menuState >= 3)
+				{
+					menuState = 0;
+				}
+				if (menuState <= -1)
+				{
+					menuState = 2;
+				}
+				switch (menuState)
+				{
+				case PLAY:
+					UG::MoveSprite(selectSprite.SpriteID, iCenterX, iCenterY);
+					if (UG::IsKeyDown(UG::KEY_ENTER))
+					{	
+						menuSprite.HideSprite();
+						selectSprite.HideSprite();
+						currentState = GAMEPLAY;
+						PlaySound(TEXT("./sounds/intro.wav"), NULL, SND_FILENAME | SND_SYNC);
+					}
+					break;
+				case HIGHSCORES:
+					UG::MoveSprite(selectSprite.SpriteID, iCenterX, ((mapHeight*tileWidth)*0.35f));
+					break;
+				case QUIT:
+					UG::MoveSprite(selectSprite.SpriteID, iCenterX, ((mapHeight*tileWidth)*0.19f));
+					if (UG::IsKeyDown(UG::KEY_ENTER))
+					{
+						PlaySound(TEXT("./sounds/death.wav"), NULL, SND_FILENAME | SND_SYNC);
+						UG::Close();
+					}
+				}
+				break;
+			}
 			case GAMEPLAY:
 			{
 				
 				//Handling Pacmans movement
 				pacSprite.SetPlayerDirection(pacSprite, movementSpeed, UG::KEY_W, UG::KEY_S, UG::KEY_A, UG::KEY_D); //Sets direction on keypress
 				pacSprite.MovePlayer(pacSprite, movementSpeed);//Decides whether to move Pacman depending on direction and collision
-				if (start == false)
-				{
-					
-					start = true;
-				}
 
-															   //Movement for Blinky (Red)
+
+				 //Movement for Blinky (Red)
 				blinky.SetGhostDirection(blinky, movementSpeed);//Sets direction Randomly
 				blinky.MoveGhost(blinky, movementSpeed);//Decides whether to move ghost depending on direction and collision
 
-														//Movement for Pinky (Red)
+				//Movement for Pinky (Red)
 				pinky.SetGhostDirection(pinky, movementSpeed);//Sets direction Randomly
 				pinky.MoveGhost(pinky, movementSpeed);//Decides whether to move ghost depending on direction and collision
 
-													  //Movement for Inky (Red)
+				//Movement for Inky (Red)
 				inky.SetGhostDirection(inky, movementSpeed);//Sets direction Randomly
 				inky.MoveGhost(inky, movementSpeed);//Decides whether to move ghost depending on direction and collision
 
-													//Movement for Clyde (Red)
+				//Movement for Clyde (Red)
 				clyde.SetGhostDirection(clyde, movementSpeed);//Sets direction Randomly
 				clyde.MoveGhost(clyde, movementSpeed);//Decides whether to move ghost depending on direction and collision
 
-													  //Pellets
-				pellet[0].DestroyPellets(pellet, pacSprite.mapXPos - 1, pacSprite.mapYPos - 1);
+				//Pellets
+				pellet[0].DestroyPellets(pellet, pacSprite.mapXPos - 1, pacSprite.mapYPos - 1); //Function to destroy pellets on the same tile as Pacman
 
 				//Test Collison with Ghosts
-				bool collide[4] = { false, false, false, false };
-				collide[0] = blinky.Pacmancollide(blinky, pacSprite.fX, pacSprite.fY);
-				collide[1] = pinky.Pacmancollide(pinky, pacSprite.fX, pacSprite.fY);
-				collide[2] = inky.Pacmancollide(inky, pacSprite.fX, pacSprite.fY);
-				collide[3] = clyde.Pacmancollide(clyde, pacSprite.fX, pacSprite.fY);
+				bool collide[4] = { false, false, false, false }; //Array to see if any of the Ghosts are colliding with Pacman
+				collide[0] = blinky.Pacmancollide(blinky, pacSprite.fX, pacSprite.fY);//Checks if Pacman is colliding with Blinky
+				collide[1] = pinky.Pacmancollide(pinky, pacSprite.fX, pacSprite.fY);//Checks if Pacman is colliding with Pinky
+				collide[2] = inky.Pacmancollide(inky, pacSprite.fX, pacSprite.fY);//Checks if Pacman is colliding with Inky
+				collide[3] = clyde.Pacmancollide(clyde, pacSprite.fX, pacSprite.fY);//Checks if Pacman is colliding with Clyde
 
+				//For Loop to loop through the array to see if any of the ghosts collided with Pacman
 				for (int i = 0; i < 4; i++)
 				{
 					if (collide[i] == true)
 					{
-						std::cout << "COLLIDE" << std::endl;
-						PlaySound(TEXT("./sounds/death.wav"), NULL, SND_FILENAME);
-						UG::MoveSprite(splashSprite, ((mapWidth*tileWidth)*0.5f), ((mapHeight*tileWidth)*0.5f));
-						currentState = SPLASH;
+						PlaySound(TEXT("./sounds/death.wav"), NULL, SND_SYNC);//Plays Death sound and Hangs program until finished
+						menuSprite.ShowSprite();//Shows the Menu sprite
+						selectSprite.ShowSprite();//Shows the Selection box
+						
+						currentState = MENU;//Sets GameState to the Menu
 					}
 				}
 				std::ostringstream ssConverter;
@@ -205,8 +256,9 @@ int main(int argv, char* argc[])
 	}
 	return 0;
 }
-void playSound(char* filePath)
+void playSound(int spriteID)
 {
-	PlaySound(TEXT(filePath), NULL, SND_ASYNC);
+	UG::DestroySprite(spriteID);
+	UG::StopDrawingSprite(spriteID);
 
 }

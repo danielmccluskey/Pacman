@@ -155,7 +155,7 @@ void PacmanProperties::MovePlayer(PacmanProperties& pacSprite, float movementspe
 			{
 				fY = nextTile;
 				moving = false;
-				PlaySound(TEXT("./sounds/chomp2.wav"), NULL, SND_ASYNC);
+				PlaySound(TEXT("./sounds/siren.wav"), NULL, SND_NOSTOP | SND_ASYNC);
 				
 			}
 		}
@@ -166,7 +166,7 @@ void PacmanProperties::MovePlayer(PacmanProperties& pacSprite, float movementspe
 			{
 				fY = nextTile;
 				moving = false;
-				PlaySound(TEXT("./sounds/chomp2.wav"), NULL, SND_ASYNC);
+				PlaySound(TEXT("./sounds/siren.wav"), NULL, SND_NOSTOP | SND_ASYNC);
 
 			}
 		}
@@ -177,7 +177,7 @@ void PacmanProperties::MovePlayer(PacmanProperties& pacSprite, float movementspe
 			{
 				fX = nextTile;
 				moving = false;
-				PlaySound(TEXT("./sounds/chomp2.wav"), NULL, SND_ASYNC);
+				PlaySound(TEXT("./sounds/siren.wav"), NULL, SND_NOSTOP | SND_ASYNC);
 			}
 		}
 		else if (playerDirection[west] == true)
@@ -187,7 +187,7 @@ void PacmanProperties::MovePlayer(PacmanProperties& pacSprite, float movementspe
 			{
 				fX = nextTile;
 				moving = false;		
-				PlaySound(TEXT("./sounds/chomp2.wav"), NULL, SND_ASYNC);
+				PlaySound(TEXT("./sounds/siren.wav"), NULL, SND_NOSTOP | SND_ASYNC);
 
 			}
 		}
