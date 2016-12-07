@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\source\GameStates.cpp" />
     <ClCompile Include="..\..\source\main.cpp" />
     <ClCompile Include="..\..\source\MapCreation.cpp" />
     <ClCompile Include="..\..\source\Pacman.cpp" />
@@ -27,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\CustomEnum.h" />
+    <ClInclude Include="..\..\include\GameStates.h" />
     <ClInclude Include="..\..\include\Ghosts.h" />
     <ClInclude Include="..\..\include\MapCreation.h" />
     <ClInclude Include="..\..\include\Pacman.h" />

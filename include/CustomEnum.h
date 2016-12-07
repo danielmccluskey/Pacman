@@ -13,4 +13,8 @@ enum TileTypes //Enumerations for the Creation of the map to help me understand 
 {
 	bottom, left, right, top, corner1, corner2, corner3, corner4, blank, island1, island2, island3, island4
 };
+enum menuStates
+{
+	PLAY, HIGHSCORES, QUIT
+};
 #endif
