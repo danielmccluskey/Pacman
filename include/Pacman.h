@@ -14,7 +14,7 @@ public:
 		moving = false;
 	}
 
-
+	int lives;
 	float fX = 32;
 	float fY = 64;
 	int SpriteID;
@@ -39,6 +39,7 @@ public:
 	void GetTiles();
 	void SetPlayerDirection(PacmanProperties& pacSprite, float movementspeed, short a_upKey, short a_downKey, short a_leftKey, short a_rightKey);
 	void MovePlayer(PacmanProperties& pacSprite, float movementspeed);
+	void SetLives();
 
 private:
 	

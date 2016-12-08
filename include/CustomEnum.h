@@ -1,6 +1,17 @@
 #ifndef _CUSTOMENUM_H_
 #define _CUSTOMENUM_H_
-
+typedef enum GameStates
+{
+	SPLASH,
+	MENU,
+	GAMEPLAY,
+	GAMEOVER,
+	DIFFICULTY
+}GameState;
+enum DIFFICULTY
+{
+	EASY, MEDIUM, HARD
+};
 enum Direction
 {
 	north, east, south, west

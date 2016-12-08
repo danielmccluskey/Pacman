@@ -5,6 +5,7 @@
 #include <iostream>
 #include "CustomEnum.h"
 #include "windows.h"
+#include "time.h"
 int ghostMap[1008] =
 {
 	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -19,7 +20,7 @@ int ghostMap[1008] =
 	0,2,1,2,0,0,2,1,1,2,1,1,2,1,1,2,1,1,2,1,1,2,0,0,2,1,2,0,
 	0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,0,0,0,1,0,
 	0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,0,0,0,1,0,
-	0,2,1,1,1,1,2,1,1,2,1,1,2,0,0,2,1,1,1,1,1,2,1,1,1,1,2,0,
+	0,2,1,1,1,1,2,1,1,2,1,1,2,0,0,2,1,1,2,1,1,2,1,1,1,1,2,0,
 	0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,
 	1,1,1,1,1,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,1,1,1,1,1,
 	1,1,1,1,1,0,1,0,0,2,1,1,1,1,1,1,1,1,2,0,0,1,0,1,1,1,1,1,
@@ -28,7 +29,7 @@ int ghostMap[1008] =
 	0,1,1,1,0,0,2,1,1,2,0,1,1,1,1,1,1,0,2,1,1,2,0,0,1,1,1,0,
 	0,0,0,0,0,0,1,0,0,1,0,1,1,1,1,1,1,0,1,0,0,1,0,0,0,0,0,0,
 	1,1,1,1,1,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,1,1,1,1,1,
-	1,1,1,1,1,0,1,0,0,2,1,1,2,1,1,2,1,1,2,0,0,1,0,1,1,1,1,1,
+	1,1,1,1,1,0,1,0,0,2,1,1,2,1,2,2,1,1,2,0,0,1,0,1,1,1,1,1,
 	1,1,1,1,1,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,1,1,1,1,1,
 	0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,
 	0,2,1,1,1,1,2,0,0,2,1,1,2,0,0,2,1,1,2,0,0,2,1,1,1,1,2,0,
@@ -45,6 +46,21 @@ int ghostMap[1008] =
 	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 };
 
+void GhostProperties::SetCageTime()
+{
+	--cageTime;
+	if (cageTime > 0)
+	{
+		fX = cageX;
+		fY = cageY;
+	}
+	if (cageTime < 0 && cageTime > -10)
+	{
+		initialise();
+		fX = 240;
+		fY = 352;
+	}
+}
 int GhostProperties::GetTile(int x, int y)
 {
 	return ghostMap[(y*28) + x];
@@ -68,30 +84,29 @@ void GhostProperties::CreateGhost(int ghostType)
 	{
 	case blinky:
 		SpriteID = UG::CreateSprite("./images/ghosts/red.png", iGhostWidth, iGhostWidth, true);
-		UG::MoveSprite(SpriteID, 112, 416);
-		fX = 112;
-		fY = 448;
+		cageTime = 100;
+		cageX = 256;
+		
 		break;                                                                        
 	case pinky:
 		SpriteID = UG::CreateSprite("./images/ghosts/pink.png", iGhostWidth, iGhostWidth, true);
-		UG::MoveSprite(SpriteID, 352, 416);
-		fX = 352;
-		fY = 448;
+		cageTime = 300;
+		cageX = 240;
 		break;
 	case inky:
 		SpriteID = UG::CreateSprite("./images/ghosts/blue.png", iGhostWidth, iGhostWidth, true);
-		UG::MoveSprite(SpriteID, 352, 128);
-		fX = 352;
-		fY = 160;
+		cageTime = 500;
+		cageX = 224;
 		break;
 	case clyde:
 		SpriteID = UG::CreateSprite("./images/ghosts/orange.png", iGhostWidth, iGhostWidth, true);
-		UG::MoveSprite(SpriteID, 112, 128);
-		fX = 112;
-		fY = 160;
+		cageTime = 600;
+		cageX = 208;
 		break;
 	}
 	initialise();
+	cageY = 320;
+	UG::MoveSprite(SpriteID, 232, 320);
 	UG::DrawSprite(SpriteID);
 	
 }
@@ -135,6 +150,7 @@ void GhostProperties::SetGhostDirection(GhostProperties& ghostSprite, float move
 				openDirections[i] = 3;
 				++i;
 			}
+			srand(time(NULL));
 			randomDirection = openDirections[(rand() % i)];
 			do
 			{
@@ -218,13 +234,13 @@ void GhostProperties::MoveGhost(GhostProperties& ghostSprite, float movementspee
 	}
 	UG::MoveSprite(SpriteID, fX, fY);//Moves Ghost
 }
-bool GhostProperties::Pacmancollide(GhostProperties& ghostSprite, int x, int y)
+bool GhostProperties::Pacmancollide(GhostProperties& ghostSprite, int x, int y, int t)
 {
 	if (x <= fX && (x + tileWidths) >= fX)
 	{
 		if (y <= fY && (y + tileWidths) >= fY)
 		{
-			
+			cageTime = t;
 			return true;
 		}
 	}
