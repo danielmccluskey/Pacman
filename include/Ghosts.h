@@ -22,6 +22,9 @@ public:
 	int lastDirection;
 	int randomDirection;
 
+	int cageTime;
+	int cageX;
+	int cageY;
 	bool moving;
 	bool ghostDirection[4];
 	int nextTile;
@@ -33,8 +36,8 @@ public:
 	int GetDirection();
 	void SetGhostDirection(GhostProperties& ghostSprite, float movementspeed);
 	void MoveGhost(GhostProperties& ghostSprite, float movementspeed);
-	bool Pacmancollide(GhostProperties& ghostSprite,int x, int y);
-
+	bool Pacmancollide(GhostProperties& ghostSprite,int x, int y, int t);
+	void SetCageTime();
 	//Tiles
 	int tileTop;
 	int tileLeft;

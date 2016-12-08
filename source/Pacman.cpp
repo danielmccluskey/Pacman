@@ -45,6 +45,12 @@ int pacmanMap[1008] =
 	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 };
 
+void PacmanProperties::SetLives()
+{
+	--lives;
+	PlaySound(TEXT("./sounds/death.wav"), NULL, SND_FILENAME | SND_SYNC);//Plays Death sound and Hangs program until finished
+}
+
 //Creating Sprite
 void PacmanProperties::CreatePacman()
 {
@@ -52,6 +58,8 @@ void PacmanProperties::CreatePacman()
 	UG::DrawSprite(SpriteID);	
 	initialise(); //Sets the variables for pacman. (Will move to class)
 	UG::MoveSprite(SpriteID, 32, 64); //Moves Pacman to starting Position
+	UG::SetSpriteUVCoordinates(SpriteID, 1, .5f, .5f, 1);
+	playerDirection[east] = true;
 }
 
 

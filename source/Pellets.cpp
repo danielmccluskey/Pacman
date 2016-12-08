@@ -1,5 +1,7 @@
 #include "Pellets.h"
 #include "UGFW.h"
+#include <iostream>
+#include "stdlib.h"
 #include "Pacman.h"
 #include "windows.h"
 
@@ -85,9 +87,9 @@ void PelletProperties::DestroyPellets(PelletProperties *pellet, int x, int y)
 		UG::StopDrawingSprite(currentPellet.SpriteID);
 		UG::DestroySprite(currentPellet.SpriteID);
 		PlaySound(TEXT("./sounds/chomp4.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		
 	}
 }
-
 
 PelletProperties& PelletProperties::GetPellet(PelletProperties *pellet, int x, int y)
 {
