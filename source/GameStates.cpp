@@ -7,7 +7,6 @@ void GameStateProperties::CreateSprite(char* imagePath,int x,int y, int sizeX, i
 {
 	SpriteID = UG::CreateSprite(imagePath, sizeX, sizeY, true);
 	UG::MoveSprite(SpriteID, x, y);
-	UG::DrawSprite(SpriteID);
 
 }
 

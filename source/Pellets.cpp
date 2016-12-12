@@ -2,8 +2,11 @@
 #include "UGFW.h"
 #include <iostream>
 #include "stdlib.h"
+#include <fstream>
 #include "Pacman.h"
 #include "windows.h"
+#include <string>
+#include <sstream>
 
 int pelletMap[1008] =
 {
@@ -83,7 +86,7 @@ void PelletProperties::DestroyPellets(PelletProperties *pellet, int x, int y)
 	{
 		PelletProperties &currentPellet = GetPellet(pellet, x, y);
 		pelletMap[(y * 28) + x] = 2;
-		++pelletsCollected;
+		pelletsCollected += 10;
 		UG::StopDrawingSprite(currentPellet.SpriteID);
 		UG::DestroySprite(currentPellet.SpriteID);
 		PlaySound(TEXT("./sounds/chomp4.wav"), NULL, SND_FILENAME | SND_ASYNC);
@@ -99,4 +102,61 @@ int PelletProperties::GetTile(int x, int y)
 {
 	return pelletMap[(y * 28) + x];
 }
+void PelletProperties::GetHighScore()
+{
+	char* scoresPath = "./highscores/scores.txt"; //Path to the Highscore folder
+	std::ifstream previousScore; //Creates a input fstream member
+	previousScore.open(scoresPath); //Opens the scores file under the previousScore member
+	if (!previousScore) //Checks if the previous line failed, this will only run if the file didnt open correctly / if the file doesn't exist.
+	{
+		previousScore.open(scoresPath, std::fstream::in | std::fstream::out | std::fstream::trunc); //Opens/Creates the File
+		previousScore.close(); //Closes the file
+		//iCurrentHighScore = 0;
+	}
+	previousScore >> iCurrentHighScore; //Stores the contents of the file into the varible
+	previousScore.close(); //Closes the file
+}
 
+void PelletProperties::SetHighScore()
+{
+
+	char* scoresPath = "./highscores/scores.txt"; //Path to the Highscore folder
+	GetHighScore();
+
+
+	std::ofstream highScores;//Creates a output fstream member
+	highScores.open(scoresPath, std::fstream::in | std::fstream::out); //Opens the file
+	if (pelletsCollected > iCurrentHighScore) //Checks if the current score is higher than the old highscore
+	{
+		highScores << pelletsCollected; //Sets the contents of the file to the current score.
+		iCurrentHighScore = pelletsCollected;
+	}
+	else
+	{
+		std::cout << "LOWER SCORE"; //For debugging. Only runs if the current score is lower than the old highscore.
+	}
+	
+	highScores.close();//Closes the file
+}
+
+void PelletProperties::DrawHighScore()
+{
+	int iScreenWidth, iScreenHeight;
+	UG::GetScreenSize(iScreenWidth, iScreenHeight);
+	UG::ClearScreen();
+	UG::SetFont("./fonts/font.fnt");
+
+	UG::DrawString("1UP", (int)(iScreenWidth * 0.16f), iScreenHeight *0.98f, 0.8f);
+
+	std::ostringstream SCORE;
+	SCORE << pelletsCollected << std::endl;
+	UG::DrawString(SCORE.str().c_str(), (int)(iScreenWidth * 0.19f), iScreenHeight *0.95f, 0.8f);
+
+	UG::DrawString("HIGH SCORE", (int)(iScreenWidth * 0.5f), iScreenHeight *0.98f, 0.8f);
+
+	std::ostringstream HIGHSCORE;
+	HIGHSCORE << iCurrentHighScore << std::endl;
+	UG::DrawString(HIGHSCORE.str().c_str(), (int)(iScreenWidth * 0.5f), iScreenHeight *0.95f, 0.8f);
+	
+	
+}

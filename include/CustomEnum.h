@@ -6,7 +6,8 @@ typedef enum GameStates
 	MENU,
 	GAMEPLAY,
 	GAMEOVER,
-	DIFFICULTY
+	DIFFICULTY,
+	PAUSE
 }GameState;
 enum DIFFICULTY
 {

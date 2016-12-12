@@ -10,8 +10,7 @@
 #include "stdlib.h"
 #include "windows.h"
 #include <iostream>
-#include <string>
-#include <sstream>
+
 #pragma comment(lib, "winmm.lib")
 
 //==============================================================================================================================
@@ -41,6 +40,9 @@ int menuState = 0;
 int iCenterX = (mapWidth*tileWidth)*0.5f;
 int iCenterY = (mapHeight*tileWidth)*0.5f;
 
+//Screen width and height variables
+int iScreenWidth, iScreenHeight;
+
 //Holds the amount of pellets on the map to make initialising the Array easier.
 int pelletCount = mapWidth*mapHeight;
 
@@ -50,6 +52,7 @@ float movementSpeed = 19/tileWidth;
 //Variable to keep track of when the game is being started for the first time
 bool gameStart = true;
 
+void Reset();
 
 int main(int argv, char* argc[])
 {	
@@ -58,13 +61,17 @@ int main(int argv, char* argc[])
 	if (UG::Create((mapWidth*tileWidth), (mapHeight*tileWidth), false, "Pacman", 100, 100))
 	{		
 		//Adds the font for the text displayed on Screen.
-	//	UG::AddFont("./fonts/invaders.fnt");
+		UG::AddFont("./fonts/font.fnt");
+		UG::SetBackgroundColor(0x0f0f0f);
+		//Gets screen size
+		UG::GetScreenSize(iScreenWidth, iScreenHeight);
 		//Draws the background map with individual tiled images
 		TileProperties newTile;
 		newTile.DrawMap();
 		//Drawing Pellets (Method used and modified from the Enemy Movement example on Bitbucket by Jstewart2: (https://bitbucket.org/GlosGP/enemymovementsimple/src/9c2c9d6d828c20d1e69586ddd92ad9b4dca0ebc0/source/main.cpp?at=default&fileviewer=file-view-default)
 		PelletProperties *pellet = new PelletProperties[pelletCount]; //Creates new class member using array
-		pellet[0].DrawPellets(pellet); //Draws the pellets on to the screen		
+		pellet[0].DrawPellets(pellet); //Draws the pellets on to the screen	
+		pellet[0].GetHighScore();//Gets the Highscore from a file.
 		//Creating Pacman Sprite
 		PacmanProperties pacSprite; //Creates new class member.
 		pacSprite.CreatePacman(); //Creates the sprite and draws it.		
@@ -78,7 +85,8 @@ int main(int argv, char* argc[])
 		inky.CreateGhost(2);//Creates the Sprite and moves Inky to their starting position
 		clyde.CreateGhost(3);//Creates the Sprite and moves Clyde ghost to their starting position
 
-
+		GameStateProperties pauseSprite;
+		pauseSprite.CreateSprite("./images/backgrounds/pause.png", iCenterX, iCenterY, 700, 230);
 		GameStateProperties difficultySprite;
 		difficultySprite.CreateSprite("./images/backgrounds/difficulty.png", iCenterX, iCenterY, (mapWidth*tileWidth), (mapHeight*tileWidth));
 		GameStateProperties menuSprite;
@@ -90,6 +98,9 @@ int main(int argv, char* argc[])
 		GameStateProperties slidingSprite;
 		slidingSprite.CreateSprite("./images/backgrounds/slide.png", ((mapWidth*tileWidth) + (156 / 2)), ((mapHeight*tileWidth)*0.55f), 156, 26);
 		int currentState = SPLASH;
+
+		splashSprite.ShowSprite();
+		slidingSprite.ShowSprite();
 		do
 		{
 			switch (currentState)
@@ -100,13 +111,15 @@ int main(int argv, char* argc[])
 				if (ftime == 0)
 				{
 					PlaySound(TEXT("./sounds/intro.wav"), NULL, SND_ASYNC);
-				}//Plays Sound
+				}//Plays Sounds
 				if (ftime >= 50) //Exits the Splash screen and goes to menu
 				{
 					ftime = 0;
 					UG::MoveSprite(slidingSprite.SpriteID, ((mapWidth*tileWidth) + (156 / 2)), ((mapHeight*tileWidth)*0.55f));
 					splashSprite.HideSprite();
-					slidingSprite.HideSprite();					
+					slidingSprite.HideSprite();	
+					menuSprite.ShowSprite();
+					selectSprite.ShowSprite();
 					currentState = MENU;
 					break;
 				}
@@ -145,7 +158,7 @@ int main(int argv, char* argc[])
 						menuState = 0;
 						PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
 						menuSprite.HideSprite();
-						//difficultySprite.ShowSprite();
+						difficultySprite.ShowSprite();
 						currentState = DIFFICULTY;
 					}
 					break;
@@ -164,13 +177,19 @@ int main(int argv, char* argc[])
 						UG::Close();
 					}
 				}
+				break;
 				}
 				break;
 			}
 
 			case DIFFICULTY:
 			{
-
+				if (UG::IsKeyDown(UG::KEY_ESCAPE))
+				{
+					PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
+					menuSprite.ShowSprite();
+					currentState = MENU;
+				}
 				if (UG::IsKeyDown(UG::KEY_S))
 				{
 					++menuState;
@@ -220,8 +239,9 @@ int main(int argv, char* argc[])
 						selectSprite.HideSprite();
 						currentState = GAMEPLAY;
 					}
-					break;
+
 				}
+					break;
 				case HARD:
 				{
 					UG::MoveSprite(selectSprite.SpriteID, iCenterX, ((mapHeight*tileWidth)*0.19f));
@@ -234,16 +254,18 @@ int main(int argv, char* argc[])
 						selectSprite.HideSprite();
 						currentState = GAMEPLAY;
 					}
-					break;
+					
 				}
-
+				break;
 				}
 				break;
 			}
 			case GAMEPLAY:
 			{
+				pellet[0].DrawHighScore();
 				if (gameStart == true)
 				{
+
 					PlaySound(TEXT("./sounds/intro.wav"), NULL, SND_FILENAME);
 					
 					gameStart = false;
@@ -257,15 +279,15 @@ int main(int argv, char* argc[])
 				blinky.SetGhostDirection(blinky, movementSpeed);//Sets direction Randomly
 				blinky.MoveGhost(blinky, movementSpeed);//Decides whether to move ghost depending on direction and collision
 
-				//Movement for Pinky (Red)
+				//Movement for Pinky (Pink)
 				pinky.SetGhostDirection(pinky, movementSpeed);//Sets direction Randomly
 				pinky.MoveGhost(pinky, movementSpeed);//Decides whether to move ghost depending on direction and collision
 
-				//Movement for Inky (Red)
+				//Movement for Inky (Blue)
 				inky.SetGhostDirection(inky, movementSpeed);//Sets direction Randomly
 				inky.MoveGhost(inky, movementSpeed);//Decides whether to move ghost depending on direction and collision
 
-				//Movement for Clyde (Red)
+				//Movement for Clyde (Orange)
 				clyde.SetGhostDirection(clyde, movementSpeed);//Sets direction Randomly
 				clyde.MoveGhost(clyde, movementSpeed);//Decides whether to move ghost depending on direction and collision
 
@@ -293,29 +315,88 @@ int main(int argv, char* argc[])
 						if (pacSprite.lives < 0)
 						{
 
-							menuSprite.ShowSprite();//Shows the Menu sprite
-							selectSprite.ShowSprite();//Shows the Selection box						
-							currentState = MENU;//Sets GameState to the Menu
+												
+							currentState = GAMEOVER;//Sets GameState to the Menu
 						}
 						
 					}
 				}
-
-
-				std::ostringstream ssConverter;
-				//ssConverter << "Pellets Collected: " << pellet[0].pelletsCollected << "Lives: " << pacSprite.lives;
-				//ssConverter << "test";
-			//	UG::SetFont("./fonts/invaders.fnt");
-				//UG::DrawString(ssConverter.str().c_str(), (int)(mapWidth * 0.19f), mapHeight - 2, 1.f);
-				//UG::ClearScreen();
+				if (UG::IsKeyDown(UG::KEY_ESCAPE))
+				{
+					PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
+					pauseSprite.ShowSprite();
+					selectSprite.ShowSprite();
+					currentState = PAUSE;
+				}
+				
+				UG::ClearScreen();
 				break;
 			}
 				break;
 			case GAMEOVER:
-				break;
+			{
+				pellet[0].SetHighScore();
+				menuSprite.ShowSprite();//Shows the Menu sprite
+				selectSprite.ShowSprite();//Shows the Selection box	
+				difficultySprite.ShowSprite();//Shows the Difficulty menu
+				currentState = MENU;
 			}
+			break;
+			case PAUSE:
+			{
+				if (UG::IsKeyDown(UG::KEY_S))
+				{
+					++menuState;
+					PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
+				}
+				if (UG::IsKeyDown(UG::KEY_W))
+				{
+					--menuState;
+					PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
+				}
+				if (menuState >= 2)
+				{
+					menuState = 0;
+				}
+				if (menuState <= -1)
+				{
+					menuState = 2;
+				}
+				switch (menuState)
+				{
+				case EASY:
+				{
+					UG::MoveSprite(selectSprite.SpriteID, iCenterX, ((mapHeight*tileWidth)*0.62f));
+					if (UG::IsKeyDown(UG::KEY_ENTER))
+					{
+						menuState = 0;
+						PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
+						selectSprite.HideSprite();
+						pauseSprite.HideSprite();
+						currentState = GAMEPLAY;
+					}
+					break;
+				}
+				case MEDIUM:
+				{
+					UG::MoveSprite(selectSprite.SpriteID, iCenterX, ((mapHeight*tileWidth)*0.385f));
+					if (UG::IsKeyDown(UG::KEY_ENTER))
+					{
+						menuState = 0;
+						PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
+						menuSprite.ShowSprite();
+						pauseSprite.HideSprite();
+						currentState = MENU;
+					}
+				}
+				}
+			}
+			break;
+			}
+			
 		} while (UG::Process());
 		delete[] pellet;
+		UG::RemoveFont("./fonts/invaders.fnt");
 		UG::StopDrawingSprite(pacSprite.SpriteID);
 		UG::DestroySprite(pacSprite.SpriteID);
 		UG::Dispose();

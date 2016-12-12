@@ -12,7 +12,7 @@ public:
 	float fY;
 	int SpriteID = -1;
 	int SpriteWidth = 16;
-
+	int iCurrentHighScore;
 	int iMapWidth = 28;
 	int iMapHeight = 36;
 	
@@ -26,7 +26,9 @@ public:
 	PelletProperties& GetPellet(PelletProperties *pellet, int x, int y);
 	int GetTile(int x, int y);
 	void DestroyPellets(PelletProperties *pellet, int x, int y);
-
+	void SetHighScore();
+	void GetHighScore();
+	void DrawHighScore();
 
 private:
 
