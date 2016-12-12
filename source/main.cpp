@@ -59,7 +59,6 @@ int main(int argv, char* argc[])
 	{		
 		//Adds the font for the text displayed on Screen.
 	//	UG::AddFont("./fonts/invaders.fnt");
-		std::cout << "hey";
 		//Draws the background map with individual tiled images
 		TileProperties newTile;
 		newTile.DrawMap();
