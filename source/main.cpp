@@ -58,7 +58,7 @@ int main(int argv, char* argc[])
 	if (UG::Create((mapWidth*tileWidth), (mapHeight*tileWidth), false, "Pacman", 100, 100))
 	{		
 		//Adds the font for the text displayed on Screen.
-		UG::AddFont("./fonts/invaders.fnt");
+	//	UG::AddFont("./fonts/invaders.fnt");
 		std::cout << "hey";
 		//Draws the background map with individual tiled images
 		TileProperties newTile;
@@ -305,10 +305,10 @@ int main(int argv, char* argc[])
 
 				std::ostringstream ssConverter;
 				//ssConverter << "Pellets Collected: " << pellet[0].pelletsCollected << "Lives: " << pacSprite.lives;
-				ssConverter << "test";
-				UG::SetFont("./fonts/invaders.fnt");
-				UG::DrawString(ssConverter.str().c_str(), (int)(mapWidth * 0.19f), mapHeight - 2, 1.f);
-				UG::ClearScreen();
+				//ssConverter << "test";
+			//	UG::SetFont("./fonts/invaders.fnt");
+				//UG::DrawString(ssConverter.str().c_str(), (int)(mapWidth * 0.19f), mapHeight - 2, 1.f);
+				//UG::ClearScreen();
 				break;
 			}
 				break;
