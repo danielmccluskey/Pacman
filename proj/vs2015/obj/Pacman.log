@@ -1,22 +1,2 @@
-﻿  main.cpp
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(41): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(42): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(58): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(84): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(86): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(90): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(92): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(143): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(156): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(161): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(197): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(214): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(228): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(283): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(284): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(285): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(286): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  Pacman.vcxproj -> C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\proj\vs2015\..\..\bin\x64\Debug\Pacman.exe
-  Pacman.vcxproj -> ..\..\bin\x64\Debug\Pacman.pdb (Full PDB)
-  xcopy "C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\"*.* "C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\proj\vs2015\..\..\bin\x64\Debug\" /s /y /d /r 
-  0 File(s) copied
+﻿  Skipping... (no relevant changes detected)
+  main.cpp
