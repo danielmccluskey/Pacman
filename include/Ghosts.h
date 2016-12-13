@@ -36,7 +36,7 @@ public:
 	int GetDirection();
 	void SetGhostDirection(GhostProperties& ghostSprite, float movementspeed);
 	void MoveGhost(GhostProperties& ghostSprite, float movementspeed);
-	bool Pacmancollide(GhostProperties& ghostSprite,int x, int y, int t);
+	bool Pacmancollide(GhostProperties& ghostSprite,int x, int y);
 	void SetCageTime();
 	//Tiles
 	int tileTop;

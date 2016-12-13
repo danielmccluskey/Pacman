@@ -26,9 +26,11 @@ public:
 	PelletProperties& GetPellet(PelletProperties *pellet, int x, int y);
 	int GetTile(int x, int y);
 	void DestroyPellets(PelletProperties *pellet, int x, int y);
+	void FillPellets(PelletProperties *pellet);
 	void SetHighScore();
 	void GetHighScore();
 	void DrawHighScore();
+	void ClearHighScore();
 
 private:
 
