@@ -234,13 +234,12 @@ void GhostProperties::MoveGhost(GhostProperties& ghostSprite, float movementspee
 	}
 	UG::MoveSprite(SpriteID, fX, fY);//Moves Ghost
 }
-bool GhostProperties::Pacmancollide(GhostProperties& ghostSprite, int x, int y, int t)
+bool GhostProperties::Pacmancollide(GhostProperties& ghostSprite, int x, int y)
 {
 	if (x <= fX && (x + tileWidths) >= fX)
 	{
 		if (y <= fY && (y + tileWidths) >= fY)
 		{
-			cageTime = t;
 			return true;
 		}
 	}

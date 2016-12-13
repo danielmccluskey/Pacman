@@ -6,10 +6,11 @@
 #include "CustomEnum.h"
 #include "Pellets.h"
 #include "GameStates.h"
-
 #include "stdlib.h"
 #include "windows.h"
 #include <iostream>
+#include <string>
+#include <sstream>
 
 #pragma comment(lib, "winmm.lib")
 
@@ -84,7 +85,8 @@ int main(int argv, char* argc[])
 		pinky.CreateGhost(1);//Creates the Sprite and moves Pinky to their starting position
 		inky.CreateGhost(2);//Creates the Sprite and moves Inky to their starting position
 		clyde.CreateGhost(3);//Creates the Sprite and moves Clyde ghost to their starting position
-
+		GameStateProperties highScoresSprite;
+		highScoresSprite.CreateSprite("./images/backgrounds/highscores.png", iCenterX, iCenterY, (mapWidth*tileWidth), (mapHeight*tileWidth));
 		GameStateProperties pauseSprite;
 		pauseSprite.CreateSprite("./images/backgrounds/pause.png", iCenterX, iCenterY, 700, 230);
 		GameStateProperties difficultySprite;
@@ -97,6 +99,7 @@ int main(int argv, char* argc[])
 		splashSprite.CreateSprite("./images/backgrounds/splash.png", iCenterX, iCenterY, (mapWidth*tileWidth), (mapHeight*tileWidth));
 		GameStateProperties slidingSprite;
 		slidingSprite.CreateSprite("./images/backgrounds/slide.png", ((mapWidth*tileWidth) + (156 / 2)), ((mapHeight*tileWidth)*0.55f), 156, 26);
+		
 		int currentState = SPLASH;
 
 		splashSprite.ShowSprite();
@@ -155,7 +158,7 @@ int main(int argv, char* argc[])
 					UG::MoveSprite(selectSprite.SpriteID, iCenterX, iCenterY);
 					if (UG::IsKeyDown(UG::KEY_ENTER))
 					{
-						menuState = 0;
+						menuState = 1;
 						PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
 						menuSprite.HideSprite();
 						difficultySprite.ShowSprite();
@@ -165,9 +168,18 @@ int main(int argv, char* argc[])
 				}
 				case HIGHSCORES:
 				{
+					if (UG::IsKeyDown(UG::KEY_ENTER))
+					{
+						menuState = 1;
+						PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
+						menuSprite.HideSprite();
+						highScoresSprite.ShowSprite();
+						currentState = SCORES;
+					}
 					UG::MoveSprite(selectSprite.SpriteID, iCenterX, ((mapHeight*tileWidth)*0.35f));
-					break;
+					
 				}
+				break;
 				case QUIT:
 				{
 					UG::MoveSprite(selectSprite.SpriteID, iCenterX, ((mapHeight*tileWidth)*0.19f));
@@ -188,6 +200,7 @@ int main(int argv, char* argc[])
 				{
 					PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
 					menuSprite.ShowSprite();
+					difficultySprite.HideSprite();
 					currentState = MENU;
 				}
 				if (UG::IsKeyDown(UG::KEY_S))
@@ -224,9 +237,7 @@ int main(int argv, char* argc[])
 						currentState = GAMEPLAY;
 					}
 				}
-
-
-					break;
+				break;
 				case MEDIUM:
 				{
 					UG::MoveSprite(selectSprite.SpriteID, iCenterX, ((mapHeight*tileWidth)*0.35f));
@@ -260,6 +271,7 @@ int main(int argv, char* argc[])
 				}
 				break;
 			}
+			break;
 			case GAMEPLAY:
 			{
 				pellet[0].DrawHighScore();
@@ -294,17 +306,14 @@ int main(int argv, char* argc[])
 				//Pellets
 				pellet[0].DestroyPellets(pellet, pacSprite.mapXPos - 1, pacSprite.mapYPos - 1); //Function to destroy pellets on the same tile as Pacman
 
-				blinky.SetCageTime();
-				pinky.SetCageTime();
-				inky.SetCageTime();
-				clyde.SetCageTime();
+				
 
 				//Test Collison with Ghosts
 				bool collide[4] = { false, false, false, false }; //Array to see if any of the Ghosts are colliding with Pacman
-				collide[0] = blinky.Pacmancollide(blinky, pacSprite.fX, pacSprite.fY,100);//Checks if Pacman is colliding with Blinky
-				collide[1] = pinky.Pacmancollide(pinky, pacSprite.fX, pacSprite.fY,300);//Checks if Pacman is colliding with Pinky
-				collide[2] = inky.Pacmancollide(inky, pacSprite.fX, pacSprite.fY,400);//Checks if Pacman is colliding with Inky
-				collide[3] = clyde.Pacmancollide(clyde, pacSprite.fX, pacSprite.fY,600);//Checks if Pacman is colliding with Clyde
+				collide[0] = blinky.Pacmancollide(blinky, pacSprite.fX, pacSprite.fY);//Checks if Pacman is colliding with Blinky
+				collide[1] = pinky.Pacmancollide(pinky, pacSprite.fX, pacSprite.fY);//Checks if Pacman is colliding with Pinky
+				collide[2] = inky.Pacmancollide(inky, pacSprite.fX, pacSprite.fY);//Checks if Pacman is colliding with Inky
+				collide[3] = clyde.Pacmancollide(clyde, pacSprite.fX, pacSprite.fY);//Checks if Pacman is colliding with Clyde
 
 				//For Loop to loop through the array to see if any of the ghosts collided with Pacman
 				for (int i = 0; i < 4; i++)
@@ -312,10 +321,15 @@ int main(int argv, char* argc[])
 					if (collide[i] == true)
 					{
 						pacSprite.SetLives();
+						blinky.cageTime = 200;
+						pinky.cageTime = 400;
+						inky.cageTime = 600;
+						clyde.cageTime = 700;
+
 						if (pacSprite.lives < 0)
 						{
 
-												
+							pellet[0].FillPellets(pellet);
 							currentState = GAMEOVER;//Sets GameState to the Menu
 						}
 						
@@ -329,6 +343,11 @@ int main(int argv, char* argc[])
 					currentState = PAUSE;
 				}
 				
+				blinky.SetCageTime();
+				pinky.SetCageTime();
+				inky.SetCageTime();
+				clyde.SetCageTime();
+
 				UG::ClearScreen();
 				break;
 			}
@@ -336,9 +355,10 @@ int main(int argv, char* argc[])
 			case GAMEOVER:
 			{
 				pellet[0].SetHighScore();
+				pellet[0].pelletsCollected = 0;
 				menuSprite.ShowSprite();//Shows the Menu sprite
 				selectSprite.ShowSprite();//Shows the Selection box	
-				difficultySprite.ShowSprite();//Shows the Difficulty menu
+				gameStart = true;
 				currentState = MENU;
 			}
 			break;
@@ -389,9 +409,65 @@ int main(int argv, char* argc[])
 						currentState = MENU;
 					}
 				}
+				break;
 				}
 			}
 			break;
+			case SCORES:
+			{
+
+				std::ostringstream HIGHSCORE;
+				HIGHSCORE << pellet[0].iCurrentHighScore << std::endl;
+				UG::DrawString(HIGHSCORE.str().c_str(), (int)(iScreenWidth * 0.5f), iScreenHeight *0.5f, 1.f);
+
+
+				if (UG::IsKeyDown(UG::KEY_S))
+				{
+					++menuState;
+					PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
+				}
+				if (UG::IsKeyDown(UG::KEY_W))
+				{
+					--menuState;
+					PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
+				}
+				if (menuState >= 3)
+				{
+					menuState = 1;
+				}
+				if (menuState <= 0)
+				{
+					menuState = 2;
+				}
+				switch (menuState)
+				{
+				case HIGHSCORES:
+				{
+					UG::MoveSprite(selectSprite.SpriteID, iCenterX, (mapHeight*tileWidth)*0.35f);
+					if (UG::IsKeyDown(UG::KEY_ENTER))
+					{
+						pellet[0].ClearHighScore();
+					}
+					break;
+				}
+				case QUIT:
+				{
+					if (UG::IsKeyDown(UG::KEY_ENTER))
+					{
+						menuState = 0;
+						PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
+						highScoresSprite.HideSprite();
+						menuSprite.ShowSprite();
+						currentState = MENU;
+					}
+					UG::MoveSprite(selectSprite.SpriteID, iCenterX, ((mapHeight*tileWidth)*0.19f));
+					break;
+				}
+				}
+			}
+			break;
+
+
 			}
 			
 		} while (UG::Process());

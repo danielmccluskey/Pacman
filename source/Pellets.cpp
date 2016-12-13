@@ -78,6 +78,28 @@ void PelletProperties::DrawPellets(PelletProperties *pellet)
 		}
 	}
 }
+void PelletProperties::FillPellets(PelletProperties *pellet)
+{
+	for (int y = 0; y < iMapHeight; ++y)  //Counts through the Y axis of the array each time the X axis completes a row
+	{
+		for (int x = 0; x < iMapWidth; ++x) //Counts through the X axis
+		{
+			PelletProperties &currentPellet = GetPellet(pellet, x, y);
+			int currentTile = GetTile(x, y);
+			if (currentTile == 2)
+			{
+				currentPellet.SpriteID = UG::CreateSprite("./images/pacman/pellet.png", 4, 4, true);
+				//Otherwise duplicate the sprite that the enemy at 0,0 has.
+				int tileX = (x * 16) + 15;
+				int tileY = (y * 16) + 15;
+				UG::MoveSprite(currentPellet.SpriteID, tileX, tileY);
+				UG::DrawSprite(currentPellet.SpriteID);
+				pelletMap[(y * 28) + x] = 1;
+
+			}
+		}
+	}
+}
 void PelletProperties::DestroyPellets(PelletProperties *pellet, int x, int y)
 {
 	
@@ -102,6 +124,15 @@ int PelletProperties::GetTile(int x, int y)
 {
 	return pelletMap[(y * 28) + x];
 }
+void PelletProperties::ClearHighScore()
+{
+	char* scoresPath = "./highscores/scores.txt"; //Path to the Highscore folder
+	std::ofstream HIGHSCORE;//Creates an output fstream member
+	HIGHSCORE.open(scoresPath, std::ofstream::out | std::ofstream::trunc);//Opens and Removes all of the text inside the file.
+	HIGHSCORE << 0;
+	HIGHSCORE.close(); //Closes the file.
+	GetHighScore();
+}
 void PelletProperties::GetHighScore()
 {
 	char* scoresPath = "./highscores/scores.txt"; //Path to the Highscore folder
@@ -111,7 +142,7 @@ void PelletProperties::GetHighScore()
 	{
 		previousScore.open(scoresPath, std::fstream::in | std::fstream::out | std::fstream::trunc); //Opens/Creates the File
 		previousScore.close(); //Closes the file
-		//iCurrentHighScore = 0;
+		ClearHighScore();
 	}
 	previousScore >> iCurrentHighScore; //Stores the contents of the file into the varible
 	previousScore.close(); //Closes the file
@@ -124,7 +155,7 @@ void PelletProperties::SetHighScore()
 	GetHighScore();
 
 
-	std::ofstream highScores;//Creates a output fstream member
+	std::ofstream highScores;//Creates an output fstream member
 	highScores.open(scoresPath, std::fstream::in | std::fstream::out); //Opens the file
 	if (pelletsCollected > iCurrentHighScore) //Checks if the current score is higher than the old highscore
 	{
