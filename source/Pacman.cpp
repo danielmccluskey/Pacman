@@ -87,11 +87,11 @@ void PacmanProperties::SetSpriteFrame()
 	}
 	if (fTimer < 1)
 	{
-		//UG::SetSpriteUVCoordinates(SpriteID, spriteFrames[iFirstFrame]);
+		UG::SetSpriteUVCoordinates(SpriteID, spriteFrames[iFirstFrame]);
 	}
 	else
 	{
-		//UG::SetSpriteUVCoordinates(SpriteID, spriteFrames[iSecondFrame]);
+		UG::SetSpriteUVCoordinates(SpriteID, spriteFrames[iSecondFrame]);
 	}
 	if (fTimer > 2)
 	{
@@ -104,18 +104,11 @@ void PacmanProperties::SetSpriteFrame()
 
 void PacmanProperties::SetLives(PacmanProperties& pacSprite)
 {
-	
-
-
 	--lives;
 	initialise();
 	fX = 32;
 	fY = 64;
-	
 	PlaySound(TEXT("./sounds/death.wav"), NULL, SND_FILENAME | SND_ASYNC);//Plays Death sound and Hangs program until finished
-
-	
-	
 	playerDirection[east] = true;
 }
 
@@ -126,7 +119,7 @@ void PacmanProperties::CreatePacman()
 	UG::DrawSprite(SpriteID);	
 	initialise(); //Sets the variables for pacman. (Will move to class)
 	UG::MoveSprite(SpriteID, 32, 64); //Moves Pacman to starting Position
-	UG::SetSpriteUVCoordinates(SpriteID, 1, .5f, .5f, 1);
+	UG::SetSpriteUVCoordinates(SpriteID, .5f, .5f, 1.f, .75f);
 	playerDirection[east] = true;
 }
 
