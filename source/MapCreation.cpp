@@ -1,8 +1,17 @@
+//==============================================================================================================================
+// Project: Pacman
+// File: MapCreation.cpp
+// Author: Daniel McCluskey
+// Date Created: 17/10/16
+// Brief: This is the file that contains the code that draws the "Maze" of the Pacman game.
+// Last Edited by: (See BitBucket Commits: https://bitbucket.org/Danielmclovin/ct4019-pacman)
+//==============================================================================================================================
+
 #include "UGFW.h"
 #include "MapCreation.h"
 #include "CustomEnum.h"
 
-int map[mapWidth * mapHeight] = {
+int iMap[iMapWidth * iMapHeight] = {
 
 	8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,
 	8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,
@@ -45,13 +54,13 @@ int map[mapWidth * mapHeight] = {
 void TileProperties::DrawMap()
 {
 	//The following is the code that draws out the tiles from the Array map
-	for (int y = 0; y < mapHeight; ++y)  //Counts through the Y axis of the array each time the X axis completes a row
+	for (int y = 0; y < iMapHeight; ++y)  //Counts through the Y axis of the array each time the X axis completes a row
 	{
-		for (int x = 0; x < mapWidth; ++x) //Counts through the X axis
+		for (int x = 0; x < iMapWidth; ++x) //Counts through the X axis
 		{
-			int tileType = GetTile(x, y); //Finds what type of tile needs to be placed at current place in map.
+			int iTileType = GetTile(x, y); //Finds what type of tile needs to be placed at current place in map.
 
-			switch (tileType) //Switch statement to actually create the tiles and draw them.
+			switch (iTileType) //Switch statement to actually create the tiles and draw them.
 			{
 			case bottom:
 			{
@@ -127,18 +136,18 @@ void TileProperties::DrawMap()
 }
 
 
-void TileProperties::SetTile(char* imagePath, int iTileX, int iTileY)
+void TileProperties::SetTile(char* a_cImagePath, int a_iTileX, int a_iTileY)
 {
-	int tileX = (iTileX * 16) + 15;
-	int tileY = (iTileY * 16) + 15;
-	int SpriteID = UG::CreateSprite(imagePath, 16, 16, true);
-	UG::MoveSprite(SpriteID, tileX, tileY);
-	UG::DrawSprite(SpriteID);
+	int iRealTileX = (a_iTileX * 16) + 15;
+	int iRealTileY = (a_iTileY * 16) + 15;
+	int iSpriteID = UG::CreateSprite(a_cImagePath, 16, 16, true);
+	UG::MoveSprite(iSpriteID, iRealTileX, iRealTileY);
+	UG::DrawSprite(iSpriteID);
 }
 
 
-int TileProperties::GetTile(int x, int y)
+int TileProperties::GetTile(int a_iX, int a_iY)
 {
-	return map[(y*mapWidth) + x];
+	return iMap[(a_iY*iMapWidth) + a_iX];
 }
 

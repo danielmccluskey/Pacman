@@ -1,3 +1,11 @@
+//==============================================================================================================================
+// Project: Pacman
+// File: Ghosts.cpp
+// Author: Daniel McCluskey
+// Date Created: 17/10/16
+// Brief: This is the header file that contains the code that controls the behaviour and mechanics of the ghosts during Gameplay.
+// Last Edited by: (See BitBucket Commits: https://bitbucket.org/Danielmclovin/ct4019-pacman)
+//==============================================================================================================================
 #include "UGFW.h"
 #include "Ghosts.h"
 #include "MapCreation.h"
@@ -48,72 +56,72 @@ int ghostMap[1008] =
 
 void GhostProperties::SetCageTime()
 {
-	--cageTime;
-	if (cageTime > 0)
+	--iCageTime;
+	if (iCageTime > 0)
 	{
-		fX = cageX;
-		fY = cageY;
+		fX = iCageX;
+		fY = iCageY;
 	}
-	if (cageTime < 0 && cageTime > -10)
+	if (iCageTime < 0 && iCageTime > -10)
 	{
 		initialise();
 		fX = 240;
 		fY = 352;
 	}
 }
-int GhostProperties::GetTile(int x, int y)
+int GhostProperties::GetTile(int a_iX, int a_iY)
 {
-	return ghostMap[(y*28) + x];
+	return ghostMap[(a_iY *28) + a_iX];
 }
 void GhostProperties::GetTiles()
 {
 	
-	int mapXPos = (fX) / tileWidths;
-	int mapYPos = (fY) / tileWidths;
-	tileTop = GetTile(mapXPos - 1, (mapYPos));
-	tileLeft = GetTile((mapXPos - 2), mapYPos - 1);
-	tileRight = GetTile((mapXPos), mapYPos - 1);
-	tileBottom = GetTile(mapXPos - 1, (mapYPos - 2));
-	tileCurrent = GetTile((mapXPos)-1, mapYPos - 1);
+	int iMapXPos = (fX) / iTileWidths;
+	int iMapYPos = (fY) / iTileWidths;
+	iTileTop = GetTile(iMapXPos - 1, (iMapYPos));
+	iTileLeft = GetTile((iMapXPos - 2), iMapYPos - 1);
+	iTileRight = GetTile((iMapXPos), iMapYPos - 1);
+	iTileBottom = GetTile(iMapXPos - 1, (iMapYPos - 2));
+	iTileCurrent = GetTile((iMapXPos)-1, iMapYPos - 1);
 	
 }
 
-void GhostProperties::CreateGhost(int ghostType)
+void GhostProperties::CreateGhost(int a_iGhostType)
 {
-	switch (ghostType)
+	switch (a_iGhostType)
 	{
 	case blinky:
-		SpriteID = UG::CreateSprite("./images/ghosts/red.png", iGhostWidth, iGhostWidth, true);
-		cageTime = 100;
-		cageX = 256;
-		UG::DrawSprite(SpriteID);		
+		iSpriteID = UG::CreateSprite("./images/ghosts/red.png", iGhostWidth, iGhostWidth, true);
+		iCageTime = 100;
+		iCageX = 256;
+		UG::DrawSprite(iSpriteID);
 		break;                                                                        
 	case pinky:
-		SpriteID = UG::CreateSprite("./images/ghosts/pink.png", iGhostWidth, iGhostWidth, true);
-		cageTime = 300;
-		cageX = 240;
-		UG::DrawSprite(SpriteID);
+		iSpriteID = UG::CreateSprite("./images/ghosts/pink.png", iGhostWidth, iGhostWidth, true);
+		iCageTime = 300;
+		iCageX = 240;
+		UG::DrawSprite(iSpriteID);
 		break;
 	case inky:
-		SpriteID = UG::CreateSprite("./images/ghosts/blue.png", iGhostWidth, iGhostWidth, true);
-		cageTime = 500;
-		cageX = 224;
-		UG::DrawSprite(SpriteID);
+		iSpriteID = UG::CreateSprite("./images/ghosts/blue.png", iGhostWidth, iGhostWidth, true);
+		iCageTime = 500;
+		iCageX = 224;
+		UG::DrawSprite(iSpriteID);
 		break;
 	case clyde:
-		SpriteID = UG::CreateSprite("./images/ghosts/orange.png", iGhostWidth, iGhostWidth, true);
-		cageTime = 600;
-		cageX = 208;
-		UG::DrawSprite(SpriteID);
+		iSpriteID = UG::CreateSprite("./images/ghosts/orange.png", iGhostWidth, iGhostWidth, true);
+		iCageTime = 600;
+		iCageX = 208;
+		UG::DrawSprite(iSpriteID);
 		break;
 	case edible:
-		SpriteID = UG::CreateSprite("./images/ghosts/edible.png", iGhostWidth, iGhostWidth, true);
+		iSpriteID = UG::CreateSprite("./images/ghosts/edible.png", iGhostWidth, iGhostWidth, true);
 		break;
 
 	}
 	initialise();
-	cageY = 320;
-	UG::MoveSprite(SpriteID, 232, 320);
+	iCageY = 320;
+	UG::MoveSprite(iSpriteID, 232, 320);
 	
 	
 }
@@ -122,130 +130,130 @@ int GhostProperties::GetDirection()
 {
 	for (int i = 0; i < 3; ++i)
 	{
-		if (ghostDirection[i] == true)
+		if (bGhostDirection[i] == true)
 		{
 			return i;
 		}
 	}
 }
-void GhostProperties::SetGhostDirection(GhostProperties& ghostSprite, float movementspeed)
+void GhostProperties::SetGhostDirection(GhostProperties& a_ghostSprite, float a_fMovementspeed)
 {
 	GetTiles();
-	if (moving == false )
+	if (bMoving == false )
 	{		
-		if (tileCurrent == 2)
+		if (iTileCurrent == 2)
 		{			
 			int openDirections[4] = { -1, -1 ,-1 ,-1 };
 			int i = 0;
-			if (tileTop != 0 && lastDirection != 2)
+			if (iTileTop != 0 && iLastDirection != 2)
 			{
 				openDirections[i] = 0;
 				++i;
 			}
-			if (tileBottom != 0 && lastDirection != 0)
+			if (iTileBottom != 0 && iLastDirection != 0)
 			{
 				openDirections[i] = 2;
 				++i;
 			}
-			if (tileRight != 0 && lastDirection != 3)
+			if (iTileRight != 0 && iLastDirection != 3)
 			{
 				openDirections[i] = 1;
 				++i;
 			}			
-			if (tileLeft != 0 && lastDirection != 1)
+			if (iTileLeft != 0 && iLastDirection != 1)
 			{
 				openDirections[i] = 3;
 				++i;
 			}
 			srand(time(NULL));
-			randomDirection = openDirections[(rand() % i)];
+			iRandomDirection = openDirections[(rand() % i)];
 			do
 			{
-				randomDirection = openDirections[(rand() % i)];
-			} while (randomDirection == -1);			
+				iRandomDirection = openDirections[(rand() % i)];
+			} while (iRandomDirection == -1);			
 		}
-		if (randomDirection == 0)
+		if (iRandomDirection == 0)
 		{
-			nextTile = fY + tileWidths;
-			ghostDirection[north] = true;
-			moving = true;
-			lastDirection = 0;
+			iNextTile = fY + iTileWidths;
+			bGhostDirection[north] = true;
+			bMoving = true;
+			iLastDirection = 0;
 		}		
-		else if (randomDirection == 3)
+		else if (iRandomDirection == 3)
 		{
-			nextTile = fX - tileWidths;
-			ghostDirection[west] = true;
-			moving = true;
-			lastDirection = 3;
+			iNextTile = fX - iTileWidths;
+			bGhostDirection[west] = true;
+			bMoving = true;
+			iLastDirection = 3;
 		}
-		else if (randomDirection == 1)
+		else if (iRandomDirection == 1)
 		{
-			nextTile = fX + tileWidths;
-			ghostDirection[east] = true;
-			moving = true;
-			lastDirection = 1;
+			iNextTile = fX + iTileWidths;
+			bGhostDirection[east] = true;
+			bMoving = true;
+			iLastDirection = 1;
 		}
-		else if (randomDirection == 2)
+		else if (iRandomDirection == 2)
 		{
-			nextTile = fY - tileWidths;
-			ghostDirection[south] = true;
-			moving = true;
-			lastDirection = 2;
+			iNextTile = fY - iTileWidths;
+			bGhostDirection[south] = true;
+			bMoving = true;
+			iLastDirection = 2;
 		}		
 	}
 }
-void GhostProperties::MoveGhost(GhostProperties& ghostSprite, float movementspeed)
+void GhostProperties::MoveGhost(GhostProperties& a_ghostSprite, float a_fMovementspeed)
 {
-	if (moving == true)
+	if (bMoving == true)
 	{
-		if (ghostDirection[north] == true)
+		if (bGhostDirection[north] == true)
 		{
-			fY += movementspeed;
-			if (fY >= nextTile)
+			fY += a_fMovementspeed;
+			if (fY >= iNextTile)
 			{
-				fY = nextTile;
-				moving = false;
+				fY = iNextTile;
+				bMoving = false;
 				initialise();
 			}
 		}
-		else if (ghostDirection[south] == true)
+		else if (bGhostDirection[south] == true)
 		{
-			fY -= movementspeed;
-			if (fY <= nextTile)
+			fY -= a_fMovementspeed;
+			if (fY <= iNextTile)
 			{
-				fY = nextTile;
-				moving = false;
+				fY = iNextTile;
+				bMoving = false;
 				initialise();
 			}
 		}
-		else if (ghostDirection[east] == true )
+		else if (bGhostDirection[east] == true )
 		{
-			fX += movementspeed;
-			if (fX >= nextTile)
+			fX += a_fMovementspeed;
+			if (fX >= iNextTile)
 			{
-				fX = nextTile;
-				moving = false;
+				fX = iNextTile;
+				bMoving = false;
 				initialise();
 			}
 		}
-		else if (ghostDirection[west] == true)
+		else if (bGhostDirection[west] == true)
 		{
-			fX -= movementspeed;
-			if (fX <= nextTile)
+			fX -= a_fMovementspeed;
+			if (fX <= iNextTile)
 			{
-				fX = nextTile;
-				moving = false;
+				fX = iNextTile;
+				bMoving = false;
 				initialise();
 			}
 		}
 	}
-	UG::MoveSprite(SpriteID, fX, fY);//Moves Ghost
+	UG::MoveSprite(iSpriteID, fX, fY);//Moves Ghost
 }
-bool GhostProperties::Pacmancollide(GhostProperties& ghostSprite, int x, int y)
+bool GhostProperties::Pacmancollide(GhostProperties& a_ghostSprite, int a_iX, int a_iY)
 {
-	if (x <= fX && (x + tileWidths) >= fX)
+	if (a_iX <= fX && (a_iX + iTileWidths) >= fX)
 	{
-		if (y <= fY && (y + tileWidths) >= fY)
+		if (a_iY <= fY && (a_iY + iTileWidths) >= fY)
 		{
 			return true;
 		}
@@ -257,9 +265,9 @@ bool GhostProperties::Pacmancollide(GhostProperties& ghostSprite, int x, int y)
 
 }
 
-void GhostProperties::SetEdibleGhostsPos(GhostProperties& ghost)
+void GhostProperties::SetEdibleGhostsPos(GhostProperties& a_ghost)
 {
-	fX = ghost.fX;
-	fY = ghost.fY;
-	UG::MoveSprite(SpriteID, fX, fY);
+	fX = a_ghost.fX;
+	fY = a_ghost.fY;
+	UG::MoveSprite(iSpriteID, fX, fY);
 }
