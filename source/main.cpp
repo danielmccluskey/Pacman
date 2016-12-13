@@ -40,8 +40,6 @@ float deathFrames[16][4] =
 	{ .5f,.75f,.75f,1.f },
 	{ .25f,.75f,.5f,1.f },
 	{ 0.f,.75f,.25f,1.f }
-
-
 };
 //Sets the random clock to produce more random patterns for the ghosts.
 //Sets the Variable for the death animation
@@ -76,7 +74,7 @@ float movementSpeed = 19/tileWidth;
 //Variable to keep track of when the game is being started for the first time
 bool gameStart = true;
 
-void Reset(PacmanProperties& pacSprite);
+void SetMenuPosition(int upperBound, int lowerBound);
 
 int main(int argv, char* argc[])
 {	
@@ -87,8 +85,12 @@ int main(int argv, char* argc[])
 		//Adds the font for the text displayed on Screen.
 		UG::AddFont("./fonts/font.fnt");
 		UG::SetBackgroundColor(0x0f0f0f);
+		
+		
 		//Gets screen size
 		UG::GetScreenSize(iScreenWidth, iScreenHeight);
+		
+		
 		//Draws the background map with individual tiled images
 		TileProperties newTile;
 		newTile.DrawMap();
@@ -96,9 +98,13 @@ int main(int argv, char* argc[])
 		PelletProperties *pellet = new PelletProperties[pelletCount]; //Creates new class member using array
 		pellet[0].DrawPellets(pellet); //Draws the pellets on to the screen	
 		pellet[0].GetHighScore();//Gets the Highscore from a file.
+
+
 		//Creating Pacman Sprite
 		PacmanProperties pacSprite; //Creates new class member.
-		pacSprite.CreatePacman(); //Creates the sprite and draws it.		
+		pacSprite.CreatePacman(); //Creates the sprite and draws it.	
+
+
 		//Creating Ghosts
 		GhostProperties blinky; //Creates a new class member for the ghost Blinky
 		GhostProperties pinky;//Creates a new class member for the ghost Pinky
@@ -108,6 +114,8 @@ int main(int argv, char* argc[])
 		pinky.CreateGhost(1);//Creates the Sprite and moves Pinky to their starting position
 		inky.CreateGhost(2);//Creates the Sprite and moves Inky to their starting position
 		clyde.CreateGhost(3);//Creates the Sprite and moves Clyde ghost to their starting position
+
+
 		GameStateProperties highScoresSprite;
 		highScoresSprite.CreateSprite("./images/backgrounds/highscores.png", iCenterX, iCenterY, (mapWidth*tileWidth), (mapHeight*tileWidth));
 		GameStateProperties pauseSprite;
@@ -120,9 +128,11 @@ int main(int argv, char* argc[])
 		selectSprite.CreateSprite("./images/backgrounds/selection.png", iCenterX, iCenterY, 234, 49);
 		GameStateProperties splashSprite;
 		splashSprite.CreateSprite("./images/backgrounds/splash.png", iCenterX, iCenterY, (mapWidth*tileWidth), (mapHeight*tileWidth));
-		GameStateProperties slidingSprite;
+		GameStateProperties slidingSprite; 
 		slidingSprite.CreateSprite("./images/backgrounds/slide.png", ((mapWidth*tileWidth) + (156 / 2)), ((mapHeight*tileWidth)*0.55f), 156, 26);
 		
+		GameStateProperties deathSprite;
+		deathSprite.CreateSprite("./images/pacman/deathSheets.png", (16), (16), 16, 16);
 		int currentState = SPLASH;
 
 		splashSprite.ShowSprite();
@@ -157,24 +167,7 @@ int main(int argv, char* argc[])
 			}
 			case MENU:
 			{
-				if (UG::IsKeyDown(UG::KEY_S))
-				{
-					++menuState;
-					PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
-				}
-				if (UG::IsKeyDown(UG::KEY_W))
-				{
-					--menuState;
-					PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
-				}
-				if (menuState >= 3)
-				{
-					menuState = 0;
-				}
-				if (menuState <= -1)
-				{
-					menuState = 2;
-				}
+				SetMenuPosition(3,-1);
 				switch (menuState)
 				{
 				case PLAY:
@@ -220,6 +213,7 @@ int main(int argv, char* argc[])
 
 			case DIFFICULTY:
 			{
+				SetMenuPosition(3,-1);
 				if (UG::IsKeyDown(UG::KEY_ESCAPE))
 				{
 					PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
@@ -227,24 +221,7 @@ int main(int argv, char* argc[])
 					difficultySprite.HideSprite();
 					currentState = MENU;
 				}
-				if (UG::IsKeyDown(UG::KEY_S))
-				{
-					++menuState;
-					PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
-				}
-				if (UG::IsKeyDown(UG::KEY_W))
-				{
-					--menuState;
-					PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
-				}
-				if (menuState >= 3)
-				{
-					menuState = 0;
-				}
-				if (menuState <= -1)
-				{
-					menuState = 2;
-				}
+				
 				switch (menuState)
 				{
 				case EASY:
@@ -346,20 +323,26 @@ int main(int argv, char* argc[])
 					
 					if (collide[i] == true)
 					{
-						
+						ftime = 15;
+						UG::MoveSprite(deathSprite.SpriteID, pacSprite.fX, pacSprite.fY);
 						pacSprite.SetLives(pacSprite);
 						blinky.cageTime = 200;
 						pinky.cageTime = 400;
 						inky.cageTime = 600;
 						clyde.cageTime = 700;
+						UG::StopDrawingSprite(pacSprite.SpriteID);
+						deathSprite.ShowSprite();
 
 						if (pacSprite.lives < 0)
 						{
 							pellet[0].FillPellets(pellet);
 							ftime = 15;
-							UG::SetSpriteTexture(pacSprite.SpriteID, "./images/pacman/deathSheets.png");
 							currentState = GAMEOVER;//Sets GameState to the Menu
 						}
+						
+						currentState = DEATH;
+
+						
 						
 					}
 				}
@@ -392,13 +375,14 @@ int main(int argv, char* argc[])
 					menuSprite.ShowSprite();//Shows the Menu sprite
 					selectSprite.ShowSprite();//Shows the Selection box	
 					gameStart = true;
-					UG::SetSpriteTexture(pacSprite.SpriteID, "./images/pacman/pacmanSheet.png");
+					deathSprite.HideSprite();
+					UG::DrawSprite(pacSprite.SpriteID);
 					currentState = MENU;
 				}
 				else
 				{
 					
-					UG::SetSpriteUVCoordinates(pacSprite.SpriteID, deathFrames[(int(ftime))]);
+					UG::SetSpriteUVCoordinates(deathSprite.SpriteID, deathFrames[(int(ftime))]);
 				}
 
 				
@@ -406,24 +390,7 @@ int main(int argv, char* argc[])
 			break;
 			case PAUSE:
 			{
-				if (UG::IsKeyDown(UG::KEY_S))
-				{
-					++menuState;
-					PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
-				}
-				if (UG::IsKeyDown(UG::KEY_W))
-				{
-					--menuState;
-					PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
-				}
-				if (menuState >= 2)
-				{
-					menuState = 0;
-				}
-				if (menuState <= -1)
-				{
-					menuState = 2;
-				}
+				SetMenuPosition(2,-1);
 				switch (menuState)
 				{
 				case EASY:
@@ -463,24 +430,7 @@ int main(int argv, char* argc[])
 				UG::DrawString(HIGHSCORE.str().c_str(), (int)(iScreenWidth * 0.5f), iScreenHeight *0.5f, 1.f);
 
 
-				if (UG::IsKeyDown(UG::KEY_S))
-				{
-					++menuState;
-					PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
-				}
-				if (UG::IsKeyDown(UG::KEY_W))
-				{
-					--menuState;
-					PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
-				}
-				if (menuState >= 3)
-				{
-					menuState = 1;
-				}
-				if (menuState <= 0)
-				{
-					menuState = 2;
-				}
+				SetMenuPosition(3,0);
 				switch (menuState)
 				{
 				case HIGHSCORES:
@@ -509,7 +459,23 @@ int main(int argv, char* argc[])
 			}
 			break;
 
+			case DEATH:
+			{
+				ftime -= 0.1f;
 
+
+				if (ftime < 0)
+				{
+					UG::DrawSprite(pacSprite.SpriteID);
+					deathSprite.HideSprite();
+					currentState = GAMEPLAY;
+				}
+				else
+				{
+					UG::SetSpriteUVCoordinates(deathSprite.SpriteID, deathFrames[(int(ftime))]);
+				}
+			}
+			break;
 			}
 			
 		} while (UG::Process());
@@ -521,7 +487,24 @@ int main(int argv, char* argc[])
 	}
 	return 0;
 }
-void Reset(PacmanProperties& pacSprite)
+void SetMenuPosition(int upperBound, int lowerBound)
 {
-	
+	if (UG::IsKeyDown(UG::KEY_S))
+	{
+		++menuState;
+		PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
+	}
+	if (UG::IsKeyDown(UG::KEY_W))
+	{
+		--menuState;
+		PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
+	}
+	if (menuState >= upperBound)
+	{
+		menuState = lowerBound + 1;
+	}
+	if (menuState <= lowerBound)
+	{
+		menuState = upperBound - 1;
+	}
 }
