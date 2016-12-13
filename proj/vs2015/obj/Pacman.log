@@ -1,15 +1,27 @@
-﻿  Pacman.cpp
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(116): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(132): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(133): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(189): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(194): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(199): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(204): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(221): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(232): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(243): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(253): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+﻿  main.cpp
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(64): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(65): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(85): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(112): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(116): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(118): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(122): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(124): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(182): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(203): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(209): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(252): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(267): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(282): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(337): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(338): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(339): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(340): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(431): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(444): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(463): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(488): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(505): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Pacman.vcxproj -> C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\proj\vs2015\..\..\bin\x64\Debug\Pacman.exe
   Pacman.vcxproj -> ..\..\bin\x64\Debug\Pacman.pdb (Full PDB)
   xcopy "C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\"*.* "C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\proj\vs2015\..\..\bin\x64\Debug\" /s /y /d /r 

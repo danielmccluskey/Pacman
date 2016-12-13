@@ -62,6 +62,8 @@ void PacmanProperties::SetSpriteFrame()
 	};
 
 
+	
+
 
 	if (playerDirection[north] == true)
 	{
@@ -85,11 +87,11 @@ void PacmanProperties::SetSpriteFrame()
 	}
 	if (fTimer < 1)
 	{
-		UG::SetSpriteUVCoordinates(SpriteID, spriteFrames[iFirstFrame]);
+		//UG::SetSpriteUVCoordinates(SpriteID, spriteFrames[iFirstFrame]);
 	}
 	else
 	{
-		UG::SetSpriteUVCoordinates(SpriteID, spriteFrames[iSecondFrame]);
+		//UG::SetSpriteUVCoordinates(SpriteID, spriteFrames[iSecondFrame]);
 	}
 	if (fTimer > 2)
 	{
@@ -100,14 +102,21 @@ void PacmanProperties::SetSpriteFrame()
 
 
 
-void PacmanProperties::SetLives()
+void PacmanProperties::SetLives(PacmanProperties& pacSprite)
 {
+	
+
+
 	--lives;
 	initialise();
 	fX = 32;
 	fY = 64;
+	
+	PlaySound(TEXT("./sounds/death.wav"), NULL, SND_FILENAME | SND_ASYNC);//Plays Death sound and Hangs program until finished
+
+	
+	
 	playerDirection[east] = true;
-	PlaySound(TEXT("./sounds/death.wav"), NULL, SND_FILENAME | SND_SYNC);//Plays Death sound and Hangs program until finished
 }
 
 //Creating Sprite

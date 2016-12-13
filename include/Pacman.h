@@ -40,7 +40,7 @@ public:
 	void GetTiles();
 	void SetPlayerDirection(PacmanProperties& pacSprite, float movementspeed, short a_upKey, short a_downKey, short a_leftKey, short a_rightKey);
 	void MovePlayer(PacmanProperties& pacSprite, float movementspeed);
-	void SetLives();
+	void SetLives(PacmanProperties& pacSprite);
 	void SetSpriteFrame();
 
 private:
