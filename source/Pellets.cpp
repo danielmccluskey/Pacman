@@ -19,7 +19,7 @@ int pelletMap[1008] =
 	0,1,1,1,1,1,1,0,0,1,1,1,1,0,0,1,1,1,1,0,0,1,1,1,1,1,1,0,
 	0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,
 	0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,
-	0,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,0,
+	0,3,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,3,0,
 	0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,0,0,0,1,0,
 	0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,0,0,0,1,0,
 	0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,
@@ -39,7 +39,7 @@ int pelletMap[1008] =
 	0,1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,
 	0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,
 	0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,0,0,0,1,0,
-	0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,0,0,0,1,0,
+	0,3,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,0,0,0,3,0,
 	0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,0,0,0,1,0,
 	0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,
 	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -66,12 +66,22 @@ void PelletProperties::DrawPellets(PelletProperties *pellet)
 			int currentTile = GetTile(x,y);
 			if (currentTile == 1)
 			{
-					currentPellet.SpriteID = UG::CreateSprite("./images/pacman/pellet.png", 4, 4, true);
-					//Otherwise duplicate the sprite that the enemy at 0,0 has.
-					int tileX = (x * 16) + 15;
-					int tileY = (y * 16) + 15;
-					UG::MoveSprite(currentPellet.SpriteID, tileX, tileY);
-					UG::DrawSprite(currentPellet.SpriteID);
+				currentPellet.SpriteID = UG::CreateSprite("./images/pacman/pellet.png", 4, 4, true);
+				//Otherwise duplicate the sprite that the enemy at 0,0 has.
+				int tileX = (x * 16) + 15;
+				int tileY = (y * 16) + 15;
+				UG::MoveSprite(currentPellet.SpriteID, tileX, tileY);
+				UG::DrawSprite(currentPellet.SpriteID);
+
+			}
+			if (currentTile == 3)
+			{
+				currentPellet.SpriteID = UG::CreateSprite("./images/pacman/pellet.png", 12, 12, true);
+				//Otherwise duplicate the sprite that the enemy at 0,0 has.
+				int tileX = (x * 16) + 15;
+				int tileY = (y * 16) + 15;
+				UG::MoveSprite(currentPellet.SpriteID, tileX, tileY);
+				UG::DrawSprite(currentPellet.SpriteID);
 
 			}
 			
@@ -97,10 +107,21 @@ void PelletProperties::FillPellets(PelletProperties *pellet)
 				pelletMap[(y * 28) + x] = 1;
 
 			}
+			if (currentTile == 4)
+			{
+				currentPellet.SpriteID = UG::CreateSprite("./images/pacman/pellet.png", 12, 12, true);
+				//Otherwise duplicate the sprite that the enemy at 0,0 has.
+				int tileX = (x * 16) + 15;
+				int tileY = (y * 16) + 15;
+				UG::MoveSprite(currentPellet.SpriteID, tileX, tileY);
+				UG::DrawSprite(currentPellet.SpriteID);
+				pelletMap[(y * 28) + x] = 3;
+
+			}
 		}
 	}
 }
-void PelletProperties::DestroyPellets(PelletProperties *pellet, int x, int y)
+bool PelletProperties::DestroyPellets(PelletProperties *pellet, int x, int y)
 {
 	
 	int currentTile = GetTile(x, y);
@@ -108,11 +129,23 @@ void PelletProperties::DestroyPellets(PelletProperties *pellet, int x, int y)
 	{
 		PelletProperties &currentPellet = GetPellet(pellet, x, y);
 		pelletMap[(y * 28) + x] = 2;
-		pelletsCollected += 10;
+		iTotalScore += 10;
+		iTotalPellets += 1;
 		UG::StopDrawingSprite(currentPellet.SpriteID);
 		UG::DestroySprite(currentPellet.SpriteID);
 		PlaySound(TEXT("./sounds/chomp4.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		
+		return false;
+	}
+	else if (currentTile == 3)
+	{
+		PelletProperties &currentPellet = GetPellet(pellet, x, y);
+		pelletMap[(y * 28) + x] = 4;
+		iTotalScore += 40;
+		iTotalPellets += 1;
+		UG::StopDrawingSprite(currentPellet.SpriteID);
+		UG::DestroySprite(currentPellet.SpriteID);
+		PlaySound(TEXT("./sounds/bigPellet.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		return true;
 	}
 }
 
@@ -157,10 +190,10 @@ void PelletProperties::SetHighScore()
 
 	std::ofstream highScores;//Creates an output fstream member
 	highScores.open(scoresPath, std::fstream::in | std::fstream::out); //Opens the file
-	if (pelletsCollected > iCurrentHighScore) //Checks if the current score is higher than the old highscore
+	if (iTotalScore > iCurrentHighScore) //Checks if the current score is higher than the old highscore
 	{
-		highScores << pelletsCollected; //Sets the contents of the file to the current score.
-		iCurrentHighScore = pelletsCollected;
+		highScores << iTotalScore; //Sets the contents of the file to the current score.
+		iCurrentHighScore = iTotalScore;
 	}
 	else
 	{
@@ -180,7 +213,7 @@ void PelletProperties::DrawHighScore()
 	UG::DrawString("1UP", (int)(iScreenWidth * 0.16f), iScreenHeight *0.98f, 0.8f);
 
 	std::ostringstream SCORE;
-	SCORE << pelletsCollected << std::endl;
+	SCORE << iTotalScore << std::endl;
 	UG::DrawString(SCORE.str().c_str(), (int)(iScreenWidth * 0.19f), iScreenHeight *0.95f, 0.8f);
 
 	UG::DrawString("HIGH SCORE", (int)(iScreenWidth * 0.5f), iScreenHeight *0.98f, 0.8f);

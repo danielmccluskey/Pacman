@@ -19,13 +19,14 @@ public:
 	int nextTile;
 	int tileWidths;
 
-	int pelletsCollected = 0;
+	int iTotalScore = 0;
+	int iTotalPellets = 0;
 
 	void CreatePellet(char* imagePath, int iTileX, int iTileY);
 	void DrawPellets(PelletProperties *pellet);
 	PelletProperties& GetPellet(PelletProperties *pellet, int x, int y);
 	int GetTile(int x, int y);
-	void DestroyPellets(PelletProperties *pellet, int x, int y);
+	bool DestroyPellets(PelletProperties *pellet, int x, int y);
 	void FillPellets(PelletProperties *pellet);
 	void SetHighScore();
 	void GetHighScore();

@@ -21,7 +21,7 @@ enum Direction
 };
 enum Ghosts
 {
-	blinky, pinky, inky, clyde
+	blinky, pinky, inky, clyde, edible
 };
 enum TileTypes //Enumerations for the Creation of the map to help me understand the values.
 {
