@@ -38,6 +38,7 @@ public:
 	void MoveGhost(GhostProperties& ghostSprite, float movementspeed);
 	bool Pacmancollide(GhostProperties& ghostSprite,int x, int y);
 	void SetCageTime();
+	void SetEdibleGhostsPos(GhostProperties& ghost);
 	//Tiles
 	int tileTop;
 	int tileLeft;

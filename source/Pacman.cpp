@@ -99,7 +99,22 @@ void PacmanProperties::SetSpriteFrame()
 	}
 }
 
-
+void PacmanProperties::SetEatGhostsTimer(int a, int b, int c, int d)
+{
+	if (fEatGhostsTimer > -1)
+	{
+		fEatGhostsTimer -= 0.1f;
+	}
+	
+	if (fEatGhostsTimer < 0 && bCanEatGhosts == true)
+	{
+		bCanEatGhosts = false;
+		UG::StopDrawingSprite(a);
+		UG::StopDrawingSprite(b);
+		UG::StopDrawingSprite(c);
+		UG::StopDrawingSprite(d);
+	}
+}
 
 
 void PacmanProperties::SetLives(PacmanProperties& pacSprite)
@@ -214,6 +229,16 @@ void PacmanProperties::MovePlayer(PacmanProperties& pacSprite, float movementspe
 {
 	if (moving == true)
 	{
+		char* cSoundPath;
+		if (bCanEatGhosts == true)
+		{
+			cSoundPath = "./sounds/eatGhosts.wav";
+		}
+		else
+		{
+			cSoundPath = "./sounds/siren.wav";
+		}
+
 		SetSpriteFrame();
 		if (playerDirection[north] == true)
 		{
@@ -222,7 +247,7 @@ void PacmanProperties::MovePlayer(PacmanProperties& pacSprite, float movementspe
 			{
 				fY = nextTile;
 				moving = false;
-				PlaySound(TEXT("./sounds/siren.wav"), NULL, SND_NOSTOP | SND_ASYNC);
+				PlaySound(TEXT(cSoundPath), NULL,SND_FILENAME | SND_ASYNC);
 				
 			}
 		}
@@ -233,7 +258,7 @@ void PacmanProperties::MovePlayer(PacmanProperties& pacSprite, float movementspe
 			{
 				fY = nextTile;
 				moving = false;
-				PlaySound(TEXT("./sounds/siren.wav"), NULL, SND_NOSTOP | SND_ASYNC);
+				PlaySound(TEXT(cSoundPath), NULL, SND_FILENAME | SND_ASYNC);
 
 			}
 		}
@@ -244,7 +269,7 @@ void PacmanProperties::MovePlayer(PacmanProperties& pacSprite, float movementspe
 			{
 				fX = nextTile;
 				moving = false;
-				PlaySound(TEXT("./sounds/siren.wav"), NULL, SND_NOSTOP | SND_ASYNC);
+				PlaySound(TEXT(cSoundPath), NULL, SND_FILENAME | SND_ASYNC);
 			}
 		}
 		else if (playerDirection[west] == true)
@@ -254,7 +279,7 @@ void PacmanProperties::MovePlayer(PacmanProperties& pacSprite, float movementspe
 			{
 				fX = nextTile;
 				moving = false;		
-				PlaySound(TEXT("./sounds/siren.wav"), NULL, SND_NOSTOP | SND_ASYNC);
+				PlaySound(TEXT(cSoundPath), NULL, SND_FILENAME | SND_ASYNC);
 
 			}
 		}

@@ -86,28 +86,35 @@ void GhostProperties::CreateGhost(int ghostType)
 		SpriteID = UG::CreateSprite("./images/ghosts/red.png", iGhostWidth, iGhostWidth, true);
 		cageTime = 100;
 		cageX = 256;
-		
+		UG::DrawSprite(SpriteID);		
 		break;                                                                        
 	case pinky:
 		SpriteID = UG::CreateSprite("./images/ghosts/pink.png", iGhostWidth, iGhostWidth, true);
 		cageTime = 300;
 		cageX = 240;
+		UG::DrawSprite(SpriteID);
 		break;
 	case inky:
 		SpriteID = UG::CreateSprite("./images/ghosts/blue.png", iGhostWidth, iGhostWidth, true);
 		cageTime = 500;
 		cageX = 224;
+		UG::DrawSprite(SpriteID);
 		break;
 	case clyde:
 		SpriteID = UG::CreateSprite("./images/ghosts/orange.png", iGhostWidth, iGhostWidth, true);
 		cageTime = 600;
 		cageX = 208;
+		UG::DrawSprite(SpriteID);
 		break;
+	case edible:
+		SpriteID = UG::CreateSprite("./images/ghosts/edible.png", iGhostWidth, iGhostWidth, true);
+		break;
+
 	}
 	initialise();
 	cageY = 320;
 	UG::MoveSprite(SpriteID, 232, 320);
-	UG::DrawSprite(SpriteID);
+	
 	
 }
 
@@ -248,4 +255,11 @@ bool GhostProperties::Pacmancollide(GhostProperties& ghostSprite, int x, int y)
 		return false;
 	}
 
+}
+
+void GhostProperties::SetEdibleGhostsPos(GhostProperties& ghost)
+{
+	fX = ghost.fX;
+	fY = ghost.fY;
+	UG::MoveSprite(SpriteID, fX, fY);
 }

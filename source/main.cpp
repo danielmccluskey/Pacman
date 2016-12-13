@@ -22,6 +22,7 @@
 // Last Edited by: (See BitBucket Commits: https://bitbucket.org/Danielmclovin/ct4019-pacman)
 //==============================================================================================================================
 
+//Sets the Variable for the death animation
 float deathFrames[16][4] =
 {
 	{ .75f,.0f,1.f,.25f },
@@ -41,8 +42,6 @@ float deathFrames[16][4] =
 	{ .25f,.75f,.5f,1.f },
 	{ 0.f,.75f,.25f,1.f }
 };
-//Sets the random clock to produce more random patterns for the ghosts.
-//Sets the Variable for the death animation
 
 //Positions (Will convert to Vector 2 class later)
 float xPos, yPos = 0;
@@ -56,7 +55,7 @@ float ftime = 0;
 //Decides the position for the selection box for the main menu
 int menuState = 0;
 
-
+float iEdibleGhostTime;
 
 //Co-ords of the Center of the screen
 int iCenterX = (mapWidth*tileWidth)*0.5f;
@@ -115,6 +114,12 @@ int main(int argv, char* argc[])
 		inky.CreateGhost(2);//Creates the Sprite and moves Inky to their starting position
 		clyde.CreateGhost(3);//Creates the Sprite and moves Clyde ghost to their starting position
 
+
+		GhostProperties *EdibleGhosts = new GhostProperties[4];
+		for (int i = 0; i < 4; i++)
+		{
+			EdibleGhosts[i].CreateGhost(4);
+		}
 
 		GameStateProperties highScoresSprite;
 		highScoresSprite.CreateSprite("./images/backgrounds/highscores.png", iCenterX, iCenterY, (mapWidth*tileWidth), (mapHeight*tileWidth));
@@ -219,9 +224,9 @@ int main(int argv, char* argc[])
 					PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
 					menuSprite.ShowSprite();
 					difficultySprite.HideSprite();
+					
 					currentState = MENU;
 				}
-				
 				switch (menuState)
 				{
 				case EASY:
@@ -232,7 +237,8 @@ int main(int argv, char* argc[])
 						menuState = 0;
 						PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
 						movementSpeed = 10 / tileWidth;
-						pacSprite.lives = 2;
+						pacSprite.lives = 3;
+						iEdibleGhostTime = 100;
 						difficultySprite.HideSprite();
 						selectSprite.HideSprite();
 						currentState = GAMEPLAY;
@@ -246,12 +252,12 @@ int main(int argv, char* argc[])
 					{
 						menuState = 0;
 						movementSpeed = 15 / tileWidth;
-						pacSprite.lives = 1;
+						pacSprite.lives = 2;
+						iEdibleGhostTime = 50;
 						difficultySprite.HideSprite();
 						selectSprite.HideSprite();
 						currentState = GAMEPLAY;
 					}
-
 				}
 					break;
 				case HARD:
@@ -261,12 +267,12 @@ int main(int argv, char* argc[])
 					{
 						movementSpeed = 20 / tileWidth;
 						menuState = 0;
-						pacSprite.lives = 0;
+						pacSprite.lives = 1;
+						iEdibleGhostTime = 20;
 						difficultySprite.HideSprite();
 						selectSprite.HideSprite();
 						currentState = GAMEPLAY;
 					}
-					
 				}
 				break;
 				}
@@ -275,6 +281,11 @@ int main(int argv, char* argc[])
 			break;
 			case GAMEPLAY:
 			{
+				
+				std::cout << pacSprite.bCanEatGhosts << std::endl;
+
+				
+				
 				pellet[0].DrawHighScore();
 				if (gameStart == true)
 				{
@@ -283,7 +294,6 @@ int main(int argv, char* argc[])
 					
 					gameStart = false;
 				}
-
 				//Handling Pacmans movement
 				pacSprite.SetPlayerDirection(pacSprite, movementSpeed, UG::KEY_W, UG::KEY_S, UG::KEY_A, UG::KEY_D); //Sets direction on keypress
 				pacSprite.MovePlayer(pacSprite, movementSpeed);//Decides whether to move Pacman depending on direction and collision
@@ -304,24 +314,58 @@ int main(int argv, char* argc[])
 				clyde.SetGhostDirection(clyde, movementSpeed);//Sets direction Randomly
 				clyde.MoveGhost(clyde, movementSpeed);//Decides whether to move ghost depending on direction and collision
 
+				//Movement for Edible Ghosts
+				EdibleGhosts[0].SetEdibleGhostsPos(blinky);
+				EdibleGhosts[1].SetEdibleGhostsPos(pinky);
+				EdibleGhosts[2].SetEdibleGhostsPos(inky);
+				EdibleGhosts[3].SetEdibleGhostsPos(clyde);
+
+
 				//Pellets
-				pellet[0].DestroyPellets(pellet, pacSprite.mapXPos - 1, pacSprite.mapYPos - 1); //Function to destroy pellets on the same tile as Pacman
+				bool bEatBigPellet = pellet[0].DestroyPellets(pellet, pacSprite.mapXPos - 1, pacSprite.mapYPos - 1);
 
-				
+				if (bEatBigPellet == true)//Function to destroy pellets on the same tile as Pacman
+				{
+					if (pacSprite.bCanEatGhosts == false)
+					{
+						for (int i = 0; i < 4; i++)
+						{
+							UG::DrawSprite(EdibleGhosts[i].SpriteID);
+						}
+					}
+					pacSprite.bCanEatGhosts = true;
+					pacSprite.fEatGhostsTimer = fEdibleGhostTime;
+					
+				}
+				pacSprite.SetEatGhostsTimer(EdibleGhosts[0].SpriteID, EdibleGhosts[1].SpriteID, EdibleGhosts[2].SpriteID, EdibleGhosts[3].SpriteID);
 
+
+				if (pellet[0].iTotalPellets > 245)
+				{
+					pellet[0].iTotalPellets = 0;
+					pellet[0].FillPellets(pellet);
+					pacSprite.lives += 1;
+					pacSprite.SetLives(pacSprite);
+					blinky.cageTime = 200;
+					pinky.cageTime = 400;
+					inky.cageTime = 600;
+					clyde.cageTime = 700;
+					PlaySound(TEXT("./sounds/intro.wav"), NULL, SND_SYNC);
+				}
 				//Test Collison with Ghosts
 				bool collide[4] = { false, false, false, false }; //Array to see if any of the Ghosts are colliding with Pacman
 				collide[0] = blinky.Pacmancollide(blinky, pacSprite.fX, pacSprite.fY);//Checks if Pacman is colliding with Blinky
 				collide[1] = pinky.Pacmancollide(pinky, pacSprite.fX, pacSprite.fY);//Checks if Pacman is colliding with Pinky
 				collide[2] = inky.Pacmancollide(inky, pacSprite.fX, pacSprite.fY);//Checks if Pacman is colliding with Inky
-				collide[3] = clyde.Pacmancollide(clyde, pacSprite.fX, pacSprite.fY);//Checks if Pacman is colliding with Clyde
+				collide[3] = clyde.Pacmancollide(clyde, pacSprite.fX, pacSprite.fY);//Checks if Pacmanis coll iding with Clyde
 
 				//For Loop to loop through the array to see if any of the ghosts collided with Pacman
-				
+
+
+
 				for (int i = 0; i < 4; i++)
 				{
-					
-					if (collide[i] == true)
+					if (collide[i] == true && pacSprite.bCanEatGhosts == false)
 					{
 						ftime = 15;
 						UG::MoveSprite(deathSprite.SpriteID, pacSprite.fX, pacSprite.fY);
@@ -336,15 +380,44 @@ int main(int argv, char* argc[])
 						if (pacSprite.lives < 0)
 						{
 							pellet[0].FillPellets(pellet);
-							ftime = 15;
 							currentState = GAMEOVER;//Sets GameState to the Menu
 						}
-						
-						currentState = DEATH;
-
+						else
+						{
+							currentState = DEATH;
+						}
 						
 						
 					}
+					else if (collide[i] == true && pacSprite.bCanEatGhosts == true)
+					{
+						switch (i)
+						{
+						case 0:
+						{
+							blinky.cageTime = 200;
+						}
+						break;
+						case 1:
+						{
+							pinky.cageTime = 400;
+						}
+						break;
+						case 2:
+						{
+							inky.cageTime = 600;
+						}
+						break;
+						case 3:
+						{
+							clyde.cageTime = 700;
+						}
+						break;
+						}
+						pellet[0].iTotalScore += 100; 
+						PlaySound(TEXT("./sounds/bigPellet.wav"), NULL, SND_FILENAME);
+					}
+					
 				}
 				if (UG::IsKeyDown(UG::KEY_ESCAPE))
 				{
@@ -353,7 +426,6 @@ int main(int argv, char* argc[])
 					selectSprite.ShowSprite();
 					currentState = PAUSE;
 				}
-				
 				blinky.SetCageTime();
 				pinky.SetCageTime();
 				inky.SetCageTime();
@@ -365,13 +437,11 @@ int main(int argv, char* argc[])
 				break;
 			case GAMEOVER:
 			{
-				ftime -= 0.1f;
-
-
+				ftime -= 0.2f;
 				if (ftime < 0)
 				{
 					pellet[0].SetHighScore();
-					pellet[0].pelletsCollected = 0;
+					pellet[0].iTotalScore = 0;
 					menuSprite.ShowSprite();//Shows the Menu sprite
 					selectSprite.ShowSprite();//Shows the Selection box	
 					gameStart = true;
@@ -381,11 +451,8 @@ int main(int argv, char* argc[])
 				}
 				else
 				{
-					
 					UG::SetSpriteUVCoordinates(deathSprite.SpriteID, deathFrames[(int(ftime))]);
-				}
-
-				
+				}		
 			}
 			break;
 			case PAUSE:
@@ -428,7 +495,7 @@ int main(int argv, char* argc[])
 				std::ostringstream HIGHSCORE;
 				HIGHSCORE << pellet[0].iCurrentHighScore << std::endl;
 				UG::DrawString(HIGHSCORE.str().c_str(), (int)(iScreenWidth * 0.5f), iScreenHeight *0.5f, 1.f);
-
+				std::cout << pellet[0].iCurrentHighScore << std::endl;
 
 				SetMenuPosition(3,0);
 				switch (menuState)
@@ -461,13 +528,13 @@ int main(int argv, char* argc[])
 
 			case DEATH:
 			{
-				ftime -= 0.1f;
 
-
+				ftime -= 0.2f;
 				if (ftime < 0)
 				{
 					UG::DrawSprite(pacSprite.SpriteID);
 					deathSprite.HideSprite();
+					PlaySound(TEXT("./sounds/intro.wav"), NULL, SND_SYNC);
 					currentState = GAMEPLAY;
 				}
 				else

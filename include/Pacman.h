@@ -14,12 +14,12 @@ public:
 		moving = false;
 	}
 
+	bool bCanEatGhosts = false;
+
 	int lives;
 	float fX = 32;
 	float fY = 64;
 	int SpriteID;
-	int SpriteWidth = 16;
-	float fTimer = 0;
 
 	bool moving;
 	bool playerDirection[4];
@@ -27,13 +27,9 @@ public:
 	int tileWidths = 16;
 	int mapXPos;
 	int mapYPos;
+	float fEatGhostsTimer = 0;
 
-	//Tiles
-	int tileTop;
-	int tileLeft;
-	int tileRight;
-	int tileBottom;
-	int tileCurrent;
+	
 
 	void CreatePacman();
 	int GetTile(int x, int y);
@@ -42,9 +38,21 @@ public:
 	void MovePlayer(PacmanProperties& pacSprite, float movementspeed);
 	void SetLives(PacmanProperties& pacSprite);
 	void SetSpriteFrame();
+	void SetEatGhostsTimer(int a, int b, int c, int d);
 
 private:
+	//Tiles
+	int tileTop;
+	int tileLeft;
+	int tileRight;
+	int tileBottom;
+	int tileCurrent;
+
+	float fTimer = 0;
+
 	
+
+	int SpriteWidth = 16;
 };
 
 #endif
