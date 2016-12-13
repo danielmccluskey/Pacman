@@ -22,8 +22,29 @@
 // Last Edited by: (See BitBucket Commits: https://bitbucket.org/Danielmclovin/ct4019-pacman)
 //==============================================================================================================================
 
-//Sets the random clock to produce more random patterns for the ghosts.
+float deathFrames[16][4] =
+{
+	{ .75f,.0f,1.f,.25f },
+	{ .5f,.0f,.75f,.25f },
+	{ .25f,.0f,.5f,.25f },
+	{ 0.f,.0f,.25f,.25f },
+	{ .75f,.25f,1.f,.5f },
+	{ .5f,.25f,.75f,.5f },
+	{ .25f,.25f,.5f,.5f },
+	{ 0.f,.25f,.25f,.5f },
+	{ .75f,.5f,1.f,.75f },
+	{ .5f,.5f,.75f,.75f },
+	{ .25f,.5f,.5f,.75f },
+	{ 0.f,.5f,.25f,.75f },
+	{ .75f,.75f,1.f,1.f },
+	{ .5f,.75f,.75f,1.f },
+	{ .25f,.75f,.5f,1.f },
+	{ 0.f,.75f,.25f,1.f }
 
+
+};
+//Sets the random clock to produce more random patterns for the ghosts.
+//Sets the Variable for the death animation
 
 //Positions (Will convert to Vector 2 class later)
 float xPos, yPos = 0;
@@ -36,6 +57,8 @@ float ftime = 0;
 
 //Decides the position for the selection box for the main menu
 int menuState = 0;
+
+
 
 //Co-ords of the Center of the screen
 int iCenterX = (mapWidth*tileWidth)*0.5f;
@@ -53,7 +76,7 @@ float movementSpeed = 19/tileWidth;
 //Variable to keep track of when the game is being started for the first time
 bool gameStart = true;
 
-void Reset();
+void Reset(PacmanProperties& pacSprite);
 
 int main(int argv, char* argc[])
 {	
@@ -123,6 +146,7 @@ int main(int argv, char* argc[])
 					slidingSprite.HideSprite();	
 					menuSprite.ShowSprite();
 					selectSprite.ShowSprite();
+
 					currentState = MENU;
 					break;
 				}
@@ -316,11 +340,14 @@ int main(int argv, char* argc[])
 				collide[3] = clyde.Pacmancollide(clyde, pacSprite.fX, pacSprite.fY);//Checks if Pacman is colliding with Clyde
 
 				//For Loop to loop through the array to see if any of the ghosts collided with Pacman
+				
 				for (int i = 0; i < 4; i++)
 				{
+					
 					if (collide[i] == true)
 					{
-						pacSprite.SetLives();
+						
+						pacSprite.SetLives(pacSprite);
 						blinky.cageTime = 200;
 						pinky.cageTime = 400;
 						inky.cageTime = 600;
@@ -328,8 +355,9 @@ int main(int argv, char* argc[])
 
 						if (pacSprite.lives < 0)
 						{
-
 							pellet[0].FillPellets(pellet);
+							ftime = 15;
+							UG::SetSpriteTexture(pacSprite.SpriteID, "./images/pacman/deathSheets.png");
 							currentState = GAMEOVER;//Sets GameState to the Menu
 						}
 						
@@ -354,12 +382,26 @@ int main(int argv, char* argc[])
 				break;
 			case GAMEOVER:
 			{
-				pellet[0].SetHighScore();
-				pellet[0].pelletsCollected = 0;
-				menuSprite.ShowSprite();//Shows the Menu sprite
-				selectSprite.ShowSprite();//Shows the Selection box	
-				gameStart = true;
-				currentState = MENU;
+				ftime -= 0.1f;
+
+
+				if (ftime < 0)
+				{
+					pellet[0].SetHighScore();
+					pellet[0].pelletsCollected = 0;
+					menuSprite.ShowSprite();//Shows the Menu sprite
+					selectSprite.ShowSprite();//Shows the Selection box	
+					gameStart = true;
+					UG::SetSpriteTexture(pacSprite.SpriteID, "./images/pacman/pacmanSheet.png");
+					currentState = MENU;
+				}
+				else
+				{
+					
+					UG::SetSpriteUVCoordinates(pacSprite.SpriteID, deathFrames[(int(ftime))]);
+				}
+
+				
 			}
 			break;
 			case PAUSE:
@@ -478,4 +520,8 @@ int main(int argv, char* argc[])
 		UG::Dispose();
 	}
 	return 0;
+}
+void Reset(PacmanProperties& pacSprite)
+{
+	
 }
