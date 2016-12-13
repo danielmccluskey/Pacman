@@ -1,3 +1,11 @@
+//==============================================================================================================================
+// Project: Pacman
+// File: Pacman.cpp
+// Author: Daniel McCluskey
+// Date Created: 17/10/16
+// Brief: This is the header file that contains the code that controls the mechanics and behaviour of Pacman during Gameplay.
+// Last Edited by: (See BitBucket Commits: https://bitbucket.org/Danielmclovin/ct4019-pacman)
+//==============================================================================================================================
 #include "Pacman.h"
 #include "UGFW.h"
 #include "stdlib.h"
@@ -5,7 +13,7 @@
 #include "windows.h"
 #include <iostream>
 
-int pacmanMap[1008] =
+int iPacmanMap[1008] =
 {
 	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -49,7 +57,7 @@ void PacmanProperties::SetSpriteFrame()
 	fTimer += 0.2f;
 	int iFirstFrame = 0;
 	int iSecondFrame = 1;
-	float spriteFrames[8][4] = 
+	float iSpriteFrames[8][4] = 
 	{
 		{ 0.f,0.f,.5f,.25f}, //Up Open/
 		{ 0.f,.5f,.5f,.75f },//Up Closed
@@ -65,33 +73,33 @@ void PacmanProperties::SetSpriteFrame()
 	
 
 
-	if (playerDirection[north] == true)
+	if (bPlayerDirection[north] == true)
 	{
 		iFirstFrame = 0;
 		iSecondFrame = 1;		
 	}
-	else if (playerDirection[south] == true)
+	else if (bPlayerDirection[south] == true)
 	{
 		iFirstFrame = 4;
 		iSecondFrame = 5;
 	}
-	else if (playerDirection[west] == true)
+	else if (bPlayerDirection[west] == true)
 	{
 		iFirstFrame = 6;
 		iSecondFrame = 7;
 	}
-	else if (playerDirection[east] == true)
+	else if (bPlayerDirection[east] == true)
 	{
 		iFirstFrame = 2;
 		iSecondFrame = 3;
 	}
 	if (fTimer < 1)
 	{
-		UG::SetSpriteUVCoordinates(SpriteID, spriteFrames[iFirstFrame]);
+		UG::SetSpriteUVCoordinates(iSpriteID, iSpriteFrames[iFirstFrame]);
 	}
 	else
 	{
-		UG::SetSpriteUVCoordinates(SpriteID, spriteFrames[iSecondFrame]);
+		UG::SetSpriteUVCoordinates(iSpriteID, iSpriteFrames[iSecondFrame]);
 	}
 	if (fTimer > 2)
 	{
@@ -99,7 +107,7 @@ void PacmanProperties::SetSpriteFrame()
 	}
 }
 
-void PacmanProperties::SetEatGhostsTimer(int a, int b, int c, int d)
+void PacmanProperties::SetEatGhostsTimer(int a_iA, int a_iB, int a_iC, int a_iD)
 {
 	if (fEatGhostsTimer > -1)
 	{
@@ -109,125 +117,125 @@ void PacmanProperties::SetEatGhostsTimer(int a, int b, int c, int d)
 	if (fEatGhostsTimer < 0 && bCanEatGhosts == true)
 	{
 		bCanEatGhosts = false;
-		UG::StopDrawingSprite(a);
-		UG::StopDrawingSprite(b);
-		UG::StopDrawingSprite(c);
-		UG::StopDrawingSprite(d);
+		UG::StopDrawingSprite(a_iA);
+		UG::StopDrawingSprite(a_iB);
+		UG::StopDrawingSprite(a_iC);
+		UG::StopDrawingSprite(a_iD);
 	}
 }
 
 
-void PacmanProperties::SetLives(PacmanProperties& pacSprite)
+void PacmanProperties::SetLives(PacmanProperties& a_pacSprite)
 {
-	--lives;
+	--iLives;
 	initialise();
 	fX = 32;
 	fY = 64;
 	PlaySound(TEXT("./sounds/death.wav"), NULL, SND_FILENAME | SND_ASYNC);//Plays Death sound and Hangs program until finished
-	playerDirection[east] = true;
+	bPlayerDirection[east] = true;
 }
 
 //Creating Sprite
 void PacmanProperties::CreatePacman()
 {
-	SpriteID = UG::CreateSprite("./images/pacman/pacmanSheet.png", SpriteWidth, SpriteWidth, true);
-	UG::DrawSprite(SpriteID);	
+	iSpriteID = UG::CreateSprite("./images/pacman/pacmanSheet.png", iSpriteWidth, iSpriteWidth, true);
+	UG::DrawSprite(iSpriteID);	
 	initialise(); //Sets the variables for pacman. (Will move to class)
-	UG::MoveSprite(SpriteID, 32, 64); //Moves Pacman to starting Position
-	UG::SetSpriteUVCoordinates(SpriteID, .5f, .5f, 1.f, .75f);
-	playerDirection[east] = true;
+	UG::MoveSprite(iSpriteID, 32, 64); //Moves Pacman to starting Position
+	UG::SetSpriteUVCoordinates(iSpriteID, .5f, .5f, 1.f, .75f);
+	bPlayerDirection[east] = true;
 }
 
 
 
-int PacmanProperties::GetTile(int x, int y)
+int PacmanProperties::GetTile(int a_iX, int a_iY)
 {
-	return pacmanMap[(y * 28) + x];
+	return iPacmanMap[(a_iY * 28) + a_iX];
 }
 void PacmanProperties::GetTiles()
 {
-	mapXPos = (fX) / tileWidths;
-	mapYPos = (fY) / tileWidths;
-	tileTop = GetTile(mapXPos - 1, (mapYPos));
-	tileLeft = GetTile((mapXPos - 2), mapYPos - 1);
-	tileRight = GetTile((mapXPos), mapYPos - 1);
-	tileBottom = GetTile(mapXPos - 1, (mapYPos - 2));
-	tileCurrent = GetTile((mapXPos - 1), mapYPos - 1);
+	iMapXPos = (fX) / iTileWidths;
+	iMapYPos = (fY) / iTileWidths;
+	iTileTop = GetTile(iMapXPos - 1, (iMapYPos));
+	iTileLeft = GetTile((iMapXPos - 2), iMapYPos - 1);
+	iTileRight = GetTile((iMapXPos), iMapYPos - 1);
+	iTileBottom = GetTile(iMapXPos - 1, (iMapYPos - 2));
+	iTileCurrent = GetTile((iMapXPos - 1), iMapYPos - 1);
 }
 
-void PacmanProperties::SetPlayerDirection(PacmanProperties& pacSprite, float movementspeed, short a_upKey, short a_downKey, short a_leftKey, short a_rightKey)
+void PacmanProperties::SetPlayerDirection(PacmanProperties& a_pacSprite, float a_fMovementSpeed, short a_upKey, short a_downKey, short a_leftKey, short a_rightKey)
 {
 	GetTiles();
-	if (tileRight == 8)
+	if (iTileRight == 8)
 	{
 		fX = 432;
 		fY = 304;
 		initialise();
-		playerDirection[west] = true;
+		bPlayerDirection[west] = true;
 	}
-	if (tileLeft == 6)
+	if (iTileLeft == 6)
 	{
 		fX = 32;
 		fY = 304;
 		initialise();
-		playerDirection[east] = true;
+		bPlayerDirection[east] = true;
 	}
-	if (moving == false)
+	if (bMoving == false)
 	{
 
-		if (UG::IsKeyDown(a_upKey) && tileTop != 0)
+		if (UG::IsKeyDown(a_upKey) && iTileTop != 0)
 		{
 			initialise();
-			playerDirection[north] = true;
+			bPlayerDirection[north] = true;
 			std::cout << "UPP" << std::endl;
 		}
-		if (UG::IsKeyDown(a_downKey) && tileBottom != 0)
+		if (UG::IsKeyDown(a_downKey) && iTileBottom != 0)
 		{
 			initialise();
-			playerDirection[south] = true;
+			bPlayerDirection[south] = true;
 			std::cout << "DOWN" << std::endl;
 		}
-		if (UG::IsKeyDown(a_leftKey) && tileLeft != 0)
+		if (UG::IsKeyDown(a_leftKey) && iTileLeft != 0)
 		{
 			initialise();
-			playerDirection[west] = true;
+			bPlayerDirection[west] = true;
 			std::cout << "LEFT" << std::endl;
 		}
-		if (UG::IsKeyDown(a_rightKey) && tileRight != 0)
+		if (UG::IsKeyDown(a_rightKey) && iTileRight != 0)
 		{
 			initialise();
-			playerDirection[east] = true;
+			bPlayerDirection[east] = true;
 			std::cout << "RIGHT" << std::endl;
 		}
 
 
-		if (playerDirection[north] == true && tileTop != 0)
+		if (bPlayerDirection[north] == true && iTileTop != 0)
 		{
-			nextTile = fY + tileWidths;
-			moving = true;
+			iNextTile = fY + iTileWidths;
+			bMoving = true;
 		}
-		else if (playerDirection[south] == true && tileBottom != 0)
+		else if (bPlayerDirection[south] == true && iTileBottom != 0)
 		{
-			nextTile = fY - tileWidths;
-			moving = true;
+			iNextTile = fY - iTileWidths;
+			bMoving = true;
 		}
-		else if (playerDirection[west] == true && tileLeft != 0)
+		else if (bPlayerDirection[west] == true && iTileLeft != 0)
 		{
-			nextTile = fX - tileWidths;
-			moving = true;
+			iNextTile = fX - iTileWidths;
+			bMoving = true;
 		}
-		else if (playerDirection[east] == true && tileRight != 0)
+		else if (bPlayerDirection[east] == true && iTileRight != 0)
 		{
-			nextTile = fX + tileWidths;
-			moving = true;
+			iNextTile = fX + iTileWidths;
+			bMoving = true;
 
 		}
 		
 	}
 }
-void PacmanProperties::MovePlayer(PacmanProperties& pacSprite, float movementspeed)
+void PacmanProperties::MovePlayer(PacmanProperties& a_pacSprite, float a_fMovementSpeed)
 {
-	if (moving == true)
+	if (bMoving == true)
 	{
 		char* cSoundPath;
 		if (bCanEatGhosts == true)
@@ -240,52 +248,52 @@ void PacmanProperties::MovePlayer(PacmanProperties& pacSprite, float movementspe
 		}
 
 		SetSpriteFrame();
-		if (playerDirection[north] == true)
+		if (bPlayerDirection[north] == true)
 		{
-			fY += movementspeed;
-			if (fY >= nextTile)
+			fY += a_fMovementSpeed;
+			if (fY >= iNextTile)
 			{
-				fY = nextTile;
-				moving = false;
+				fY = iNextTile;
+				bMoving = false;
 				PlaySound(TEXT(cSoundPath), NULL,SND_FILENAME | SND_ASYNC);
 				
 			}
 		}
-		else if (playerDirection[south] == true)
+		else if (bPlayerDirection[south] == true)
 		{
-			fY -= movementspeed;
-			if (fY <= nextTile)
+			fY -= a_fMovementSpeed;
+			if (fY <= iNextTile)
 			{
-				fY = nextTile;
-				moving = false;
+				fY = iNextTile;
+				bMoving = false;
 				PlaySound(TEXT(cSoundPath), NULL, SND_FILENAME | SND_ASYNC);
 
 			}
 		}
-		else if (playerDirection[east] == true)
+		else if (bPlayerDirection[east] == true)
 		{
-			fX += movementspeed;
-			if (fX >= nextTile)
+			fX += a_fMovementSpeed;
+			if (fX >= iNextTile)
 			{
-				fX = nextTile;
-				moving = false;
+				fX = iNextTile;
+				bMoving = false;
 				PlaySound(TEXT(cSoundPath), NULL, SND_FILENAME | SND_ASYNC);
 			}
 		}
-		else if (playerDirection[west] == true)
+		else if (bPlayerDirection[west] == true)
 		{
-			fX -= movementspeed;
-			if (fX <= nextTile)
+			fX -= a_fMovementSpeed;
+			if (fX <= iNextTile)
 			{
-				fX = nextTile;
-				moving = false;		
+				fX = iNextTile;
+				bMoving = false;
 				PlaySound(TEXT(cSoundPath), NULL, SND_FILENAME | SND_ASYNC);
 
 			}
 		}
 		
 	}
-	UG::MoveSprite(SpriteID, fX, fY);
+	UG::MoveSprite(iSpriteID, fX, fY);
 }
 
 

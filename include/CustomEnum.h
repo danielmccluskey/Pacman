@@ -1,3 +1,12 @@
+//==============================================================================================================================
+// Project: Pacman
+// File: CustomEnum.h
+// Author: Daniel McCluskey
+// Date Created: 17/10/16
+// Brief: This is the header file that contains all of the Enumerations I have used throughout my code. This header is included in every CPP file in the project.
+// Last Edited by: (See BitBucket Commits: https://bitbucket.org/Danielmclovin/ct4019-pacman)
+//==============================================================================================================================
+
 #ifndef _CUSTOMENUM_H_
 #define _CUSTOMENUM_H_
 typedef enum GameStates
@@ -31,4 +40,4 @@ enum menuStates
 {
 	PLAY, HIGHSCORES, QUIT
 };
-#endif
+#endif //_CUSTOMENUM_H_

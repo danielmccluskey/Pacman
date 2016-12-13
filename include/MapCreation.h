@@ -1,7 +1,15 @@
+//==============================================================================================================================
+// Project: Pacman
+// File: MapCreation.h
+// Author: Daniel McCluskey
+// Date Created: 17/10/16
+// Brief: This is the header file that contains the code that draws the "Maze" of the Pacman game.
+// Last Edited by: (See BitBucket Commits: https://bitbucket.org/Danielmclovin/ct4019-pacman)
+//==============================================================================================================================
 #ifndef _PADDLE_H_
 #define _PADDLE_H_
-const int mapWidth = 28;
-const int mapHeight = 36;
+const int iMapWidth = 28;
+const int iMapHeight = 36;
 
 class TileProperties
 {
@@ -11,13 +19,13 @@ public:
 	int	iTileX;
 	int iTileY;
 	
-	int GetTile(int x, int y);
-	void SetTile(char* imagePath, int tileX, int tileY);
+	int GetTile(int a_iX, int a_iY);
+	void SetTile(char* a_cImagePath, int a_iTileX, int a_iTileY);
 	void DrawMap();
 
 private:
-	int SpriteID = 0;
+	int iSpriteID = 0;
 	
 };
 
-#endif
+#endif //_PADDLE_H_
