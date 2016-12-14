@@ -69,7 +69,7 @@ float fCenterY = (fMapHeight*fTileWidth)*0.5f;
 int iScreenWidth, iScreenHeight;
 
 //Holds the amount of pellets on the map to make initialising the Array easier.
-int iPelletCount = fMapWidth*fMapHeight;
+int iPelletCount = (int)(fMapWidth*fMapHeight);
 
 //Movement Speed for the player, Divided by iTileWidth to keep it Grid aligned
 float fMovementSpeed = 19/ fTileWidth;
@@ -83,7 +83,7 @@ int main(int argv, char* argc[])
 {	
 	
 	//Creation of the PacMan Window, Width and height is the size of the Map array multiplied by the tile images resolution.
-	if (UG::Create((fMapWidth*fTileWidth), (fMapHeight*fTileWidth), false, "Pacman", 100, 100))
+	if (UG::Create((int)(fMapWidth*fTileWidth), (int)(fMapHeight*fTileWidth), false, "Pacman", 100, 100))
 	{		
 		//Adds the font for the text displayed on Screen.
 		UG::AddFont("./fonts/font.fnt");
@@ -295,7 +295,7 @@ int main(int argv, char* argc[])
 			break;
 			case GAMEPLAY:
 			{
-				pellet[0].DrawHighScore(); //Draws the score at the top of the screen
+				pellet[0].DrawHighScore(pacSprite.iLives); //Draws the score at the top of the screen and Lives at the bottom
 				if (bGameStart == true)//Will only execute when the game starts for the first time
 				{
 					PlaySound(TEXT("./sounds/intro.wav"), NULL, SND_FILENAME);//Hangs the program and plays the intro song
@@ -450,6 +450,7 @@ int main(int argv, char* argc[])
 				break;
 			case GAMEOVER:
 			{
+				pellet[0].DrawHighScore(pacSprite.iLives); //Draws the score at the top of the screen and Lives at the bottom
 				fTime -= 0.2f;//Takes away from the timer value
 				if (fTime < 0)//If the timer goes below 0
 				{
@@ -543,7 +544,7 @@ int main(int argv, char* argc[])
 
 			case DEATH:
 			{
-
+				pellet[0].DrawHighScore(pacSprite.iLives); //Draws the score at the top of the screen and Lives at the bottom
 				fTime -= 0.2f;//Subtracts from the timer every frame
 				if (fTime < 0)//If the timer runs out
 				{

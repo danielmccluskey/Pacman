@@ -36,7 +36,7 @@ public:
 	void FillPellets(PelletProperties *a_pellet);//Function to fill the empty pellet spaces in the map with pellets after the game has ended
 	void SetHighScore();//Function that checks if the players score is higher than the highscore, if so, it replaces the highscore
 	void GetHighScore();//Gets the highscore from a file
-	void DrawHighScore();//Draws the highscore
+	void DrawHighScore(int a_iLives);//Draws the highscore
 	void ClearHighScore();//Clears the highscore from both the program and the file.
 
 private:
