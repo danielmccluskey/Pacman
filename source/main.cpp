@@ -364,7 +364,7 @@ int main(int argv, char* argc[])
 				pacSprite.SetEatGhostsTimer(EdibleGhosts[0].iSpriteID, EdibleGhosts[1].iSpriteID, EdibleGhosts[2].iSpriteID, EdibleGhosts[3].iSpriteID);//Controls the timer and stops drawing the Edible sprites when the timer runs out
 
 
-				if (pellet[0].iTotalPellets > 245) //If the player has collected all of the pellets
+				if (pellet[0].iTotalPellets > 247) //If the player has collected all of the pellets
 				{
 					pellet[0].iTotalPellets = 0;//Reset the pellet count
 					pellet[0].FillPellets(pellet);//Refill the map with Pellets
