@@ -1,29 +1,24 @@
 ﻿  Ghosts.cpp
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(68): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(69): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(87): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(88): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(106): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(112): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(118): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(124): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(130): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(183): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(197): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(204): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(211): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(218): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(235): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(245): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(255): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(265): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  Generating Code...
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(150): warning C4715: 'GhostProperties::GetDirection': not all control paths return a value
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(290): warning C4715: 'GhostProperties::Pacmancollide': not all control paths return a value
-  Compiling...
-  main.cpp
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(514): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(68): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(69): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(87): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(88): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(106): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(112): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(118): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(124): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(130): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(183): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(197): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(204): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(211): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(218): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(235): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(245): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(255): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(265): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(150): warning C4715: 'GhostProperties::GetDirection': not all control paths return a value
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(290): warning C4715: 'GhostProperties::Pacmancollide': not all control paths return a value
   Pacman.vcxproj -> C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\proj\vs2015\..\..\bin\x64\Debug\Pacman.exe
   Pacman.vcxproj -> ..\..\bin\x64\Debug\Pacman.pdb (Full PDB)
   xcopy "C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\"*.* "C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\proj\vs2015\..\..\bin\x64\Debug\" /s /y /d /r 
