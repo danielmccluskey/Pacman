@@ -133,11 +133,13 @@ void GhostProperties::CreateGhost(int a_iGhostType)
 	case edible:
 		iSpriteID = UG::CreateSprite("./images/ghosts/edible.png", iGhostWidth, iGhostWidth, true);
 		UG::SetSpriteLayer(iSpriteID, 4);
+		iCageX = 0;
 		break;
 
 	}
 	initialise();//Reset directional and movement values
 	iCageY = 320;
+	UG::MoveSprite(iSpriteID, iCageX, iCageY);
 	
 	
 }

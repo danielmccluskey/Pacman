@@ -256,6 +256,7 @@ int main(int argv, char* argc[])
 						difficultySprite.HideSprite();//Hides the Diffiuclty sprite
 						selectSprite.HideSprite();//Hides the Selection box sprite
 						iCurrentState = GAMEPLAY;//Sets the Current GameState to GAMEPLAY
+						pellet[0].DrawHighScore(pacSprite.iLives); //Draws the score at the top of the screen and Lives at the bottom
 					}
 				}
 				break;
@@ -271,6 +272,7 @@ int main(int argv, char* argc[])
 						difficultySprite.HideSprite();//Hides the Diffiuclty sprite
 						selectSprite.HideSprite();//Hides the Selection box sprite
 						iCurrentState = GAMEPLAY;//Sets the Current GameState to GAMEPLAY
+						pellet[0].DrawHighScore(pacSprite.iLives); //Draws the score at the top of the screen and Lives at the bottom
 					}
 				}
 					break;
@@ -286,6 +288,7 @@ int main(int argv, char* argc[])
 						difficultySprite.HideSprite();//Hides the Diffiuclty sprite
 						selectSprite.HideSprite();//Hides the Selection box sprite
 						iCurrentState = GAMEPLAY;//Sets the Current GameState to GAMEPLAY
+						pellet[0].DrawHighScore(pacSprite.iLives); //Draws the score at the top of the screen and Lives at the bottom
 					}
 				}
 				break;
