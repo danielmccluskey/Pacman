@@ -1,79 +1,28 @@
-﻿  Ghosts.cpp
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(62): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(63): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(79): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(80): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(94): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(100): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(106): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(112): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(118): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(168): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(177): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(184): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(191): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(198): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(214): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(224): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(234): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(244): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  main.cpp
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(64): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+﻿  main.cpp
 c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(65): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(85): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(128): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(132): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(134): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(138): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(66): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(86): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(131): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(137): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(140): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(183): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(204): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(210): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(237): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(253): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(268): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(360): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(361): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(362): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(363): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(468): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(481): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(500): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(508): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(525): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Pellets.cpp
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pellets.cpp(63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pellets.cpp(81): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pellets.cpp(91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pellets.cpp(113): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pellets.cpp(124): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pellets.cpp(221): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pellets.cpp(225): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pellets.cpp(227): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pellets.cpp(231): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  Pacman.cpp
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(141): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(157): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(158): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(214): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(219): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(224): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(229): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(256): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(267): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(278): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(288): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  MapCreation.cpp
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\mapcreation.cpp(143): warning C4458: declaration of 'iSpriteID' hides class member
-  c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\include\mapcreation.h(27): note: see declaration of 'TileProperties::iSpriteID'
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\mapcreation.cpp(144): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  GameStates.cpp
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\gamestates.cpp(16): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\gamestates.cpp(17): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Generating Code...
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pellets.cpp(158): warning C4715: 'PelletProperties::DestroyPellets': not all control paths return a value
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(138): warning C4715: 'GhostProperties::GetDirection': not all control paths return a value
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\proj\vs2015\ghosts.cpp(266): warning C4715: 'GhostProperties::Pacmancollide': not all control paths return a value
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(146): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(149): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(152): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(193): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(214): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(220): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(248): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(264): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(279): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(367): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(368): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(369): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(370): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(478): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(491): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(510): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(517): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(534): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Pacman.vcxproj -> C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\proj\vs2015\..\..\bin\x64\Debug\Pacman.exe
   Pacman.vcxproj -> ..\..\bin\x64\Debug\Pacman.pdb (Full PDB)
   xcopy "C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\"*.* "C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\proj\vs2015\..\..\bin\x64\Debug\" /s /y /d /r 
