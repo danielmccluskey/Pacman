@@ -69,7 +69,7 @@ float fCenterY = (fMapHeight*fTileWidth)*0.5f;
 int iScreenWidth, iScreenHeight;
 
 //Holds the amount of pellets on the map to make initialising the Array easier.
-int iPelletCount = (int)(fMapWidth*fMapHeight);
+int iPelletCount = (int)(fMapWidth*fMapHeight)+10;
 
 //Movement Speed for the player, Divided by iTileWidth to keep it Grid aligned
 float fMovementSpeed = 19/ fTileWidth;
