@@ -231,7 +231,7 @@ void PelletProperties::SetHighScore()
 	highScores.close();//Closes the file
 }
 
-void PelletProperties::DrawHighScore()
+void PelletProperties::DrawHighScore(int a_iLives)
 {
 	int iScreenWidth, iScreenHeight;//Declare variables for the Screen height and Width
 	UG::GetScreenSize(iScreenWidth, iScreenHeight);//Get the screensize
@@ -252,6 +252,13 @@ void PelletProperties::DrawHighScore()
 	std::ostringstream HIGHSCORE;
 	HIGHSCORE << iCurrentHighScore << std::endl;
 	UG::DrawString(HIGHSCORE.str().c_str(), (int)(iScreenWidth * 0.5f), (int)(iScreenHeight *0.95f), 0.8f);
+
+	UG::DrawString("LIVES", (int)(iScreenWidth * 0.19f), (int)(iScreenHeight *0.08f), 0.8f);//Draws the HIGHSCORES text during Gameplay
+
+	//Stringstream to draw the current highscore below HIGHSCORES during GAMEPLAY
+	std::ostringstream LIVES;
+	LIVES << a_iLives << std::endl;
+	UG::DrawString(LIVES.str().c_str(), (int)(iScreenWidth * 0.19f), (int)(iScreenHeight *0.05f), 0.8f);
 	
 	
 }

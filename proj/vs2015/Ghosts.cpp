@@ -270,14 +270,14 @@ void GhostProperties::MoveGhost(GhostProperties& a_ghostSprite, float a_fMovemen
 	}
 	UG::MoveSprite(iSpriteID, fX, fY);//Moves Ghost
 }
-bool GhostProperties::Pacmancollide(GhostProperties& a_ghostSprite, int a_iX, int a_iY)
+bool GhostProperties::Pacmancollide(GhostProperties& a_ghostSprite, float a_fX, float a_fY)
 {
 	//Function to check whether the ghost is within the boundaries of the pacman sprite
 	//IF it is colliding return TRUE, else FALSE
 	
-	if (a_iX <= fX && (a_iX + iTileWidths) >= fX)
+	if (a_fX <= fX && (a_fX + iTileWidths) >= fX)
 	{
-		if (a_iY <= fY && (a_iY + iTileWidths) >= fY)
+		if (a_fY <= fY && (a_fY + iTileWidths) >= fY)
 		{
 			return true;
 		}

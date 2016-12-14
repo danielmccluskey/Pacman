@@ -47,7 +47,7 @@ public:
 	int GetDirection();//Gets the current direction of the ghost as an integer value
 	void SetGhostDirection(GhostProperties& a_ghostSprite, float a_fMovementspeed);//Sets the direction of the ghost based off of a randomly chosen direction
 	void MoveGhost(GhostProperties& a_ghostSprite, float a_fMovementspeed);//Moves the ghost in the randomly chosen direction
-	bool Pacmancollide(GhostProperties& a_ghostSprite,int a_iX, int a_iY);//Checks to see if the ghost has collided with pacman
+	bool Pacmancollide(GhostProperties& a_ghostSprite, float a_fX, float a_fY);//Checks to see if the ghost has collided with pacman
 	void SetCageTime();//Controls the ghost in the cage and releases it
 	void SetEdibleGhostsPos(GhostProperties& a_ghost);//Moves edible ghosts to their relative ghost
 	
