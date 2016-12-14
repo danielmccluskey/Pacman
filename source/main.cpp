@@ -68,9 +68,6 @@ float fCenterY = (fMapHeight*fTileWidth)*0.5f;
 //Screen width and height variables
 int iScreenWidth, iScreenHeight;
 
-//Holds the amount of pellets on the map to make initialising the Array easier.
-int iPelletCount = (int)(fMapWidth*fMapHeight);
-
 //Movement Speed for the player, Divided by iTileWidth to keep it Grid aligned
 float fMovementSpeed = 19/ fTileWidth;
 
@@ -99,10 +96,7 @@ int main(int argv, char* argc[])
 		TileProperties newTile;//Creates new class member
 		newTile.DrawMap();//Draws the map on to the screen	
 
-		//Drawing Pellets (Method used and modified from the Enemy Movement example on Bitbucket by Jstewart2: (https://bitbucket.org/GlosGP/enemymovementsimple/src/9c2c9d6d828c20d1e69586ddd92ad9b4dca0ebc0/source/main.cpp?at=default&fileviewer=file-view-default)
-		PelletProperties *pellet = new PelletProperties[iPelletCount]; //Creates new class member using array
-		pellet[0].DrawPellets(pellet); //Draws the pellets on to the screen	
-		pellet[0].GetHighScore();//Gets the Highscore from a file.
+		
 
 
 		//Creating Pacman Sprite
@@ -150,6 +144,12 @@ int main(int argv, char* argc[])
 		
 		GameStateProperties deathSprite;//Creates new class member for the Death animation that plays when the player dies.
 		deathSprite.CreateSprite("./images/pacman/deathSheets.png", (fTileWidth), (fTileWidth), fTileWidth, fTileWidth);//Creates the sprite, Sizes it and moves it to the correct position
+
+																														//Drawing Pellets (Method used and modified from the Enemy Movement example on Bitbucket by Jstewart2: (https://bitbucket.org/GlosGP/enemymovementsimple/src/9c2c9d6d828c20d1e69586ddd92ad9b4dca0ebc0/source/main.cpp?at=default&fileviewer=file-view-default)
+		PelletProperties *pellet = new PelletProperties[2000]; //Creates new class member using array
+		pellet[0].DrawPellets(pellet); //Draws the pellets on to the screen	
+		pellet[0].GetHighScore();//Gets the Highscore from a file.
+
 
 		int iCurrentState = SPLASH; //Sets the Game State to the Splash screen.
 		splashSprite.ShowSprite(); //Draws the Splash screen image

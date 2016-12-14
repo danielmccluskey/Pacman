@@ -1,65 +1,120 @@
-﻿  Pellets.cpp
-  Pacman.cpp
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(147): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(163): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(164): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(232): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(237): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(242): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(247): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(276): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(287): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(298): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\pacman.cpp(308): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  MapCreation.cpp
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\mapcreation.cpp(147): warning C4458: declaration of 'iSpriteID' hides class member
-  c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\include\mapcreation.h(25): note: see declaration of 'TileProperties::iSpriteID'
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\mapcreation.cpp(148): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  main.cpp
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\main.cpp(514): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+﻿  GameStates.cpp
   Ghosts.cpp
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(68): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(69): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(87): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(88): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(106): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(112): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(118): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(124): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(130): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(183): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(197): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(204): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(211): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(218): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(235): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(245): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(255): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(265): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  GameStates.cpp
-  Generating Code...
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(150): warning C4715: 'GhostProperties::GetDirection': not all control paths return a value
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(290): warning C4715: 'GhostProperties::Pacmancollide': not all control paths return a value
-UG Basic Framework.lib(stb_image_aug.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'UG Basic Framework.lib(stb_image_aug.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Debug\SOIL.pdb'; linking object as if no debug info
-UG Basic Framework.lib(SOIL.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'UG Basic Framework.lib(SOIL.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Debug\SOIL.pdb'; linking object as if no debug info
-UG Basic Framework.lib(image_helper.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'UG Basic Framework.lib(image_helper.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Debug\SOIL.pdb'; linking object as if no debug info
-UG Basic Framework.lib(image_DXT.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'UG Basic Framework.lib(image_DXT.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Debug\SOIL.pdb'; linking object as if no debug info
-UG Basic Framework.lib(glew.obj) : warning LNK4099: PDB 'glew_static.pdb' was not found with 'UG Basic Framework.lib(glew.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Debug\glew_static.pdb'; linking object as if no debug info
-UG Basic Framework.lib(wgl_context.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'UG Basic Framework.lib(wgl_context.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Debug\glfw.pdb'; linking object as if no debug info
-UG Basic Framework.lib(winmm_joystick.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'UG Basic Framework.lib(winmm_joystick.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Debug\glfw.pdb'; linking object as if no debug info
-UG Basic Framework.lib(win32_window.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'UG Basic Framework.lib(win32_window.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Debug\glfw.pdb'; linking object as if no debug info
-UG Basic Framework.lib(win32_tls.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'UG Basic Framework.lib(win32_tls.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Debug\glfw.pdb'; linking object as if no debug info
-UG Basic Framework.lib(win32_time.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'UG Basic Framework.lib(win32_time.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Debug\glfw.pdb'; linking object as if no debug info
-UG Basic Framework.lib(win32_monitor.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'UG Basic Framework.lib(win32_monitor.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Debug\glfw.pdb'; linking object as if no debug info
-UG Basic Framework.lib(win32_init.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'UG Basic Framework.lib(win32_init.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Debug\glfw.pdb'; linking object as if no debug info
-UG Basic Framework.lib(window.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'UG Basic Framework.lib(window.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Debug\glfw.pdb'; linking object as if no debug info
-UG Basic Framework.lib(monitor.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'UG Basic Framework.lib(monitor.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Debug\glfw.pdb'; linking object as if no debug info
-UG Basic Framework.lib(input.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'UG Basic Framework.lib(input.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Debug\glfw.pdb'; linking object as if no debug info
-UG Basic Framework.lib(init.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'UG Basic Framework.lib(init.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Debug\glfw.pdb'; linking object as if no debug info
-UG Basic Framework.lib(context.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'UG Basic Framework.lib(context.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Debug\glfw.pdb'; linking object as if no debug info
-  Pacman.vcxproj -> C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\proj\vs2015\..\..\bin\x64\Debug\Pacman.exe
-  Pacman.vcxproj -> ..\..\bin\x64\Debug\Pacman.pdb (Full PDB)
-  xcopy "C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\"*.* "C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\proj\vs2015\..\..\bin\x64\Debug\" /s /y /d /r 
+..\..\source\Ghosts.cpp(68): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+..\..\source\Ghosts.cpp(69): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+..\..\source\Ghosts.cpp(87): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+..\..\source\Ghosts.cpp(88): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+..\..\source\Ghosts.cpp(106): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+..\..\source\Ghosts.cpp(113): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+..\..\source\Ghosts.cpp(120): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+..\..\source\Ghosts.cpp(127): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+..\..\source\Ghosts.cpp(134): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+..\..\source\Ghosts.cpp(188): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+..\..\source\Ghosts.cpp(202): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+..\..\source\Ghosts.cpp(209): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+..\..\source\Ghosts.cpp(216): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+..\..\source\Ghosts.cpp(223): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+..\..\source\Ghosts.cpp(240): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+..\..\source\Ghosts.cpp(250): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+..\..\source\Ghosts.cpp(260): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+..\..\source\Ghosts.cpp(270): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  main.cpp
+..\..\source\main.cpp(514): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  MapCreation.cpp
+..\..\source\MapCreation.cpp(147): warning C4458: declaration of 'iSpriteID' hides class member
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\include\MapCreation.h(25): note: see declaration of 'TileProperties::iSpriteID'
+..\..\source\MapCreation.cpp(149): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Pacman.cpp
+..\..\source\Pacman.cpp(147): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+..\..\source\Pacman.cpp(164): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+..\..\source\Pacman.cpp(165): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+..\..\source\Pacman.cpp(233): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+..\..\source\Pacman.cpp(238): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+..\..\source\Pacman.cpp(243): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+..\..\source\Pacman.cpp(248): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+..\..\source\Pacman.cpp(277): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+..\..\source\Pacman.cpp(288): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+..\..\source\Pacman.cpp(299): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+..\..\source\Pacman.cpp(309): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Pellets.cpp
+..\..\source\Pellets.cpp(86): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+..\..\source\Pellets.cpp(87): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+..\..\source\Pellets.cpp(100): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+..\..\source\Pellets.cpp(101): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Generating code
+c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(295): warning C4715: 'GhostProperties::Pacmancollide': not all control paths return a value
+  All 1832 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+UG Basic Framework.lib(UGFW.obj) : warning LNK4099: PDB 'UG Basic Framework.pdb' was not found with 'UG Basic Framework.lib(UGFW.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\UG Basic Framework.pdb'; linking object as if no debug info
+UG Basic Framework.lib(SpriteManager.obj) : warning LNK4099: PDB 'UG Basic Framework.pdb' was not found with 'UG Basic Framework.lib(SpriteManager.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\UG Basic Framework.pdb'; linking object as if no debug info
+UG Basic Framework.lib(FontManager.obj) : warning LNK4099: PDB 'UG Basic Framework.pdb' was not found with 'UG Basic Framework.lib(FontManager.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\UG Basic Framework.pdb'; linking object as if no debug info
+UG Basic Framework.lib(LineRenderer.obj) : warning LNK4099: PDB 'UG Basic Framework.pdb' was not found with 'UG Basic Framework.lib(LineRenderer.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\UG Basic Framework.pdb'; linking object as if no debug info
+UG Basic Framework.lib(TextureManager.obj) : warning LNK4099: PDB 'UG Basic Framework.pdb' was not found with 'UG Basic Framework.lib(TextureManager.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\UG Basic Framework.pdb'; linking object as if no debug info
+UG Basic Framework.lib(Application.obj) : warning LNK4099: PDB 'UG Basic Framework.pdb' was not found with 'UG Basic Framework.lib(Application.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\UG Basic Framework.pdb'; linking object as if no debug info
+UG Basic Framework.lib(Utilities.obj) : warning LNK4099: PDB 'UG Basic Framework.pdb' was not found with 'UG Basic Framework.lib(Utilities.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\UG Basic Framework.pdb'; linking object as if no debug info
+UG Basic Framework.lib(BaseSprite.obj) : warning LNK4099: PDB 'UG Basic Framework.pdb' was not found with 'UG Basic Framework.lib(BaseSprite.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\UG Basic Framework.pdb'; linking object as if no debug info
+UG Basic Framework.lib(Font.obj) : warning LNK4099: PDB 'UG Basic Framework.pdb' was not found with 'UG Basic Framework.lib(Font.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\UG Basic Framework.pdb'; linking object as if no debug info
+UG Basic Framework.lib(strHandler.obj) : warning LNK4099: PDB 'UG Basic Framework.pdb' was not found with 'UG Basic Framework.lib(strHandler.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\UG Basic Framework.pdb'; linking object as if no debug info
+UG Basic Framework.lib(Texture.obj) : warning LNK4099: PDB 'UG Basic Framework.pdb' was not found with 'UG Basic Framework.lib(Texture.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\UG Basic Framework.pdb'; linking object as if no debug info
+UG Basic Framework.lib(SOIL.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'UG Basic Framework.lib(SOIL.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\SOIL.pdb'; linking object as if no debug info
+UG Basic Framework.lib(tinyxml.obj) : warning LNK4099: PDB 'UG Basic Framework.pdb' was not found with 'UG Basic Framework.lib(tinyxml.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\UG Basic Framework.pdb'; linking object as if no debug info
+UG Basic Framework.lib(tinyxmlHelper.obj) : warning LNK4099: PDB 'UG Basic Framework.pdb' was not found with 'UG Basic Framework.lib(tinyxmlHelper.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\UG Basic Framework.pdb'; linking object as if no debug info
+UG Basic Framework.lib(tinystr.obj) : warning LNK4099: PDB 'UG Basic Framework.pdb' was not found with 'UG Basic Framework.lib(tinystr.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\UG Basic Framework.pdb'; linking object as if no debug info
+UG Basic Framework.lib(tinyxmlparser.obj) : warning LNK4099: PDB 'UG Basic Framework.pdb' was not found with 'UG Basic Framework.lib(tinyxmlparser.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\UG Basic Framework.pdb'; linking object as if no debug info
+UG Basic Framework.lib(image_helper.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'UG Basic Framework.lib(image_helper.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\SOIL.pdb'; linking object as if no debug info
+UG Basic Framework.lib(stb_image_aug.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'UG Basic Framework.lib(stb_image_aug.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\SOIL.pdb'; linking object as if no debug info
+UG Basic Framework.lib(image_DXT.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'UG Basic Framework.lib(image_DXT.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\SOIL.pdb'; linking object as if no debug info
+UG Basic Framework.lib(tinyxmlerror.obj) : warning LNK4099: PDB 'UG Basic Framework.pdb' was not found with 'UG Basic Framework.lib(tinyxmlerror.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\UG Basic Framework.pdb'; linking object as if no debug info
+UG Basic Framework.lib(glew.obj) : warning LNK4099: PDB 'glew_static.pdb' was not found with 'UG Basic Framework.lib(glew.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\glew_static.pdb'; linking object as if no debug info
+  Pacman.vcxproj -> C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\proj\vs2015\..\..\bin\x64\Release\Pacman.exe
+  Pacman.vcxproj -> ..\..\bin\x64\Release\Pacman.pdb (Full PDB)
+  xcopy "C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\"*.* "C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\proj\vs2015\..\..\bin\x64\Release\" /s /y /d /r 
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\appData.xml
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\fonts\arial.fnt
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\fonts\arial_0.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\fonts\font.fnt
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\fonts\font.png
   C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\fonts\invaders.fnt
   C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\fonts\invaders_0.png
-  2 File(s) copied
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\highscores\scores.txt.txt
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\blank.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\backgrounds\difficulty.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\backgrounds\highscores.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\backgrounds\menu.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\backgrounds\pause.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\backgrounds\selection.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\backgrounds\slide.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\backgrounds\splash.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\corners\1.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\corners\2.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\corners\3.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\corners\4.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\ghosts\blue.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\ghosts\edible.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\ghosts\orange.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\ghosts\pink.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\ghosts\red.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\islands\1.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\islands\2.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\islands\3.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\islands\4.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\pacman\deathSheets.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\pacman\pacmanSheet.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\pacman\pellet.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\walls\bottom.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\walls\left.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\walls\right.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\walls\top.png
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\shaders\default.fsh
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\shaders\default.vsh
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\shaders\spriteInstance.fsh
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\shaders\spriteInstance.vsh
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\sounds\bigPellet.wav
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\sounds\chomp1.wav
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\sounds\chomp4.wav
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\sounds\death.wav
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\sounds\eatGhosts.wav
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\sounds\intro.wav
+  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\sounds\siren.wav
+  47 File(s) copied

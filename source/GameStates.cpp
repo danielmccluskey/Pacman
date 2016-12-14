@@ -16,6 +16,7 @@ void GameStateProperties::CreateSprite(char* a_cImagePath, float a_fX, float a_f
 	//Create the sprite and move it to the specified position
 	iSpriteID = UG::CreateSprite(a_cImagePath, a_fSizeX, a_fSizeY, true);
 	UG::MoveSprite(iSpriteID, a_fX, a_fY);
+	UG::SetSpriteLayer(iSpriteID, 8);
 
 }
 
