@@ -25,7 +25,7 @@
 
 
 
-//Sets the Variable for the death animation
+//Sets the Variable for frames of the death animation
 float fDeathFrames[16][4] =
 {
 	{ .75f,.0f,1.f,.25f },
@@ -46,10 +46,10 @@ float fDeathFrames[16][4] =
 	{ 0.f,.75f,.25f,1.f }
 };
 
-//Positions (Will convert to Vector 2 class later)
+//Variables for Positions
 float fXPos, fYPos = 0;
 
-//Width of the tiles
+//Variable to define the Width of the tiles
 float iTileWidth = 16;
 
 //Timer for the Splash screen
@@ -58,6 +58,7 @@ float fTime = 0;
 //Decides the position for the selection box for the main menu
 int iMenuState = 0;
 
+//Sets the time that the player can eat the ghosts for after collecting a big pellet.
 float fEdibleGhostTime;
 
 //Co-ords of the Center of the screen
@@ -86,16 +87,18 @@ int main(int argv, char* argc[])
 	{		
 		//Adds the font for the text displayed on Screen.
 		UG::AddFont("./fonts/font.fnt");
+
+		//Sets the Background colour
 		UG::SetBackgroundColor(0x0f0f0f);
-		
 		
 		//Gets screen size
 		UG::GetScreenSize(iScreenWidth, iScreenHeight);
 		
 		
 		//Draws the background map with individual tiled images
-		TileProperties newTile;
-		newTile.DrawMap();
+		TileProperties newTile;//Creates new class member
+		newTile.DrawMap();//Draws the map on to the screen	
+
 		//Drawing Pellets (Method used and modified from the Enemy Movement example on Bitbucket by Jstewart2: (https://bitbucket.org/GlosGP/enemymovementsimple/src/9c2c9d6d828c20d1e69586ddd92ad9b4dca0ebc0/source/main.cpp?at=default&fileviewer=file-view-default)
 		PelletProperties *pellet = new PelletProperties[iPelletCount]; //Creates new class member using array
 		pellet[0].DrawPellets(pellet); //Draws the pellets on to the screen	
@@ -117,77 +120,84 @@ int main(int argv, char* argc[])
 		inky.CreateGhost(2);//Creates the Sprite and moves Inky to their starting position
 		clyde.CreateGhost(3);//Creates the Sprite and moves Clyde ghost to their starting position
 
-
-		GhostProperties *EdibleGhosts = new GhostProperties[4];
+		//Creating Edible Ghosts
+		GhostProperties *EdibleGhosts = new GhostProperties[4]; //Creates a class member using an array for the Ghosts pacman can eat.
 		for (int i = 0; i < 4; i++)
 		{
-			EdibleGhosts[i].CreateGhost(4);
+			EdibleGhosts[i].CreateGhost(4);//Creates the Sprite and moves the Edible Ghost to their relative Ghost
 		}
 
-		GameStateProperties highScoresSprite;
-		highScoresSprite.CreateSprite("./images/backgrounds/highscores.png", iCenterX, iCenterY, (iMapWidth*iTileWidth), (iMapHeight*iTileWidth));
-		GameStateProperties pauseSprite;
-		pauseSprite.CreateSprite("./images/backgrounds/pause.png", iCenterX, iCenterY, 700, 230);
-		GameStateProperties difficultySprite;
-		difficultySprite.CreateSprite("./images/backgrounds/difficulty.png", iCenterX, iCenterY, (iMapWidth*iTileWidth), (iMapHeight*iTileWidth));
-		GameStateProperties menuSprite;
-		menuSprite.CreateSprite("./images/backgrounds/menu.png", iCenterX, iCenterY, (iMapWidth*iTileWidth), (iMapHeight*iTileWidth));
-		GameStateProperties selectSprite;
-		selectSprite.CreateSprite("./images/backgrounds/selection.png", iCenterX, iCenterY, 234, 49);
-		GameStateProperties splashSprite;
-		splashSprite.CreateSprite("./images/backgrounds/splash.png", iCenterX, iCenterY, (iMapWidth*iTileWidth), (iMapHeight*iTileWidth));
-		GameStateProperties slidingSprite; 
-		slidingSprite.CreateSprite("./images/backgrounds/slide.png", ((iMapWidth*iTileWidth) + (156 / 2)), ((iMapHeight*iTileWidth)*0.55f), 156, 26);
-		
-		GameStateProperties deathSprite;
-		deathSprite.CreateSprite("./images/pacman/deathSheets.png", (16), (16), 16, 16);
-		int iCurrentState = SPLASH;
+		GameStateProperties highScoresSprite; //Creates new class member for the High Score menu sprite.
+		highScoresSprite.CreateSprite("./images/backgrounds/highscores.png", iCenterX, iCenterY, (iMapWidth*iTileWidth), (iMapHeight*iTileWidth)); //Creates the sprite, Sizes it and moves it to the correct position
 
-		splashSprite.ShowSprite();
-		slidingSprite.ShowSprite();
+		GameStateProperties pauseSprite; //Creates new class member for the Pause menu sprite.
+		pauseSprite.CreateSprite("./images/backgrounds/pause.png", iCenterX, iCenterY, 700, 230);//Creates the sprite, Sizes it and moves it to the correct position
+
+		GameStateProperties difficultySprite; //Creates new class member for the Difficulty menu sprite.
+		difficultySprite.CreateSprite("./images/backgrounds/difficulty.png", iCenterX, iCenterY, (iMapWidth*iTileWidth), (iMapHeight*iTileWidth));//Creates the sprite, Sizes it and moves it to the correct position
+
+		GameStateProperties menuSprite; //Creates new class member for the Main menu sprite.
+		menuSprite.CreateSprite("./images/backgrounds/menu.png", iCenterX, iCenterY, (iMapWidth*iTileWidth), (iMapHeight*iTileWidth));//Creates the sprite, Sizes it and moves it to the correct position
+
+		GameStateProperties selectSprite; //Creates new class member for the Selection box sprite.
+		selectSprite.CreateSprite("./images/backgrounds/selection.png", iCenterX, iCenterY, 234, 49);//Creates the sprite, Sizes it and moves it to the correct position
+
+		GameStateProperties splashSprite; //Creates new class member for the Splash screen sprite.
+		splashSprite.CreateSprite("./images/backgrounds/splash.png", iCenterX, iCenterY, (iMapWidth*iTileWidth), (iMapHeight*iTileWidth));//Creates the sprite, Sizes it and moves it to the correct position
+
+		GameStateProperties slidingSprite; //Creates new class member for the Sliding sprite on the Splash screen.
+		slidingSprite.CreateSprite("./images/backgrounds/slide.png", ((iMapWidth*iTileWidth) + (156 / 2)), ((iMapHeight*iTileWidth)*0.55f), 156, 26);//Creates the sprite, Sizes it and moves it to the correct position
+		
+		GameStateProperties deathSprite;//Creates new class member for the Death animation that plays when the player dies.
+		deathSprite.CreateSprite("./images/pacman/deathSheets.png", (iTileWidth), (iTileWidth), iTileWidth, iTileWidth);//Creates the sprite, Sizes it and moves it to the correct position
+
+		int iCurrentState = SPLASH; //Sets the Game State to the Splash screen.
+		splashSprite.ShowSprite(); //Draws the Splash screen image
+		slidingSprite.ShowSprite();//Draws the sliding sprite image
 		do
 		{
-			switch (iCurrentState)
+			
+			switch (iCurrentState)//Main Switch statement to control the Gamestates of the game e.g. Pause, Menu, Diffiuclty, Gameplay etc
 			{
 			case SPLASH:
 			{
-				UG::ClearScreen();				
-				if (fTime == 0)
+				UG::ClearScreen(); //Clears the Screen				
+				if (fTime == 0) //Will only execute on the first frame of the program.
 				{
-					PlaySound(TEXT("./sounds/intro.wav"), NULL, SND_ASYNC);
+					PlaySound(TEXT("./sounds/intro.wav"), NULL, SND_ASYNC); //Plays the Pacman intro sound.
 				}//Plays Sounds
 				if (fTime >= 50) //Exits the Splash screen and goes to menu
 				{
-					fTime = 0;
-					UG::MoveSprite(slidingSprite.iSpriteID, ((iMapWidth*iTileWidth) + (156 / 2)), ((iMapHeight*iTileWidth)*0.55f));
-					splashSprite.HideSprite();
-					slidingSprite.HideSprite();	
-					menuSprite.ShowSprite();
-					selectSprite.ShowSprite();
+					fTime = 0;//Resets the timer
+					UG::MoveSprite(slidingSprite.iSpriteID, ((iMapWidth*iTileWidth) + (156 / 2)), ((iMapHeight*iTileWidth)*0.55f));//Moves the sliding sprite back to the starting position
+					splashSprite.HideSprite(); //Hides the Splash screen from view (Stops Drawing)
+					slidingSprite.HideSprite();	//Hides the Sliding Sprite from view (Stops Drawing)
+					menuSprite.ShowSprite();//Draws the Main menu screen image
+					selectSprite.ShowSprite();//Draws the Selection box image
 
-					iCurrentState = MENU;
+					iCurrentState = MENU; //Sets the Current GameState to the Main menu
 					break;
 				}
-				UG::GetSpritePosition(slidingSprite.iSpriteID, fXPos, fYPos);
-				UG::MoveSprite(slidingSprite.iSpriteID, fXPos - 2.5f, fYPos);
-				fTime += 0.2f;
+				UG::GetSpritePosition(slidingSprite.iSpriteID, fXPos, fYPos); //Gets the current position of the sliding sprite
+				UG::MoveSprite(slidingSprite.iSpriteID, fXPos - 2.5f, fYPos); //Moves the Sliding sprite along the screen every frame
+				fTime += 0.2f;//Increases the timers value.
 				break;
 			}
 			case MENU:
 			{
-				SetMenuPosition(3,-1);
+				SetMenuPosition(3,-1);//Controls the value of iMenuState for the switch statement
 				switch (iMenuState)
 				{
 				case PLAY:
 				{
-					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, iCenterY);
+					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, iCenterY); //Moves the Selection box to the center of the screen
 					if (UG::IsKeyDown(UG::KEY_ENTER))
 					{
-						iMenuState = 1;
-						PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
-						menuSprite.HideSprite();
-						difficultySprite.ShowSprite();
-						iCurrentState = DIFFICULTY;
+						iMenuState = 1; //Resets the menu state
+						PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC); //Plays a sound and hangs the program until finished, this makes the program wait for a second to avoid the keypress being carried over into the next gamestate
+						menuSprite.HideSprite();//Hides the menu sprite from view
+						difficultySprite.ShowSprite();//Draws the difficulty menu.
+						iCurrentState = DIFFICULTY;//Changes the GameState to Difficulty menu
 					}
 					break;
 				}
@@ -195,23 +205,23 @@ int main(int argv, char* argc[])
 				{
 					if (UG::IsKeyDown(UG::KEY_ENTER))
 					{
-						iMenuState = 1;
-						PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
-						menuSprite.HideSprite();
-						highScoresSprite.ShowSprite();
-						iCurrentState = SCORES;
+						iMenuState = 1;//Resets the menu state
+						PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);//Plays a sound and hangs the program until finished, this makes the program wait for a second to avoid the keypress being carried over into the next gamestate
+						menuSprite.HideSprite();//Hides the menu sprite from view
+						highScoresSprite.ShowSprite();//Draws the HighScores menu.
+						iCurrentState = SCORES;//Changes the GameState to HighScores menu
 					}
-					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, ((iMapHeight*iTileWidth)*0.35f));
+					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, ((iMapHeight*iTileWidth)*0.35f));//Moves the Selection box to the next menu item on the screen
 					
 				}
 				break;
 				case QUIT:
 				{
-					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, ((iMapHeight*iTileWidth)*0.19f));
+					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, ((iMapHeight*iTileWidth)*0.19f));//Moves the Selection box to the next menu item on the screen
 					if (UG::IsKeyDown(UG::KEY_ENTER))
 					{
-						PlaySound(TEXT("./sounds/death.wav"), NULL, SND_FILENAME | SND_SYNC);
-						UG::Close();
+						PlaySound(TEXT("./sounds/death.wav"), NULL, SND_FILENAME | SND_SYNC);//Plays a sound and hangs the program until finished, this makes the program wait for a second to avoid the keypress being carried over into the next gamestate
+						UG::Close();//Closes the program
 					}
 				}
 				break;
@@ -221,60 +231,61 @@ int main(int argv, char* argc[])
 
 			case DIFFICULTY:
 			{
-				SetMenuPosition(3,-1);
-				if (UG::IsKeyDown(UG::KEY_ESCAPE))
+				SetMenuPosition(3,-1);//Controls the value of iMenuState for the switch statement
+
+				if (UG::IsKeyDown(UG::KEY_ESCAPE))//Returns to the main menu
 				{
-					PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
-					menuSprite.ShowSprite();
-					difficultySprite.HideSprite();
+					PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);//Plays a sound and hangs the program until finished, this makes the program wait for a second to avoid the keypress being carried over into the next gamestate
+					menuSprite.ShowSprite();//Draws the menu sprite
+					difficultySprite.HideSprite();//Hides the Difficulty sprite
 					
-					iCurrentState = MENU;
+					iCurrentState = MENU; //Changes the Current GameState to Main menu
 				}
 				switch (iMenuState)
 				{
 				case EASY:
 				{
-					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, iCenterY);
+					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, iCenterY);//Moves the Selection box to the center of the screen
 					if (UG::IsKeyDown(UG::KEY_ENTER))
 					{
-						iMenuState = 0;
-						PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
-						fMovementSpeed = 10 / iTileWidth;
-						pacSprite.iLives = 3;
-						fEdibleGhostTime = 100;
-						difficultySprite.HideSprite();
-						selectSprite.HideSprite();
-						iCurrentState = GAMEPLAY;
+						iMenuState = 0;//Resets the Menu states
+						PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);//Plays a sound and hangs the program until finished, this makes the program wait for a second to avoid the keypress being carried over into the next gamestate
+						fMovementSpeed = 10 / iTileWidth; //Sets the movement speed relative to the difficulty
+						pacSprite.iLives = 3;//Sets the lives relative to the chosen diffiuclty
+						fEdibleGhostTime = 100;//Sets the amount of time the ghosts can be eaten for after eatinga big pellet relative to the chosen difficulty
+						difficultySprite.HideSprite();//Hides the Diffiuclty sprite
+						selectSprite.HideSprite();//Hides the Selection box sprite
+						iCurrentState = GAMEPLAY;//Sets the Current GameState to GAMEPLAY
 					}
 				}
 				break;
 				case MEDIUM:
 				{
-					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, ((iMapHeight*iTileWidth)*0.35f));
+					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, ((iMapHeight*iTileWidth)*0.35f));//Moves the Selection box to the next menu item on the screen
 					if (UG::IsKeyDown(UG::KEY_ENTER))
 					{
-						iMenuState = 0;
-						fMovementSpeed = 15 / iTileWidth;
-						pacSprite.iLives = 2;
-						fEdibleGhostTime = 50;
-						difficultySprite.HideSprite();
-						selectSprite.HideSprite();
-						iCurrentState = GAMEPLAY;
+						iMenuState = 0;//Resets the Menu states
+						fMovementSpeed = 15 / iTileWidth;//Sets the movement speed relative to the difficulty
+						pacSprite.iLives = 2;//Sets the lives relative to the chosen diffiuclty
+						fEdibleGhostTime = 50;//Sets the amount of time the ghosts can be eaten for after eatinga big pellet relative to the chosen difficulty
+						difficultySprite.HideSprite();//Hides the Diffiuclty sprite
+						selectSprite.HideSprite();//Hides the Selection box sprite
+						iCurrentState = GAMEPLAY;//Sets the Current GameState to GAMEPLAY
 					}
 				}
 					break;
 				case HARD:
 				{
-					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, ((iMapHeight*iTileWidth)*0.19f));
+					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, ((iMapHeight*iTileWidth)*0.19f));//Moves the Selection box to the next menu item on the screen
 					if (UG::IsKeyDown(UG::KEY_ENTER))
 					{
-						fMovementSpeed = 20 / iTileWidth;
-						iMenuState = 0;
-						pacSprite.iLives = 1;
-						fEdibleGhostTime = 20;
-						difficultySprite.HideSprite();
-						selectSprite.HideSprite();
-						iCurrentState = GAMEPLAY;
+						iMenuState = 0;//Resets the Menu states
+						fMovementSpeed = 20 / iTileWidth;//Sets the movement speed relative to the difficulty						
+						pacSprite.iLives = 1;//Sets the lives relative to the chosen diffiuclty
+						fEdibleGhostTime = 20;//Sets the amount of time the ghosts can be eaten for after eatinga big pellet relative to the chosen difficulty
+						difficultySprite.HideSprite();//Hides the Diffiuclty sprite
+						selectSprite.HideSprite();//Hides the Selection box sprite
+						iCurrentState = GAMEPLAY;//Sets the Current GameState to GAMEPLAY
 					}
 				}
 				break;
@@ -284,18 +295,12 @@ int main(int argv, char* argc[])
 			break;
 			case GAMEPLAY:
 			{
-				
-				std::cout << pacSprite.bCanEatGhosts << std::endl;
-
-				
-				
-				pellet[0].DrawHighScore();
-				if (bGameStart == true)
+				pellet[0].DrawHighScore(); //Draws the score at the top of the screen
+				if (bGameStart == true)//Will only execute when the game starts for the first time
 				{
-
-					PlaySound(TEXT("./sounds/intro.wav"), NULL, SND_FILENAME);
+					PlaySound(TEXT("./sounds/intro.wav"), NULL, SND_FILENAME);//Hangs the program and plays the intro song
 					
-					bGameStart = false;
+					bGameStart = false;//REsets the starting variable
 				}
 				//Handling Pacmans movement
 				pacSprite.SetPlayerDirection(pacSprite, fMovementSpeed, UG::KEY_W, UG::KEY_S, UG::KEY_A, UG::KEY_D); //Sets direction on keypress
@@ -318,42 +323,44 @@ int main(int argv, char* argc[])
 				clyde.MoveGhost(clyde, fMovementSpeed);//Decides whether to move ghost depending on direction and collision
 
 				//Movement for Edible Ghosts
-				EdibleGhosts[0].SetEdibleGhostsPos(blinky);
-				EdibleGhosts[1].SetEdibleGhostsPos(pinky);
-				EdibleGhosts[2].SetEdibleGhostsPos(inky);
-				EdibleGhosts[3].SetEdibleGhostsPos(clyde);
+				EdibleGhosts[0].SetEdibleGhostsPos(blinky);//Moves the Edible ghost to its relative ghost
+				EdibleGhosts[1].SetEdibleGhostsPos(pinky);//Moves the Edible ghost to its relative ghost
+				EdibleGhosts[2].SetEdibleGhostsPos(inky);//Moves the Edible ghost to its relative ghost
+				EdibleGhosts[3].SetEdibleGhostsPos(clyde);//Moves the Edible ghost to its relative ghost
 
 
 				//Pellets
-				bool bEatBigPellet = pellet[0].DestroyPellets(pellet, pacSprite.iMapXPos - 1, pacSprite.iMapYPos - 1);
+				bool bEatBigPellet = pellet[0].DestroyPellets(pellet, pacSprite.iMapXPos - 1, pacSprite.iMapYPos - 1); //Quick check to see what type of pellet the player has just gone over.
 
-				if (bEatBigPellet == true)//Function to destroy pellets on the same tile as Pacman
+				if (bEatBigPellet == true)//If the player went over a big pellet
 				{
-					if (pacSprite.bCanEatGhosts == false)
+					if (pacSprite.bCanEatGhosts == false)//If the user is not already in Eat ghosts mode.
 					{
 						for (int i = 0; i < 4; i++)
 						{
-							UG::DrawSprite(EdibleGhosts[i].iSpriteID);
+							UG::DrawSprite(EdibleGhosts[i].iSpriteID);//Draws all of the Edible ghosts to view.
 						}
 					}
-					pacSprite.bCanEatGhosts = true;
-					pacSprite.fEatGhostsTimer = fEdibleGhostTime;
+					pacSprite.bCanEatGhosts = true;//Enables Pacman to eat ghosts
+					pacSprite.fEatGhostsTimer = fEdibleGhostTime;//Sets the Eating timer to the relative difficulty timer
 					
 				}
-				pacSprite.SetEatGhostsTimer(EdibleGhosts[0].iSpriteID, EdibleGhosts[1].iSpriteID, EdibleGhosts[2].iSpriteID, EdibleGhosts[3].iSpriteID);
+				pacSprite.SetEatGhostsTimer(EdibleGhosts[0].iSpriteID, EdibleGhosts[1].iSpriteID, EdibleGhosts[2].iSpriteID, EdibleGhosts[3].iSpriteID);//Controls the timer and stops drawing the Edible sprites when the timer runs out
 
 
-				if (pellet[0].iTotalPellets > 245)
+				if (pellet[0].iTotalPellets > 245) //If the player has collected all of the pellets
 				{
-					pellet[0].iTotalPellets = 0;
-					pellet[0].FillPellets(pellet);
-					pacSprite.iLives += 1;
-					pacSprite.SetLives(pacSprite);
+					pellet[0].iTotalPellets = 0;//Reset the pellet count
+					pellet[0].FillPellets(pellet);//Refill the map with Pellets
+					pacSprite.iLives += 1;//Add a life so I can use the Death sequence to reset the game for efficiency
+					pacSprite.SetLives(pacSprite);//Death sequence (Resets Position and direction etc.)
+					
+					//Sets the Cage time for the relative ghost
 					blinky.iCageTime = 200;
 					pinky.iCageTime = 400;
 					inky.iCageTime = 600;
 					clyde.iCageTime = 700;
-					PlaySound(TEXT("./sounds/intro.wav"), NULL, SND_SYNC);
+					PlaySound(TEXT("./sounds/intro.wav"), NULL, SND_FILENAME);//Plays the intro sound file and hangs the program until finished
 				}
 				//Test Collison with Ghosts
 				bool collide[4] = { false, false, false, false }; //Array to see if any of the Ghosts are colliding with Pacman
@@ -363,72 +370,75 @@ int main(int argv, char* argc[])
 				collide[3] = clyde.Pacmancollide(clyde, pacSprite.fX, pacSprite.fY);//Checks if Pacmanis coll iding with Clyde
 
 				//For Loop to loop through the array to see if any of the ghosts collided with Pacman
-
-
-
 				for (int i = 0; i < 4; i++)
 				{
-					if (collide[i] == true && pacSprite.bCanEatGhosts == false)
+					if (collide[i] == true && pacSprite.bCanEatGhosts == false) //If they have collided and the player is not in Eat ghosts  mode
 					{
-						fTime = 15;
-						UG::MoveSprite(deathSprite.iSpriteID, pacSprite.fX, pacSprite.fY);
-						pacSprite.SetLives(pacSprite);
+						fTime = 15;//Set the Death animation timer
+						UG::MoveSprite(deathSprite.iSpriteID, pacSprite.fX, pacSprite.fY);//Move the death sprite to the position of the pacman
+						pacSprite.SetLives(pacSprite);//Death sequence (Resets Position and direction etc.)
+
+						//Sets the Cage time for the relative ghost
 						blinky.iCageTime = 200;
 						pinky.iCageTime = 400;
 						inky.iCageTime = 600;
 						clyde.iCageTime = 700;
-						UG::StopDrawingSprite(pacSprite.iSpriteID);
-						deathSprite.ShowSprite();
 
-						if (pacSprite.iLives < 0)
+						UG::StopDrawingSprite(pacSprite.iSpriteID);//Stop drawing pacman so the Death sprite can be shown
+						deathSprite.ShowSprite();//Draw the death sprite
+
+						if (pacSprite.iLives < 0)//If the player runs out of lives
 						{
-							pellet[0].FillPellets(pellet);
-							iCurrentState = GAMEOVER;//Sets GameState to the Menu
+							pellet[0].FillPellets(pellet);//Refilles the map with pellets
+							iCurrentState = GAMEOVER;//Sets GameState to the Gameover
 						}
 						else
 						{
-							iCurrentState = DEATH;
+							iCurrentState = DEATH;//Sets the current GameState to DEATH
 						}
 						
 						
 					}
-					else if (collide[i] == true && pacSprite.bCanEatGhosts == true)
+					else if (collide[i] == true && pacSprite.bCanEatGhosts == true)//If the player collides and is in Eat ghosts mode
 					{
 						switch (i)
 						{
 						case 0:
 						{
-							blinky.iCageTime = 200;
+							blinky.iCageTime = 200;//Sets the cage time for the relative ghost
 						}
 						break;
 						case 1:
 						{
-							pinky.iCageTime = 400;
+							pinky.iCageTime = 400;//Sets the cage time for the relative ghost
 						}
 						break;
 						case 2:
 						{
-							inky.iCageTime = 600;
+							inky.iCageTime = 600;//Sets the cage time for the relative ghost
 						}
 						break;
 						case 3:
 						{
-							clyde.iCageTime = 700;
+							clyde.iCageTime = 700;//Sets the cage time for the relative ghost
 						}
 						break;
 						}
-						pellet[0].iTotalScore += 100; 
-						PlaySound(TEXT("./sounds/bigPellet.wav"), NULL, SND_FILENAME);
+						pellet[0].iTotalScore += 100; //Adds 100 score
+						PlaySound(TEXT("./sounds/bigPellet.wav"), NULL, SND_FILENAME);//Plays the eat ghost sound
 					}
 					
 				}
 				if (UG::IsKeyDown(UG::KEY_ESCAPE))
 				{
-					PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
-					pauseSprite.ShowSprite();
-					selectSprite.ShowSprite();
-					iCurrentState = PAUSE;
+					PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME);//Play the chomp sound and hang the program
+					pauseSprite.ShowSprite();//Show the pause menu
+					selectSprite.ShowSprite();//Show the selection box
+					iCurrentState = PAUSE;//Set the current GameState to PAUSE
 				}
+
+
+				//Controls the tiemr for the amount of time the ghosts are in the cage in the middle.
 				blinky.SetCageTime();
 				pinky.SetCageTime();
 				inky.SetCageTime();
@@ -440,52 +450,52 @@ int main(int argv, char* argc[])
 				break;
 			case GAMEOVER:
 			{
-				fTime -= 0.2f;
-				if (fTime < 0)
+				fTime -= 0.2f;//Takes away from the timer value
+				if (fTime < 0)//If the timer goes below 0
 				{
-					pellet[0].SetHighScore();
-					pellet[0].iTotalScore = 0;
+					pellet[0].SetHighScore();//Sets the highscore if currentscore is higher
+					pellet[0].iTotalScore = 0;//Sets teh score to 0
 					menuSprite.ShowSprite();//Shows the Menu sprite
 					selectSprite.ShowSprite();//Shows the Selection box	
-					bGameStart = true;
-					deathSprite.HideSprite();
-					UG::DrawSprite(pacSprite.iSpriteID);
-					iCurrentState = MENU;
+					bGameStart = true;//Resets the gamestart variable
+					deathSprite.HideSprite();//hides the Death animation sprite
+					UG::DrawSprite(pacSprite.iSpriteID);//Draws pacman
+					iCurrentState = MENU;//Sets the current GameState to the main menu
 				}
 				else
 				{
-					UG::SetSpriteUVCoordinates(deathSprite.iSpriteID, fDeathFrames[(int(fTime))]);
+					UG::SetSpriteUVCoordinates(deathSprite.iSpriteID, fDeathFrames[(int(fTime))]);//Controls the death animation going through the frames from the 2D array declared on line 29
 				}		
 			}
 			break;
 			case PAUSE:
 			{
-				SetMenuPosition(2,-1);
+				SetMenuPosition(2,-1);//Controls the position of the selection box
 				switch (iMenuState)
 				{
 				case EASY:
 				{
-					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, ((iMapHeight*iTileWidth)*0.62f));
+					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, ((iMapHeight*iTileWidth)*0.62f));//Moves the selection box to the relative position
 					if (UG::IsKeyDown(UG::KEY_ENTER))
 					{
-						iMenuState = 0;
-						PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
-						selectSprite.HideSprite();
-						pauseSprite.HideSprite();
-						iCurrentState = GAMEPLAY;
+						iMenuState = 0;//Resets the menu state
+						PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME);//Plays the chomp sound and hangs the program
+						selectSprite.HideSprite();//Hides the selection sprite
+						pauseSprite.HideSprite();//Hides the pause menu sprite
+						iCurrentState = GAMEPLAY;//Sets the current GameState back to Gameplay
 					}
 					break;
 				}
 				case MEDIUM:
 				{
-					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, ((iMapHeight*iTileWidth)*0.385f));
+					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, ((iMapHeight*iTileWidth)*0.385f));//Moves the selection box to the relative position
 					if (UG::IsKeyDown(UG::KEY_ENTER))
 					{
-						iMenuState = 0;
-						PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
-						menuSprite.ShowSprite();
-						pauseSprite.HideSprite();
-						iCurrentState = MENU;
+						iMenuState = 0;//Resets the menu state
+						PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME);//Plays the chomp sound and hangs the program
+						menuSprite.ShowSprite();//Shows the Menu sprite
+						pauseSprite.HideSprite();//Hides the pause menu sprite
+						iCurrentState = MENU;//Sets the current GameState to the Main menu
 					}
 				}
 				break;
@@ -495,20 +505,19 @@ int main(int argv, char* argc[])
 			case SCORES:
 			{
 
-				std::ostringstream HIGHSCORE;
-				HIGHSCORE << pellet[0].iCurrentHighScore << std::endl;
-				UG::DrawString(HIGHSCORE.str().c_str(), (int)(iScreenWidth * 0.5f), iScreenHeight *0.5f, 1.f);
-				std::cout << pellet[0].iCurrentHighScore << std::endl;
+				std::ostringstream HIGHSCORE;//Opens a string stream to display the highscores
+				HIGHSCORE << pellet[0].iCurrentHighScore << std::endl;//Inserts the highscore value into the String stream
+				UG::DrawString(HIGHSCORE.str().c_str(), (int)(iScreenWidth * 0.5f), iScreenHeight *0.5f, 1.f);//Draws the string stream
 
-				SetMenuPosition(3,0);
+				SetMenuPosition(3,0);//Controls the position of the selection box
 				switch (iMenuState)
 				{
 				case HIGHSCORES:
 				{
-					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, (iMapHeight*iTileWidth)*0.35f);
+					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, (iMapHeight*iTileWidth)*0.35f);//Moves the Selection box to its relative positoon
 					if (UG::IsKeyDown(UG::KEY_ENTER))
 					{
-						pellet[0].ClearHighScore();
+						pellet[0].ClearHighScore();//Resets the highscore
 					}
 					break;
 				}
@@ -516,13 +525,13 @@ int main(int argv, char* argc[])
 				{
 					if (UG::IsKeyDown(UG::KEY_ENTER))
 					{
-						iMenuState = 0;
-						PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
-						highScoresSprite.HideSprite();
-						menuSprite.ShowSprite();
-						iCurrentState = MENU;
+						iMenuState = 0;//REsets the menu state
+						PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME);//Plays a sound and hangs the program so that the keypresses are not carried over into the next menu
+						highScoresSprite.HideSprite();//Hides the highscores menu from view
+						menuSprite.ShowSprite();//Shows the main menu
+						iCurrentState = MENU;//Sets the current gamestate to the main menu
 					}
-					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, ((iMapHeight*iTileWidth)*0.19f));
+					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, ((iMapHeight*iTileWidth)*0.19f));//Moves the Selection box to its relative positoon
 					break;
 				}
 				}
@@ -532,23 +541,25 @@ int main(int argv, char* argc[])
 			case DEATH:
 			{
 
-				fTime -= 0.2f;
-				if (fTime < 0)
+				fTime -= 0.2f;//Subtracts from the timer every frame
+				if (fTime < 0)//If the timer runs out
 				{
-					UG::DrawSprite(pacSprite.iSpriteID);
-					deathSprite.HideSprite();
-					PlaySound(TEXT("./sounds/intro.wav"), NULL, SND_SYNC);
-					iCurrentState = GAMEPLAY;
+					UG::DrawSprite(pacSprite.iSpriteID);//Draw pacman
+					deathSprite.HideSprite();//Hide the death sprite
+					PlaySound(TEXT("./sounds/intro.wav"), NULL, SND_FILENAME);//Plays a sound and hangs the program
+					iCurrentState = GAMEPLAY;//Sets the Current gamestate back to GAMEPALY
 				}
 				else
 				{
-					UG::SetSpriteUVCoordinates(deathSprite.iSpriteID, fDeathFrames[(int(fTime))]);
+					UG::SetSpriteUVCoordinates(deathSprite.iSpriteID, fDeathFrames[(int(fTime))]);//Controls the death animation going through the frames from the 2D array declared on line 29
 				}
 			}
 			break;
 			}
 			
 		} while (UG::Process());
+
+		//Disposal of sprites and arrays
 		delete[] pellet;
 		UG::RemoveFont("./fonts/invaders.fnt");
 		UG::StopDrawingSprite(pacSprite.iSpriteID);
@@ -557,24 +568,24 @@ int main(int argv, char* argc[])
 	}
 	return 0;
 }
-void SetMenuPosition(int a_iUpperBound, int a_iLowerBound)
+void SetMenuPosition(int a_iUpperBound, int a_iLowerBound)//Controls the position of the selection box
 {
 	if (UG::IsKeyDown(UG::KEY_S))
 	{
 		++iMenuState;
-		PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
+		PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);//Plays a sound and hangs the program so that the keypresses are not carried over into the next frame instantly
 	}
 	if (UG::IsKeyDown(UG::KEY_W))
 	{
 		--iMenuState;
-		PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);
+		PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);//Plays a sound and hangs the program so that the keypresses are not carried over into the next frame instantly
 	}
-	if (iMenuState >= a_iUpperBound)
+	if (iMenuState >= a_iUpperBound)//If the menu exceeds the upper bound of the menu
 	{
-		iMenuState = a_iLowerBound + 1;
+		iMenuState = a_iLowerBound + 1;//Set it to one above the lower bound
 	}
-	if (iMenuState <= a_iLowerBound)
+	if (iMenuState <= a_iLowerBound)//If the menu goes below the lower bound of the menu
 	{
-		iMenuState = a_iUpperBound - 1;
+		iMenuState = a_iUpperBound - 1;//Set it to one below the upper bound
 	}
 }

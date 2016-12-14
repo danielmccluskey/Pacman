@@ -13,10 +13,10 @@
 class GameStateProperties
 {
 public:
-	void CreateSprite(char* a_cImagePath, int a_iX, int a_iY, int iSizeX, int iSizeY);
-	void ShowSprite();
-	void HideSprite();
-	int iSpriteID = 0;
+	void CreateSprite(char* a_cImagePath, int a_iX, int a_iY, int iSizeX, int iSizeY);//Function to create the sprite
+	void ShowSprite();//Function to Draw the sprite
+	void HideSprite();//Function to Hide the sprite
+	int iSpriteID = 0;//Sprite ID
 private:
 	
 

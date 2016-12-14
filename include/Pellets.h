@@ -12,33 +12,32 @@
 class PelletProperties
 {
 public:
+	float fX;//X position
+	float fY;//Y Positon
+	int iSpriteID = -1;//Sprite ID
+	int iSpriteWidth = 16;//Width of the Sprite
+	int iCurrentHighScore;//The current highscore read from a text file
+	int iTotalScore = 0;//Holds the current score during gameplay
+	int iTotalPellets = 0;//Holds the amount of pellets the player has eaten
 
-	
-
-
-	float fX;
-	float fY;
-	int iSpriteID = -1;
-	int iSpriteWidth = 16;
-	int iCurrentHighScore;
+	//Map Height and Width
 	int iMapWidth = 28;
 	int iMapHeight = 36;
 	
-	int iNextTile;
+	
 
-	int iTotalScore = 0;
-	int iTotalPellets = 0;
+	
 
-	void CreatePellet(char* a_cImagePath, int a_iTileX, int a_iTileY);
-	void DrawPellets(PelletProperties *a_pellet);
-	PelletProperties& GetPellet(PelletProperties *a_pellet, int a_iX, int a_iY);
-	int GetTile(int a_iX, int a_iY);
-	bool DestroyPellets(PelletProperties *a_pellet, int a_iX, int a_iY);
-	void FillPellets(PelletProperties *a_pellet);
-	void SetHighScore();
-	void GetHighScore();
-	void DrawHighScore();
-	void ClearHighScore();
+	void CreatePellet(char* a_cImagePath, int a_iTileX, int a_iTileY);//Function to create the pellets from the pellet map
+	void DrawPellets(PelletProperties *a_pellet);//Draws the pellets from the pellet map
+	PelletProperties& GetPellet(PelletProperties *a_pellet, int a_iX, int a_iY);//Gets what pellet is currently being selected
+	int GetTile(int a_iX, int a_iY);//Gets the tile from the pellet map
+	bool DestroyPellets(PelletProperties *a_pellet, int a_iX, int a_iY);//Function to destroy and stop drawing pellets at given X,Y
+	void FillPellets(PelletProperties *a_pellet);//Function to fill the empty pellet spaces in the map with pellets after the game has ended
+	void SetHighScore();//Function that checks if the players score is higher than the highscore, if so, it replaces the highscore
+	void GetHighScore();//Gets the highscore from a file
+	void DrawHighScore();//Draws the highscore
+	void ClearHighScore();//Clears the highscore from both the program and the file.
 
 private:
 
