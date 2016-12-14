@@ -20,11 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\GameStates.cpp" />
+    <ClCompile Include="..\..\source\Ghosts.cpp" />
     <ClCompile Include="..\..\source\main.cpp" />
     <ClCompile Include="..\..\source\MapCreation.cpp" />
     <ClCompile Include="..\..\source\Pacman.cpp" />
     <ClCompile Include="..\..\source\Pellets.cpp" />
-    <ClCompile Include="Ghosts.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\CustomEnum.h" />
