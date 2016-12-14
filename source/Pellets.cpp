@@ -40,7 +40,7 @@ int iPelletMap[1008] =
 	0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,
 	0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,
 	0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,
-	0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,
+	0,0,0,0,0,0,1,0,0,5,0,0,0,0,0,0,0,0,5,0,0,1,0,0,0,0,0,0,
 	0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,
 	0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,
 	0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,
@@ -107,6 +107,19 @@ void PelletProperties::DrawPellets(PelletProperties *a_pellet)
 				UG::DrawSprite(currentPellet.iSpriteID);
 
 			}
+			if (iCurrentTile == 5)//If the current tile is a Large pellet
+			{
+				//Converts the Map position to the coordinates of the users window
+				float fRealTileX = (x * 16) + 15;
+				float fRealTileY = (y * 16) + 15;
+
+				//Creates, moves and draws the sprite
+				currentPellet.iSpriteID = UG::CreateSprite("./images/cherry.png", 16, 16, true);
+				UG::SetSpriteLayer(currentPellet.iSpriteID, 2);
+				UG::MoveSprite(currentPellet.iSpriteID, fRealTileX, fRealTileY);
+				UG::DrawSprite(currentPellet.iSpriteID);
+
+			}
 			
 		}
 	}
@@ -152,6 +165,21 @@ void PelletProperties::FillPellets(PelletProperties *a_pellet)
 				iPelletMap[int((y * 28) + x)] = 3;
 
 			}
+			if (iCurrentTile == 6)//If the current tile is a Large pellet
+			{
+				//Converts the Map position to the coordinates of the users window
+				float fRealTileX = (x * 16) + 15;
+				float fRealTileY = (y * 16) + 15;
+
+				//Creates, moves and draws the sprite
+				currentPellet.iSpriteID = UG::CreateSprite("./images/cherry.png", 16, 16, true);
+				UG::SetSpriteLayer(currentPellet.iSpriteID, 2);
+				UG::MoveSprite(currentPellet.iSpriteID, fRealTileX, fRealTileY);
+				UG::DrawSprite(currentPellet.iSpriteID);
+				//Resets the current tile back to uneaten
+				iPelletMap[int((y * 28) + x)] = 5;
+
+			}
 		}
 	}
 }
@@ -168,6 +196,17 @@ bool PelletProperties::DestroyPellets(PelletProperties *a_pellet, int a_iX, int 
 		UG::StopDrawingSprite(currentPellet.iSpriteID);
 		UG::DestroySprite(currentPellet.iSpriteID);
 		PlaySound(TEXT("./sounds/chomp4.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		return false;
+	}
+	else if (iCurrentTile == 5)//If the tile is a small pellet
+	{
+		PelletProperties &currentPellet = GetPellet(a_pellet, a_iX, a_iY);//Gets the current pellet at the point in the for loop
+		iPelletMap[(a_iY * 28) + a_iX] = 6;//Set the point in the array to eaten
+		iTotalScore += 200; //Add points
+		iTotalPellets += 1; //Add total pellets eaten
+		UG::StopDrawingSprite(currentPellet.iSpriteID);
+		UG::DestroySprite(currentPellet.iSpriteID);
+		PlaySound(TEXT("./sounds/bigPellet.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		return false;
 	}
 	else if (iCurrentTile == 3)

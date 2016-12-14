@@ -1,50 +1,15 @@
-﻿  GameStates.cpp
-  Ghosts.cpp
-..\..\source\Ghosts.cpp(68): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-..\..\source\Ghosts.cpp(69): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-..\..\source\Ghosts.cpp(87): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-..\..\source\Ghosts.cpp(88): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-..\..\source\Ghosts.cpp(106): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-..\..\source\Ghosts.cpp(113): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-..\..\source\Ghosts.cpp(120): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-..\..\source\Ghosts.cpp(127): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-..\..\source\Ghosts.cpp(134): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-..\..\source\Ghosts.cpp(188): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-..\..\source\Ghosts.cpp(202): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-..\..\source\Ghosts.cpp(209): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-..\..\source\Ghosts.cpp(216): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-..\..\source\Ghosts.cpp(223): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-..\..\source\Ghosts.cpp(240): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-..\..\source\Ghosts.cpp(250): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-..\..\source\Ghosts.cpp(260): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-..\..\source\Ghosts.cpp(270): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  main.cpp
-..\..\source\main.cpp(514): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  MapCreation.cpp
-..\..\source\MapCreation.cpp(147): warning C4458: declaration of 'iSpriteID' hides class member
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\include\MapCreation.h(25): note: see declaration of 'TileProperties::iSpriteID'
-..\..\source\MapCreation.cpp(149): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Pacman.cpp
-..\..\source\Pacman.cpp(147): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-..\..\source\Pacman.cpp(164): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-..\..\source\Pacman.cpp(165): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-..\..\source\Pacman.cpp(233): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-..\..\source\Pacman.cpp(238): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-..\..\source\Pacman.cpp(243): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-..\..\source\Pacman.cpp(248): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-..\..\source\Pacman.cpp(277): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-..\..\source\Pacman.cpp(288): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-..\..\source\Pacman.cpp(299): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-..\..\source\Pacman.cpp(309): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  Pellets.cpp
+﻿  Pellets.cpp
 ..\..\source\Pellets.cpp(86): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 ..\..\source\Pellets.cpp(87): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 ..\..\source\Pellets.cpp(100): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 ..\..\source\Pellets.cpp(101): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+..\..\source\Pellets.cpp(113): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+..\..\source\Pellets.cpp(114): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(295): warning C4715: 'GhostProperties::Pacmancollide': not all control paths return a value
-  All 1832 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  10 of 1832 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    2 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
 UG Basic Framework.lib(UGFW.obj) : warning LNK4099: PDB 'UG Basic Framework.pdb' was not found with 'UG Basic Framework.lib(UGFW.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\UG Basic Framework.pdb'; linking object as if no debug info
 UG Basic Framework.lib(SpriteManager.obj) : warning LNK4099: PDB 'UG Basic Framework.pdb' was not found with 'UG Basic Framework.lib(SpriteManager.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\UG Basic Framework.pdb'; linking object as if no debug info
