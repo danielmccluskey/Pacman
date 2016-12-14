@@ -1,7 +1,10 @@
-﻿LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+﻿  main.cpp
+..\..\source\main.cpp(548): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-c:\users\data2\desktop\uni\ct4019 - jamie\assignment 1\pacman1\source\ghosts.cpp(297): warning C4715: 'GhostProperties::Pacmancollide': not all control paths return a value
-  All 1832 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  10 of 1832 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    45 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
 UG Basic Framework.lib(UGFW.obj) : warning LNK4099: PDB 'UG Basic Framework.pdb' was not found with 'UG Basic Framework.lib(UGFW.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\UG Basic Framework.pdb'; linking object as if no debug info
 UG Basic Framework.lib(SpriteManager.obj) : warning LNK4099: PDB 'UG Basic Framework.pdb' was not found with 'UG Basic Framework.lib(SpriteManager.obj)' or at 'C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\bin\x64\Release\UG Basic Framework.pdb'; linking object as if no debug info
@@ -27,53 +30,4 @@ UG Basic Framework.lib(glew.obj) : warning LNK4099: PDB 'glew_static.pdb' was no
   Pacman.vcxproj -> C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\proj\vs2015\..\..\bin\x64\Release\Pacman.exe
   Pacman.vcxproj -> ..\..\bin\x64\Release\Pacman.pdb (Full PDB)
   xcopy "C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\"*.* "C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\proj\vs2015\..\..\bin\x64\Release\" /s /y /d /r 
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\appData.xml
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\fonts\arial.fnt
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\fonts\arial_0.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\fonts\font.fnt
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\fonts\font.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\fonts\invaders.fnt
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\fonts\invaders_0.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\highscores\scores.txt.txt
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\blank.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\cherry.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\READY.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\backgrounds\difficulty.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\backgrounds\highscores.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\backgrounds\menu.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\backgrounds\pause.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\backgrounds\selection.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\backgrounds\slide.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\backgrounds\splash.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\corners\1.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\corners\2.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\corners\3.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\corners\4.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\ghosts\blue.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\ghosts\edible.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\ghosts\orange.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\ghosts\pink.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\ghosts\red.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\islands\1.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\islands\2.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\islands\3.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\islands\4.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\pacman\deathSheets.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\pacman\pacmanSheet.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\pacman\pellet.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\walls\bottom.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\walls\left.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\walls\right.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\images\walls\top.png
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\shaders\default.fsh
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\shaders\default.vsh
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\shaders\spriteInstance.fsh
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\shaders\spriteInstance.vsh
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\sounds\bigPellet.wav
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\sounds\chomp1.wav
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\sounds\chomp4.wav
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\sounds\death.wav
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\sounds\eatGhosts.wav
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\sounds\intro.wav
-  C:\Users\Data2\Desktop\Uni\CT4019 - Jamie\Assignment 1\Pacman1\scripts\..\resources\sounds\siren.wav
-  49 File(s) copied
+  0 File(s) copied
