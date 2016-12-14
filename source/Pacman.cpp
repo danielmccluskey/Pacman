@@ -275,7 +275,7 @@ void PacmanProperties::MovePlayer(PacmanProperties& a_pacSprite, float a_fMoveme
 			{
 				fY = iNextTile;//Sets the position to the next tile to keep grid alignment
 				bMoving = false;//Sets movement to false to allow direction change again
-				PlaySound(TEXT(cSoundPath), NULL,SND_FILENAME | SND_ASYNC);//Plays the sound chosen at the start of the function
+				PlaySound(TEXT(cSoundPath), NULL,SND_FILENAME | SND_NOSTOP | SND_ASYNC);//Plays the sound chosen at the start of the function
 				
 			}
 		}
@@ -286,7 +286,7 @@ void PacmanProperties::MovePlayer(PacmanProperties& a_pacSprite, float a_fMoveme
 			{
 				fY = iNextTile;//Sets the position to the next tile to keep grid alignment
 				bMoving = false;//Sets movement to false to allow direction change again
-				PlaySound(TEXT(cSoundPath), NULL, SND_FILENAME | SND_ASYNC);//Plays the sound chosen at the start of the function
+				PlaySound(TEXT(cSoundPath), NULL, SND_FILENAME | SND_NOSTOP | SND_ASYNC);//Plays the sound chosen at the start of the function
 
 			}
 		}
@@ -297,7 +297,7 @@ void PacmanProperties::MovePlayer(PacmanProperties& a_pacSprite, float a_fMoveme
 			{
 				fX = iNextTile;//Sets the position to the next tile to keep grid alignment
 				bMoving = false;//Sets movement to false to allow direction change again
-				PlaySound(TEXT(cSoundPath), NULL, SND_FILENAME | SND_ASYNC);//Plays the sound chosen at the start of the function
+				PlaySound(TEXT(cSoundPath), NULL, SND_FILENAME | SND_NOSTOP | SND_ASYNC);//Plays the sound chosen at the start of the function
 			}
 		}
 		else if (bPlayerDirection[west] == true)
@@ -307,7 +307,7 @@ void PacmanProperties::MovePlayer(PacmanProperties& a_pacSprite, float a_fMoveme
 			{
 				fX = iNextTile;//Sets the position to the next tile to keep grid alignment
 				bMoving = false;//Sets movement to false to allow direction change again
-				PlaySound(TEXT(cSoundPath), NULL, SND_FILENAME | SND_ASYNC);//Plays the sound chosen at the start of the function
+				PlaySound(TEXT(cSoundPath), NULL, SND_FILENAME | SND_NOSTOP | SND_ASYNC);//Plays the sound chosen at the start of the function
 
 			}
 		}

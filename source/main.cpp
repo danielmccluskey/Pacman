@@ -546,7 +546,7 @@ int main(int argv, char* argc[])
 				{
 					UG::DrawSprite(pacSprite.iSpriteID);//Draw pacman
 					deathSprite.HideSprite();//Hide the death sprite
-					PlaySound(TEXT("./sounds/intro.wav"), NULL, SND_FILENAME);//Plays a sound and hangs the program
+					PlaySound(TEXT("./sounds/intro.wav"), NULL, SND_FILENAME | SND_SYNC);//Plays a sound and hangs the program
 					iCurrentState = GAMEPLAY;//Sets the Current gamestate back to GAMEPALY
 				}
 				else
@@ -561,9 +561,22 @@ int main(int argv, char* argc[])
 
 		//Disposal of sprites and arrays
 		delete[] pellet;
+		delete[] EdibleGhosts;
 		UG::RemoveFont("./fonts/invaders.fnt");
-		UG::StopDrawingSprite(pacSprite.iSpriteID);
+		
 		UG::DestroySprite(pacSprite.iSpriteID);
+		UG::DestroySprite(blinky.iSpriteID);
+		UG::DestroySprite(pinky.iSpriteID);
+		UG::DestroySprite(inky.iSpriteID);
+		UG::DestroySprite(clyde.iSpriteID);
+		UG::DestroySprite(highScoresSprite.iSpriteID);
+		UG::DestroySprite(pauseSprite.iSpriteID);
+		UG::DestroySprite(difficultySprite.iSpriteID);
+		UG::DestroySprite(menuSprite.iSpriteID);
+		UG::DestroySprite(selectSprite.iSpriteID);
+		UG::DestroySprite(splashSprite.iSpriteID);
+		UG::DestroySprite(slidingSprite.iSpriteID);
+		UG::DestroySprite(deathSprite.iSpriteID);
 		UG::Dispose();
 	}
 	return 0;
