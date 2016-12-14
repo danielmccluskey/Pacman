@@ -13,6 +13,7 @@
 class GhostProperties
 {
 public:
+	//Reset directional and movement values
 	void initialise()
 	{
 		for (int i = 0; i < 4; ++i)
@@ -23,39 +24,43 @@ public:
 	}
 
 	
+	
+	int iSpriteID;//SpriteID
+	int iLastDirection;//Stores the last direction the ghost was travelling
+	int iRandomDirection;//Stores the random direction of the ghost
+
+	int iCageTime;//Stores the remaining time left in the cage of the ghost
+	int iCageX;//Stores the XPos of the ghost when in the cage
+	int iCageY;//Stores the YPos of the ghost when in the cage
+	bool bMoving;//Controls whether the ghost can move
+	bool bGhostDirection[4];//Variable to sotre the current direction
+	int iNextTile;//Stores the next tile the ghost should move to
+	int iTileWidths = 16;//Stores the width of the tiles
+
+	//Positional values
 	float fX = 128;
 	float fY = 64;
-	int iSpriteID;
-	int iGhostWidth = 16;
-	int iLastDirection;
-	int iRandomDirection;
 
-	int iCageTime;
-	int iCageX;
-	int iCageY;
-	bool bMoving;
-	bool bGhostDirection[4];
-	int iNextTile;
-	int iTileWidths = 16;
-
-	void CreateGhost(int a_iGhostType);
-	int GetTile(int a_iX, int a_iY);
-	void GetTiles();
-	int GetDirection();
-	void SetGhostDirection(GhostProperties& a_ghostSprite, float a_fMovementspeed);
-	void MoveGhost(GhostProperties& a_ghostSprite, float a_fMovementspeed);
-	bool Pacmancollide(GhostProperties& a_ghostSprite,int a_iX, int a_iY);
-	void SetCageTime();
-	void SetEdibleGhostsPos(GhostProperties& a_ghost);
+	void CreateGhost(int a_iGhostType);//Function to create the Ghosts
+	int GetTile(int a_iX, int a_iY);//Function to get the tile from the collision map at given X,Y Pos
+	void GetTiles();//Gets all the tiles around the ghost
+	int GetDirection();//Gets the current direction of the ghost as an integer value
+	void SetGhostDirection(GhostProperties& a_ghostSprite, float a_fMovementspeed);//Sets the direction of the ghost based off of a randomly chosen direction
+	void MoveGhost(GhostProperties& a_ghostSprite, float a_fMovementspeed);//Moves the ghost in the randomly chosen direction
+	bool Pacmancollide(GhostProperties& a_ghostSprite,int a_iX, int a_iY);//Checks to see if the ghost has collided with pacman
+	void SetCageTime();//Controls the ghost in the cage and releases it
+	void SetEdibleGhostsPos(GhostProperties& a_ghost);//Moves edible ghosts to their relative ghost
 	
 
 private:
-	//Tiles
+	//Variables to store the tiles currently around the pacman sprite
 	int iTileTop;
 	int iTileLeft;
 	int iTileRight;
 	int iTileBottom;
 	int iTileCurrent = 2;
+
+	int iGhostWidth = 16;//Width of the sprite
 };
 
 #endif //_GHOSTS_H_

@@ -13,6 +13,7 @@
 
 void GameStateProperties::CreateSprite(char* a_cImagePath, int a_iX, int a_iY, int iSizeX, int iSizeY)
 {
+	//Create the sprite and move it to the specified position
 	iSpriteID = UG::CreateSprite(a_cImagePath, iSizeX, iSizeY, true);
 	UG::MoveSprite(iSpriteID, a_iX, a_iY);
 
@@ -20,12 +21,14 @@ void GameStateProperties::CreateSprite(char* a_cImagePath, int a_iX, int a_iY, i
 
 void GameStateProperties::ShowSprite()
 {
+	//Draws the sprite
 	UG::ClearScreen();
 	UG::DrawSprite(iSpriteID);
 }
 
 void GameStateProperties::HideSprite()
 {
+	//Hides the sprite
 	UG::StopDrawingSprite(iSpriteID);
 	UG::ClearScreen();
 }

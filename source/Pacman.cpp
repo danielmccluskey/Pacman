@@ -13,6 +13,7 @@
 #include "windows.h"
 #include <iostream>
 
+//The collision map for pacman
 int iPacmanMap[1008] =
 {
 	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -72,7 +73,7 @@ void PacmanProperties::SetSpriteFrame()
 
 	
 
-
+	//If and If else block to set the appropriate first and second frame for the animated frames of pacman
 	if (bPlayerDirection[north] == true)
 	{
 		iFirstFrame = 0;
@@ -95,15 +96,15 @@ void PacmanProperties::SetSpriteFrame()
 	}
 	if (fTimer < 1)
 	{
-		UG::SetSpriteUVCoordinates(iSpriteID, iSpriteFrames[iFirstFrame]);
+		UG::SetSpriteUVCoordinates(iSpriteID, iSpriteFrames[iFirstFrame]);//Updates the UV to the first frame if the fTimer is between 1 and 2
 	}
 	else
 	{
-		UG::SetSpriteUVCoordinates(iSpriteID, iSpriteFrames[iSecondFrame]);
+		UG::SetSpriteUVCoordinates(iSpriteID, iSpriteFrames[iSecondFrame]);//Updates the UV to the first frame if the fTimer is between 0 and 1
 	}
 	if (fTimer > 2)
 	{
-		fTimer = 0;
+		fTimer = 0;//Reset fTimer
 	}
 }
 
@@ -116,7 +117,9 @@ void PacmanProperties::SetEatGhostsTimer(int a_iA, int a_iB, int a_iC, int a_iD)
 	
 	if (fEatGhostsTimer < 0 && bCanEatGhosts == true)
 	{
-		bCanEatGhosts = false;
+		
+		bCanEatGhosts = false;//Stops eat ghosts mode
+		//Stops drawing the relative edible ghosts
 		UG::StopDrawingSprite(a_iA);
 		UG::StopDrawingSprite(a_iB);
 		UG::StopDrawingSprite(a_iC);
@@ -127,35 +130,41 @@ void PacmanProperties::SetEatGhostsTimer(int a_iA, int a_iB, int a_iC, int a_iD)
 
 void PacmanProperties::SetLives(PacmanProperties& a_pacSprite)
 {
-	--iLives;
-	initialise();
+	--iLives;//Take away a life
+	initialise();//Reset directional and movement values
+
+	//Set the positional values to the starting posotion
 	fX = 32;
 	fY = 64;
-	PlaySound(TEXT("./sounds/death.wav"), NULL, SND_FILENAME | SND_ASYNC);//Plays Death sound and Hangs program until finished
-	bPlayerDirection[east] = true;
+
+	PlaySound(TEXT("./sounds/death.wav"), NULL, SND_FILENAME | SND_ASYNC);//Plays Death sound
+	bPlayerDirection[east] = true;//Reset directional and movement values
 }
 
 //Creating Sprite
 void PacmanProperties::CreatePacman()
 {
-	iSpriteID = UG::CreateSprite("./images/pacman/pacmanSheet.png", iSpriteWidth, iSpriteWidth, true);
-	UG::DrawSprite(iSpriteID);	
-	initialise(); //Sets the variables for pacman. (Will move to class)
+	iSpriteID = UG::CreateSprite("./images/pacman/pacmanSheet.png", iSpriteWidth, iSpriteWidth, true);//Create the sprite
+	UG::DrawSprite(iSpriteID);	//Draws it
+	initialise(); //Reset directional and movement values
 	UG::MoveSprite(iSpriteID, 32, 64); //Moves Pacman to starting Position
-	UG::SetSpriteUVCoordinates(iSpriteID, .5f, .5f, 1.f, .75f);
-	bPlayerDirection[east] = true;
+	UG::SetSpriteUVCoordinates(iSpriteID, .5f, .5f, 1.f, .75f);//Set Starting UV coordinates (Faceing right)
+	bPlayerDirection[east] = true;//Reset directional and movement values
 }
 
 
 
 int PacmanProperties::GetTile(int a_iX, int a_iY)
 {
-	return iPacmanMap[(a_iY * 28) + a_iX];
+	return iPacmanMap[(a_iY * 28) + a_iX];//Finds and returns what tile is at X,Y
 }
 void PacmanProperties::GetTiles()
 {
 	iMapXPos = (fX) / iTileWidths;
 	iMapYPos = (fY) / iTileWidths;
+
+	//Finds what tile is at the appropriate value e.g. iTileTop will get the tile above pacman
+	//GetTile(x,y) will get the tile top right of pacman so adjustments are made within with integers.
 	iTileTop = GetTile(iMapXPos - 1, (iMapYPos));
 	iTileLeft = GetTile((iMapXPos - 2), iMapYPos - 1);
 	iTileRight = GetTile((iMapXPos), iMapYPos - 1);
@@ -165,69 +174,78 @@ void PacmanProperties::GetTiles()
 
 void PacmanProperties::SetPlayerDirection(PacmanProperties& a_pacSprite, float a_fMovementSpeed, short a_upKey, short a_downKey, short a_leftKey, short a_rightKey)
 {
-	GetTiles();
+	GetTiles();//Get All the tiles around pacman
+
+	//Code for the side tunnels that teleport pacman
 	if (iTileRight == 8)
 	{
+		//Teleport pacman to the other tunnel
 		fX = 432;
 		fY = 304;
-		initialise();
-		bPlayerDirection[west] = true;
+
+		initialise();//Reset directional and movement values
+		bPlayerDirection[west] = true;//Make the player go in the opposite direction from the starting direction
 	}
 	if (iTileLeft == 6)
 	{
+		//Teleport pacman to the other tunnel
 		fX = 32;
 		fY = 304;
-		initialise();
-		bPlayerDirection[east] = true;
+		initialise();//Reset directional and movement values
+		bPlayerDirection[east] = true;//Make the player go in the opposite direction from the starting direction
 	}
 	if (bMoving == false)
 	{
 
+		//If Block to change the direction based on keypress and the tiles around pacman
+		//Direction cannot be changed if the tile in that direction is 0
 		if (UG::IsKeyDown(a_upKey) && iTileTop != 0)
 		{
-			initialise();
-			bPlayerDirection[north] = true;
-			std::cout << "UPP" << std::endl;
+			initialise();//Reset directional and movement values
+			bPlayerDirection[north] = true;//Set player direction
+			
 		}
 		if (UG::IsKeyDown(a_downKey) && iTileBottom != 0)
 		{
-			initialise();
-			bPlayerDirection[south] = true;
-			std::cout << "DOWN" << std::endl;
+			initialise();//Reset directional and movement values
+			bPlayerDirection[south] = true;//Set player direction
+			
 		}
 		if (UG::IsKeyDown(a_leftKey) && iTileLeft != 0)
 		{
-			initialise();
-			bPlayerDirection[west] = true;
-			std::cout << "LEFT" << std::endl;
+			initialise();//Reset directional and movement values
+			bPlayerDirection[west] = true;//Set player direction
+			
 		}
 		if (UG::IsKeyDown(a_rightKey) && iTileRight != 0)
 		{
-			initialise();
-			bPlayerDirection[east] = true;
-			std::cout << "RIGHT" << std::endl;
+			initialise();//Reset directional and movement values
+			bPlayerDirection[east] = true;//Set player direction
+			
 		}
+
+		//If block to constantly set the next tile
 
 
 		if (bPlayerDirection[north] == true && iTileTop != 0)
 		{
-			iNextTile = fY + iTileWidths;
-			bMoving = true;
+			iNextTile = fY + iTileWidths;//Sets the next tile pacman should go to
+			bMoving = true;//Allows pacman to move
 		}
 		else if (bPlayerDirection[south] == true && iTileBottom != 0)
 		{
-			iNextTile = fY - iTileWidths;
-			bMoving = true;
+			iNextTile = fY - iTileWidths;//Sets the next tile pacman should go to
+			bMoving = true;//Allows pacman to move
 		}
 		else if (bPlayerDirection[west] == true && iTileLeft != 0)
 		{
-			iNextTile = fX - iTileWidths;
-			bMoving = true;
+			iNextTile = fX - iTileWidths;//Sets the next tile pacman should go to
+			bMoving = true;//Allows pacman to move
 		}
 		else if (bPlayerDirection[east] == true && iTileRight != 0)
 		{
-			iNextTile = fX + iTileWidths;
-			bMoving = true;
+			iNextTile = fX + iTileWidths;//Sets the next tile pacman should go to
+			bMoving = true;//Allows pacman to move
 
 		}
 		
@@ -235,65 +253,67 @@ void PacmanProperties::SetPlayerDirection(PacmanProperties& a_pacSprite, float a
 }
 void PacmanProperties::MovePlayer(PacmanProperties& a_pacSprite, float a_fMovementSpeed)
 {
-	if (bMoving == true)
+	if (bMoving == true)//If the player is allowed to move
 	{
-		char* cSoundPath;
+		char* cSoundPath;//Declars the sound path variable
 		if (bCanEatGhosts == true)
 		{
-			cSoundPath = "./sounds/eatGhosts.wav";
+			cSoundPath = "./sounds/eatGhosts.wav";//If the player is in Eat Ghost mode, use this sound file
 		}
 		else
 		{
-			cSoundPath = "./sounds/siren.wav";
+			cSoundPath = "./sounds/siren.wav";//If the player is not in Eat Ghost mode, use this sound file
 		}
 
-		SetSpriteFrame();
+		SetSpriteFrame();//Set the animation frame.
+
+		//If block to move the player in the chosen direction
 		if (bPlayerDirection[north] == true)
 		{
-			fY += a_fMovementSpeed;
-			if (fY >= iNextTile)
+			fY += a_fMovementSpeed; //Adds the movement speed to the position to move the pacman
+			if (fY >= iNextTile)//If the position is past the next tile
 			{
-				fY = iNextTile;
-				bMoving = false;
-				PlaySound(TEXT(cSoundPath), NULL,SND_FILENAME | SND_ASYNC);
+				fY = iNextTile;//Sets the position to the next tile to keep grid alignment
+				bMoving = false;//Sets movement to false to allow direction change again
+				PlaySound(TEXT(cSoundPath), NULL,SND_FILENAME | SND_ASYNC);//Plays the sound chosen at the start of the function
 				
 			}
 		}
 		else if (bPlayerDirection[south] == true)
 		{
-			fY -= a_fMovementSpeed;
-			if (fY <= iNextTile)
+			fY -= a_fMovementSpeed;//Adds the movement speed to the position to move the pacman
+			if (fY <= iNextTile)//If the position is past the next tile
 			{
-				fY = iNextTile;
-				bMoving = false;
-				PlaySound(TEXT(cSoundPath), NULL, SND_FILENAME | SND_ASYNC);
+				fY = iNextTile;//Sets the position to the next tile to keep grid alignment
+				bMoving = false;//Sets movement to false to allow direction change again
+				PlaySound(TEXT(cSoundPath), NULL, SND_FILENAME | SND_ASYNC);//Plays the sound chosen at the start of the function
 
 			}
 		}
 		else if (bPlayerDirection[east] == true)
 		{
-			fX += a_fMovementSpeed;
-			if (fX >= iNextTile)
+			fX += a_fMovementSpeed;//Adds the movement speed to the position to move the pacman
+			if (fX >= iNextTile)//If the position is past the next tile
 			{
-				fX = iNextTile;
-				bMoving = false;
-				PlaySound(TEXT(cSoundPath), NULL, SND_FILENAME | SND_ASYNC);
+				fX = iNextTile;//Sets the position to the next tile to keep grid alignment
+				bMoving = false;//Sets movement to false to allow direction change again
+				PlaySound(TEXT(cSoundPath), NULL, SND_FILENAME | SND_ASYNC);//Plays the sound chosen at the start of the function
 			}
 		}
 		else if (bPlayerDirection[west] == true)
 		{
-			fX -= a_fMovementSpeed;
-			if (fX <= iNextTile)
+			fX -= a_fMovementSpeed;//Adds the movement speed to the position to move the pacman
+			if (fX <= iNextTile)//If the position is past the next tile
 			{
-				fX = iNextTile;
-				bMoving = false;
-				PlaySound(TEXT(cSoundPath), NULL, SND_FILENAME | SND_ASYNC);
+				fX = iNextTile;//Sets the position to the next tile to keep grid alignment
+				bMoving = false;//Sets movement to false to allow direction change again
+				PlaySound(TEXT(cSoundPath), NULL, SND_FILENAME | SND_ASYNC);//Plays the sound chosen at the start of the function
 
 			}
 		}
 		
 	}
-	UG::MoveSprite(iSpriteID, fX, fY);
+	UG::MoveSprite(iSpriteID, fX, fY);//Moves the sprite
 }
 
 

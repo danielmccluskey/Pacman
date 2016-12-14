@@ -9,7 +9,7 @@
 
 #ifndef _CUSTOMENUM_H_
 #define _CUSTOMENUM_H_
-typedef enum GameStates
+typedef enum GameStates //Enumeration for the different gamestates
 {
 	SPLASH,
 	MENU,
@@ -20,15 +20,15 @@ typedef enum GameStates
 	SCORES,
 	DEATH
 }GameState;
-enum DIFFICULTY
+enum DIFFICULTY//Enumeration for the different difficulties
 {
 	EASY, MEDIUM, HARD
 };
-enum Direction
+enum Direction//Enumeration for the different directions
 {
 	north, east, south, west
 };
-enum Ghosts
+enum Ghosts//Enumerations for the different ghosts
 {
 	blinky, pinky, inky, clyde, edible
 };
@@ -36,7 +36,7 @@ enum TileTypes //Enumerations for the Creation of the map to help me understand 
 {
 	bottom, left, right, top, corner1, corner2, corner3, corner4, blank, island1, island2, island3, island4
 };
-enum menuStates
+enum menuStates//Enumeration for the different main menu options
 {
 	PLAY, HIGHSCORES, QUIT
 };

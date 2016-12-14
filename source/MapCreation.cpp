@@ -11,6 +11,7 @@
 #include "MapCreation.h"
 #include "CustomEnum.h"
 
+//Map for drawing the walls and corners 
 int iMap[iMapWidth * iMapHeight] = {
 
 	8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,
@@ -138,8 +139,11 @@ void TileProperties::DrawMap()
 
 void TileProperties::SetTile(char* a_cImagePath, int a_iTileX, int a_iTileY)
 {
+	//Converts the Map position to the coordinates of the users window
 	int iRealTileX = (a_iTileX * 16) + 15;
 	int iRealTileY = (a_iTileY * 16) + 15;
+
+	//Creates, moves and draws the sprite
 	int iSpriteID = UG::CreateSprite(a_cImagePath, 16, 16, true);
 	UG::MoveSprite(iSpriteID, iRealTileX, iRealTileY);
 	UG::DrawSprite(iSpriteID);
@@ -148,6 +152,6 @@ void TileProperties::SetTile(char* a_cImagePath, int a_iTileX, int a_iTileY)
 
 int TileProperties::GetTile(int a_iX, int a_iY)
 {
-	return iMap[(a_iY*iMapWidth) + a_iX];
+	return iMap[(a_iY*iMapWidth) + a_iX];//Finds and returns what tile is at X,Y
 }
 

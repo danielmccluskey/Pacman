@@ -14,17 +14,16 @@ const int iMapHeight = 36;
 class TileProperties
 {
 public:
-
-	bool bWall;
+	//Variables to hold the current position in the map
 	int	iTileX;
 	int iTileY;
 	
-	int GetTile(int a_iX, int a_iY);
-	void SetTile(char* a_cImagePath, int a_iTileX, int a_iTileY);
-	void DrawMap();
+	int GetTile(int a_iX, int a_iY);//Function to get a tile from the tilemap at given X,Y Pos
+	void SetTile(char* a_cImagePath, int a_iTileX, int a_iTileY);//Sets the tile at the given X,Y Pos to given image by creating a sprite
+	void DrawMap();//Draws all the sprites
 
 private:
-	int iSpriteID = 0;
+	int iSpriteID = 0;//Sprite ID
 	
 };
 
