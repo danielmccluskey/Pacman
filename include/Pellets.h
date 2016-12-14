@@ -21,14 +21,14 @@ public:
 	int iTotalPellets = 0;//Holds the amount of pellets the player has eaten
 
 	//Map Height and Width
-	int iMapWidth = 28;
-	int iMapHeight = 36;
+	/*float fMapWidth = 28;
+	float fMapHeight = 36;*/
 	
 	
 
 	
 
-	void CreatePellet(char* a_cImagePath, int a_iTileX, int a_iTileY);//Function to create the pellets from the pellet map
+	void CreatePellet(char* a_cImagePath, float a_fTileX, float a_fTileY);//Function to create the pellets from the pellet map
 	void DrawPellets(PelletProperties *a_pellet);//Draws the pellets from the pellet map
 	PelletProperties& GetPellet(PelletProperties *a_pellet, int a_iX, int a_iY);//Gets what pellet is currently being selected
 	int GetTile(int a_iX, int a_iY);//Gets the tile from the pellet map

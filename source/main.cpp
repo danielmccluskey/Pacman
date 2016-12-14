@@ -50,7 +50,7 @@ float fDeathFrames[16][4] =
 float fXPos, fYPos = 0;
 
 //Variable to define the Width of the tiles
-float iTileWidth = 16;
+float fTileWidth = 16;
 
 //Timer for the Splash screen
 float fTime = 0;
@@ -62,17 +62,17 @@ int iMenuState = 0;
 float fEdibleGhostTime;
 
 //Co-ords of the Center of the screen
-int iCenterX = (iMapWidth*iTileWidth)*0.5f;
-int iCenterY = (iMapHeight*iTileWidth)*0.5f;
+float fCenterX = (fMapWidth*fTileWidth)*0.5f;
+float fCenterY = (fMapHeight*fTileWidth)*0.5f;
 
 //Screen width and height variables
 int iScreenWidth, iScreenHeight;
 
 //Holds the amount of pellets on the map to make initialising the Array easier.
-int iPelletCount = iMapWidth*iMapHeight;
+int iPelletCount = fMapWidth*fMapHeight;
 
 //Movement Speed for the player, Divided by iTileWidth to keep it Grid aligned
-float fMovementSpeed = 19/ iTileWidth;
+float fMovementSpeed = 19/ fTileWidth;
 
 //Variable to keep track of when the game is being started for the first time
 bool bGameStart = true;
@@ -83,7 +83,7 @@ int main(int argv, char* argc[])
 {	
 	
 	//Creation of the PacMan Window, Width and height is the size of the Map array multiplied by the tile images resolution.
-	if (UG::Create((iMapWidth*iTileWidth), (iMapHeight*iTileWidth), false, "Pacman", 100, 100))
+	if (UG::Create((fMapWidth*fTileWidth), (fMapHeight*fTileWidth), false, "Pacman", 100, 100))
 	{		
 		//Adds the font for the text displayed on Screen.
 		UG::AddFont("./fonts/font.fnt");
@@ -128,28 +128,28 @@ int main(int argv, char* argc[])
 		}
 
 		GameStateProperties highScoresSprite; //Creates new class member for the High Score menu sprite.
-		highScoresSprite.CreateSprite("./images/backgrounds/highscores.png", iCenterX, iCenterY, (iMapWidth*iTileWidth), (iMapHeight*iTileWidth)); //Creates the sprite, Sizes it and moves it to the correct position
+		highScoresSprite.CreateSprite("./images/backgrounds/highscores.png", fCenterX, fCenterY, (fMapWidth*fTileWidth), (fMapHeight*fTileWidth)); //Creates the sprite, Sizes it and moves it to the correct position
 
 		GameStateProperties pauseSprite; //Creates new class member for the Pause menu sprite.
-		pauseSprite.CreateSprite("./images/backgrounds/pause.png", iCenterX, iCenterY, 700, 230);//Creates the sprite, Sizes it and moves it to the correct position
+		pauseSprite.CreateSprite("./images/backgrounds/pause.png", fCenterX, fCenterY, 700, 230);//Creates the sprite, Sizes it and moves it to the correct position
 
 		GameStateProperties difficultySprite; //Creates new class member for the Difficulty menu sprite.
-		difficultySprite.CreateSprite("./images/backgrounds/difficulty.png", iCenterX, iCenterY, (iMapWidth*iTileWidth), (iMapHeight*iTileWidth));//Creates the sprite, Sizes it and moves it to the correct position
+		difficultySprite.CreateSprite("./images/backgrounds/difficulty.png", fCenterX, fCenterY, (fMapWidth*fTileWidth), (fMapHeight*fTileWidth));//Creates the sprite, Sizes it and moves it to the correct position
 
 		GameStateProperties menuSprite; //Creates new class member for the Main menu sprite.
-		menuSprite.CreateSprite("./images/backgrounds/menu.png", iCenterX, iCenterY, (iMapWidth*iTileWidth), (iMapHeight*iTileWidth));//Creates the sprite, Sizes it and moves it to the correct position
+		menuSprite.CreateSprite("./images/backgrounds/menu.png", fCenterX, fCenterY, (fMapWidth*fTileWidth), (fMapHeight*fTileWidth));//Creates the sprite, Sizes it and moves it to the correct position
 
 		GameStateProperties selectSprite; //Creates new class member for the Selection box sprite.
-		selectSprite.CreateSprite("./images/backgrounds/selection.png", iCenterX, iCenterY, 234, 49);//Creates the sprite, Sizes it and moves it to the correct position
+		selectSprite.CreateSprite("./images/backgrounds/selection.png", fCenterX, fCenterY, 234, 49);//Creates the sprite, Sizes it and moves it to the correct position
 
 		GameStateProperties splashSprite; //Creates new class member for the Splash screen sprite.
-		splashSprite.CreateSprite("./images/backgrounds/splash.png", iCenterX, iCenterY, (iMapWidth*iTileWidth), (iMapHeight*iTileWidth));//Creates the sprite, Sizes it and moves it to the correct position
+		splashSprite.CreateSprite("./images/backgrounds/splash.png", fCenterX, fCenterY, (fMapWidth*fTileWidth), (fMapHeight*fTileWidth));//Creates the sprite, Sizes it and moves it to the correct position
 
 		GameStateProperties slidingSprite; //Creates new class member for the Sliding sprite on the Splash screen.
-		slidingSprite.CreateSprite("./images/backgrounds/slide.png", ((iMapWidth*iTileWidth) + (156 / 2)), ((iMapHeight*iTileWidth)*0.55f), 156, 26);//Creates the sprite, Sizes it and moves it to the correct position
+		slidingSprite.CreateSprite("./images/backgrounds/slide.png", ((fMapWidth*fTileWidth) + (156 / 2)), ((fMapHeight*fTileWidth)*0.55f), 156, 26);//Creates the sprite, Sizes it and moves it to the correct position
 		
 		GameStateProperties deathSprite;//Creates new class member for the Death animation that plays when the player dies.
-		deathSprite.CreateSprite("./images/pacman/deathSheets.png", (iTileWidth), (iTileWidth), iTileWidth, iTileWidth);//Creates the sprite, Sizes it and moves it to the correct position
+		deathSprite.CreateSprite("./images/pacman/deathSheets.png", (fTileWidth), (fTileWidth), fTileWidth, fTileWidth);//Creates the sprite, Sizes it and moves it to the correct position
 
 		int iCurrentState = SPLASH; //Sets the Game State to the Splash screen.
 		splashSprite.ShowSprite(); //Draws the Splash screen image
@@ -169,7 +169,7 @@ int main(int argv, char* argc[])
 				if (fTime >= 50) //Exits the Splash screen and goes to menu
 				{
 					fTime = 0;//Resets the timer
-					UG::MoveSprite(slidingSprite.iSpriteID, ((iMapWidth*iTileWidth) + (156 / 2)), ((iMapHeight*iTileWidth)*0.55f));//Moves the sliding sprite back to the starting position
+					UG::MoveSprite(slidingSprite.iSpriteID, ((fMapWidth*fTileWidth) + (156 / 2)), ((fMapHeight*fTileWidth)*0.55f));//Moves the sliding sprite back to the starting position
 					splashSprite.HideSprite(); //Hides the Splash screen from view (Stops Drawing)
 					slidingSprite.HideSprite();	//Hides the Sliding Sprite from view (Stops Drawing)
 					menuSprite.ShowSprite();//Draws the Main menu screen image
@@ -190,7 +190,7 @@ int main(int argv, char* argc[])
 				{
 				case PLAY:
 				{
-					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, iCenterY); //Moves the Selection box to the center of the screen
+					UG::MoveSprite(selectSprite.iSpriteID, fCenterX, fCenterY); //Moves the Selection box to the center of the screen
 					if (UG::IsKeyDown(UG::KEY_ENTER))
 					{
 						iMenuState = 1; //Resets the menu state
@@ -211,13 +211,13 @@ int main(int argv, char* argc[])
 						highScoresSprite.ShowSprite();//Draws the HighScores menu.
 						iCurrentState = SCORES;//Changes the GameState to HighScores menu
 					}
-					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, ((iMapHeight*iTileWidth)*0.35f));//Moves the Selection box to the next menu item on the screen
+					UG::MoveSprite(selectSprite.iSpriteID, fCenterX, ((fMapHeight*fTileWidth)*0.35f));//Moves the Selection box to the next menu item on the screen
 					
 				}
 				break;
 				case QUIT:
 				{
-					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, ((iMapHeight*iTileWidth)*0.19f));//Moves the Selection box to the next menu item on the screen
+					UG::MoveSprite(selectSprite.iSpriteID, fCenterX, ((fMapHeight*fTileWidth)*0.19f));//Moves the Selection box to the next menu item on the screen
 					if (UG::IsKeyDown(UG::KEY_ENTER))
 					{
 						PlaySound(TEXT("./sounds/death.wav"), NULL, SND_FILENAME | SND_SYNC);//Plays a sound and hangs the program until finished, this makes the program wait for a second to avoid the keypress being carried over into the next gamestate
@@ -245,12 +245,12 @@ int main(int argv, char* argc[])
 				{
 				case EASY:
 				{
-					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, iCenterY);//Moves the Selection box to the center of the screen
+					UG::MoveSprite(selectSprite.iSpriteID, fCenterX, fCenterY);//Moves the Selection box to the center of the screen
 					if (UG::IsKeyDown(UG::KEY_ENTER))
 					{
 						iMenuState = 0;//Resets the Menu states
 						PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME | SND_SYNC);//Plays a sound and hangs the program until finished, this makes the program wait for a second to avoid the keypress being carried over into the next gamestate
-						fMovementSpeed = 10 / iTileWidth; //Sets the movement speed relative to the difficulty
+						fMovementSpeed = 10 / fTileWidth; //Sets the movement speed relative to the difficulty
 						pacSprite.iLives = 3;//Sets the lives relative to the chosen diffiuclty
 						fEdibleGhostTime = 100;//Sets the amount of time the ghosts can be eaten for after eatinga big pellet relative to the chosen difficulty
 						difficultySprite.HideSprite();//Hides the Diffiuclty sprite
@@ -261,11 +261,11 @@ int main(int argv, char* argc[])
 				break;
 				case MEDIUM:
 				{
-					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, ((iMapHeight*iTileWidth)*0.35f));//Moves the Selection box to the next menu item on the screen
+					UG::MoveSprite(selectSprite.iSpriteID, fCenterX, ((fMapHeight*fTileWidth)*0.35f));//Moves the Selection box to the next menu item on the screen
 					if (UG::IsKeyDown(UG::KEY_ENTER))
 					{
 						iMenuState = 0;//Resets the Menu states
-						fMovementSpeed = 15 / iTileWidth;//Sets the movement speed relative to the difficulty
+						fMovementSpeed = 15 / fTileWidth;//Sets the movement speed relative to the difficulty
 						pacSprite.iLives = 2;//Sets the lives relative to the chosen diffiuclty
 						fEdibleGhostTime = 50;//Sets the amount of time the ghosts can be eaten for after eatinga big pellet relative to the chosen difficulty
 						difficultySprite.HideSprite();//Hides the Diffiuclty sprite
@@ -276,11 +276,11 @@ int main(int argv, char* argc[])
 					break;
 				case HARD:
 				{
-					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, ((iMapHeight*iTileWidth)*0.19f));//Moves the Selection box to the next menu item on the screen
+					UG::MoveSprite(selectSprite.iSpriteID, fCenterX, ((fMapHeight*fTileWidth)*0.19f));//Moves the Selection box to the next menu item on the screen
 					if (UG::IsKeyDown(UG::KEY_ENTER))
 					{
 						iMenuState = 0;//Resets the Menu states
-						fMovementSpeed = 20 / iTileWidth;//Sets the movement speed relative to the difficulty						
+						fMovementSpeed = 20 / fTileWidth;//Sets the movement speed relative to the difficulty						
 						pacSprite.iLives = 1;//Sets the lives relative to the chosen diffiuclty
 						fEdibleGhostTime = 20;//Sets the amount of time the ghosts can be eaten for after eatinga big pellet relative to the chosen difficulty
 						difficultySprite.HideSprite();//Hides the Diffiuclty sprite
@@ -475,7 +475,7 @@ int main(int argv, char* argc[])
 				{
 				case EASY:
 				{
-					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, ((iMapHeight*iTileWidth)*0.62f));//Moves the selection box to the relative position
+					UG::MoveSprite(selectSprite.iSpriteID, fCenterX, ((fMapHeight*fTileWidth)*0.62f));//Moves the selection box to the relative position
 					if (UG::IsKeyDown(UG::KEY_ENTER))
 					{
 						iMenuState = 0;//Resets the menu state
@@ -488,14 +488,17 @@ int main(int argv, char* argc[])
 				}
 				case MEDIUM:
 				{
-					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, ((iMapHeight*iTileWidth)*0.385f));//Moves the selection box to the relative position
+					UG::MoveSprite(selectSprite.iSpriteID, fCenterX, ((fMapHeight*fTileWidth)*0.385f));//Moves the selection box to the relative position
 					if (UG::IsKeyDown(UG::KEY_ENTER))
 					{
 						iMenuState = 0;//Resets the menu state
 						PlaySound(TEXT("./sounds/chomp1.wav"), NULL, SND_FILENAME);//Plays the chomp sound and hangs the program
-						menuSprite.ShowSprite();//Shows the Menu sprite
+						pacSprite.iLives = -1;//Removes lives
+						pacSprite.fX = blinky.fX;//Moves Pacman to position of Ghost to initiate reset sequence
+						pacSprite.fY = blinky.fY;//Moves Pacman to position of Ghost to initiate reset sequence
+						selectSprite.HideSprite();//Hides the selection sprite
 						pauseSprite.HideSprite();//Hides the pause menu sprite
-						iCurrentState = MENU;//Sets the current GameState to the Main menu
+						iCurrentState = GAMEPLAY;//Sets the current GameState to the Main menu
 					}
 				}
 				break;
@@ -514,7 +517,7 @@ int main(int argv, char* argc[])
 				{
 				case HIGHSCORES:
 				{
-					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, (iMapHeight*iTileWidth)*0.35f);//Moves the Selection box to its relative positoon
+					UG::MoveSprite(selectSprite.iSpriteID, fCenterX, (fMapHeight*fTileWidth)*0.35f);//Moves the Selection box to its relative positoon
 					if (UG::IsKeyDown(UG::KEY_ENTER))
 					{
 						pellet[0].ClearHighScore();//Resets the highscore
@@ -531,7 +534,7 @@ int main(int argv, char* argc[])
 						menuSprite.ShowSprite();//Shows the main menu
 						iCurrentState = MENU;//Sets the current gamestate to the main menu
 					}
-					UG::MoveSprite(selectSprite.iSpriteID, iCenterX, ((iMapHeight*iTileWidth)*0.19f));//Moves the Selection box to its relative positoon
+					UG::MoveSprite(selectSprite.iSpriteID, fCenterX, ((fMapHeight*fTileWidth)*0.19f));//Moves the Selection box to its relative positoon
 					break;
 				}
 				}

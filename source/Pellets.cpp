@@ -7,6 +7,7 @@
 // Last Edited by: (See BitBucket Commits: https://bitbucket.org/Danielmclovin/ct4019-pacman)
 //==============================================================================================================================
 #include "Pellets.h"
+#include "CustomEnum.h"
 #include "UGFW.h"
 #include <iostream>
 #include "stdlib.h"
@@ -58,47 +59,47 @@ int iPelletMap[1008] =
 	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 };
-void PelletProperties::CreatePellet(char* a_cImagePath, int a_iTileX, int a_iTileY)
+void PelletProperties::CreatePellet(char* a_cImagePath, float a_fTileX, float a_fTileY)
 {
 	//Converts the Map position to the coordinates of the users window
-	int iRealTileX = (a_iTileX * 16) + 15;
-	int iRealTileY = (a_iTileY * 16) + 15;
+	float fRealTileX = (a_fTileX * 16) + 15;
+	float fRealTileY = (a_fTileY * 16) + 15;
 
 	//Creates, moves and draws the sprite
 	iSpriteID = UG::CreateSprite(a_cImagePath, 4, 4, true);
-	UG::MoveSprite(iSpriteID, iRealTileX, iRealTileY);
+	UG::MoveSprite(iSpriteID, fRealTileX, fRealTileY);
 	UG::DrawSprite(iSpriteID);
 }
 
 void PelletProperties::DrawPellets(PelletProperties *a_pellet)
 {
-	for (int y = 0; y < iMapHeight; ++y)  //Counts through the Y axis of the array each time the X axis completes a row
+	for (float y = 0; y < fMapHeight; ++y)  //Counts through the Y axis of the array each time the X axis completes a row
 	{
-		for (int x = 0; x < iMapWidth; ++x) //Counts through the X axis
+		for (float x = 0; x < fMapWidth; ++x) //Counts through the X axis
 		{
-			PelletProperties &currentPellet = GetPellet(a_pellet, x, y);//Gets the current pellet at the point in the for loop
-			int iCurrentTile = GetTile(x,y); //Gets the current tile at the point in the for loop
+			PelletProperties &currentPellet = GetPellet(a_pellet, int(x), int(y));//Gets the current pellet at the point in the for loop
+			int iCurrentTile = GetTile(int(x),int(y)); //Gets the current tile at the point in the for loop
 			if (iCurrentTile == 1)//If the current tile is a small pellet
 			{
 				//Converts the Map position to the coordinates of the users window
-				int iRealTileX = (x * 16) + 15;
-				int iRealTileY = (y * 16) + 15;
+				float fRealTileX = (x * 16) + 15;
+				float fRealTileY = (y * 16) + 15;
 
 				//Creates, moves and draws the sprite
 				currentPellet.iSpriteID = UG::CreateSprite("./images/pacman/pellet.png", 4, 4, true);
-				UG::MoveSprite(currentPellet.iSpriteID, iRealTileX, iRealTileY);
+				UG::MoveSprite(currentPellet.iSpriteID, fRealTileX, fRealTileY);
 				UG::DrawSprite(currentPellet.iSpriteID);
 
 			}
 			if (iCurrentTile == 3)//If the current tile is a Large pellet
 			{
 				//Converts the Map position to the coordinates of the users window
-				int iRealTileX = (x * 16) + 15;
-				int iRealTileY = (y * 16) + 15;
+				float fRealTileX = (x * 16) + 15;
+				float fRealTileY = (y * 16) + 15;
 
 				//Creates, moves and draws the sprite
 				currentPellet.iSpriteID = UG::CreateSprite("./images/pacman/pellet.png", 12, 12, true);
-				UG::MoveSprite(currentPellet.iSpriteID, iRealTileX, iRealTileY);
+				UG::MoveSprite(currentPellet.iSpriteID, fRealTileX, fRealTileY);
 				UG::DrawSprite(currentPellet.iSpriteID);
 
 			}
@@ -108,40 +109,40 @@ void PelletProperties::DrawPellets(PelletProperties *a_pellet)
 }
 void PelletProperties::FillPellets(PelletProperties *a_pellet)
 {
-	for (int y = 0; y < iMapHeight; ++y)  //Counts through the Y axis of the array each time the X axis completes a row
+	for (float y = 0; y < fMapHeight; ++y)  //Counts through the Y axis of the array each time the X axis completes a row
 	{
-		for (int x = 0; x < iMapWidth; ++x) //Counts through the X axis
+		for (float x = 0; x < fMapWidth; ++x) //Counts through the X axis
 		{
-			PelletProperties &currentPellet = GetPellet(a_pellet, x, y);//Gets the current pellet at the point in the for loop
-			int iCurrentTile = GetTile(x, y);//Gets the current tile at the point in the for loop
+			PelletProperties &currentPellet = GetPellet(a_pellet, int(x), int(y));//Gets the current pellet at the point in the for loop
+			int iCurrentTile = GetTile(int(x), int(y));//Gets the current tile at the point in the for loop
 			if (iCurrentTile == 2)//If the current tile is a small pellet that has been eaten
 			{
 				//Converts the Map position to the coordinates of the users window
-				int iRealTileX = (x * 16) + 15;
-				int iRealTileY = (y * 16) + 15;
+				float fRealTileX = (x * 16) + 15;
+				float fRealTileY = (y * 16) + 15;
 
 				//Creates, moves and draws the sprite
 				currentPellet.iSpriteID = UG::CreateSprite("./images/pacman/pellet.png", 4, 4, true);
-				UG::MoveSprite(currentPellet.iSpriteID, iRealTileX, iRealTileY);
+				UG::MoveSprite(currentPellet.iSpriteID, fRealTileX, fRealTileY);
 				UG::DrawSprite(currentPellet.iSpriteID);
 
 				//Resets the current tile back to uneaten
-				iPelletMap[(y * 28) + x] = 1;
+				iPelletMap[int((y * 28) + x)] = 1;
 
 			}
 			if (iCurrentTile == 4)
 			{
 				//Converts the Map position to the coordinates of the users window
-				int iRealTileX = (x * 16) + 15;
-				int iRealTileY = (y * 16) + 15;
+				float fRealTileX = (x * 16) + 15;
+				float fRealTileY = (y * 16) + 15;
 
 				//Creates, moves and draws the sprite
 				currentPellet.iSpriteID = UG::CreateSprite("./images/pacman/pellet.png", 12, 12, true);
-				UG::MoveSprite(currentPellet.iSpriteID, iRealTileX, iRealTileY);
+				UG::MoveSprite(currentPellet.iSpriteID, fRealTileX, fRealTileY);
 				UG::DrawSprite(currentPellet.iSpriteID);
 
 				//Resets the current tile back to uneaten
-				iPelletMap[(y * 28) + x] = 3;
+				iPelletMap[int((y * 28) + x)] = 3;
 
 			}
 		}
@@ -173,6 +174,7 @@ bool PelletProperties::DestroyPellets(PelletProperties *a_pellet, int a_iX, int 
 		PlaySound(TEXT("./sounds/bigPellet.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		return true;
 	}
+	return false;
 }
 
 PelletProperties& PelletProperties::GetPellet(PelletProperties *a_pellet, int a_iX, int a_iY)
@@ -236,20 +238,20 @@ void PelletProperties::DrawHighScore()
 	UG::ClearScreen();
 	UG::SetFont("./fonts/font.fnt");
 
-	UG::DrawString("1UP", (int)(iScreenWidth * 0.16f), iScreenHeight *0.98f, 0.8f);//Draws the 1UP during Gameplay
+	UG::DrawString("1UP", (int)(iScreenWidth * 0.16f), (int)(iScreenHeight *0.98f), 0.8f);//Draws the 1UP during Gameplay
 
     //Stringstream to draw the current score below the 1UP text during GAMEPLAY
 	std::ostringstream SCORE;
 	SCORE << iTotalScore << std::endl;
-	UG::DrawString(SCORE.str().c_str(), (int)(iScreenWidth * 0.19f), iScreenHeight *0.95f, 0.8f);
+	UG::DrawString(SCORE.str().c_str(), (int)(iScreenWidth * 0.19f), (int)(iScreenHeight *0.95f), 0.8f);
 
 
-	UG::DrawString("HIGH SCORE", (int)(iScreenWidth * 0.5f), iScreenHeight *0.98f, 0.8f);//Draws the HIGHSCORES text during Gameplay
+	UG::DrawString("HIGH SCORE", (int)(iScreenWidth * 0.5f), (int)(iScreenHeight *0.98f), 0.8f);//Draws the HIGHSCORES text during Gameplay
 
 	//Stringstream to draw the current highscore below HIGHSCORES during GAMEPLAY
 	std::ostringstream HIGHSCORE;
 	HIGHSCORE << iCurrentHighScore << std::endl;
-	UG::DrawString(HIGHSCORE.str().c_str(), (int)(iScreenWidth * 0.5f), iScreenHeight *0.95f, 0.8f);
+	UG::DrawString(HIGHSCORE.str().c_str(), (int)(iScreenWidth * 0.5f), (int)(iScreenHeight *0.95f), 0.8f);
 	
 	
 }
