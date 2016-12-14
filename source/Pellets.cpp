@@ -67,6 +67,7 @@ void PelletProperties::CreatePellet(char* a_cImagePath, float a_fTileX, float a_
 
 	//Creates, moves and draws the sprite
 	iSpriteID = UG::CreateSprite(a_cImagePath, 4, 4, true);
+	UG::SetSpriteLayer(iSpriteID, 1);
 	UG::MoveSprite(iSpriteID, fRealTileX, fRealTileY);
 	UG::DrawSprite(iSpriteID);
 }
@@ -87,6 +88,7 @@ void PelletProperties::DrawPellets(PelletProperties *a_pellet)
 
 				//Creates, moves and draws the sprite
 				currentPellet.iSpriteID = UG::CreateSprite("./images/pacman/pellet.png", 4, 4, true);
+				UG::SetSpriteLayer(iSpriteID, 1);
 				UG::MoveSprite(currentPellet.iSpriteID, fRealTileX, fRealTileY);
 				UG::DrawSprite(currentPellet.iSpriteID);
 
@@ -99,6 +101,7 @@ void PelletProperties::DrawPellets(PelletProperties *a_pellet)
 
 				//Creates, moves and draws the sprite
 				currentPellet.iSpriteID = UG::CreateSprite("./images/pacman/pellet.png", 12, 12, true);
+				UG::SetSpriteLayer(iSpriteID, 1);
 				UG::MoveSprite(currentPellet.iSpriteID, fRealTileX, fRealTileY);
 				UG::DrawSprite(currentPellet.iSpriteID);
 
@@ -123,6 +126,7 @@ void PelletProperties::FillPellets(PelletProperties *a_pellet)
 
 				//Creates, moves and draws the sprite
 				currentPellet.iSpriteID = UG::CreateSprite("./images/pacman/pellet.png", 4, 4, true);
+				UG::SetSpriteLayer(iSpriteID, 1);
 				UG::MoveSprite(currentPellet.iSpriteID, fRealTileX, fRealTileY);
 				UG::DrawSprite(currentPellet.iSpriteID);
 
@@ -138,6 +142,7 @@ void PelletProperties::FillPellets(PelletProperties *a_pellet)
 
 				//Creates, moves and draws the sprite
 				currentPellet.iSpriteID = UG::CreateSprite("./images/pacman/pellet.png", 12, 12, true);
+				UG::SetSpriteLayer(iSpriteID, 1);
 				UG::MoveSprite(currentPellet.iSpriteID, fRealTileX, fRealTileY);
 				UG::DrawSprite(currentPellet.iSpriteID);
 

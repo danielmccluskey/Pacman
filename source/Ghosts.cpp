@@ -131,6 +131,7 @@ void GhostProperties::CreateGhost(int a_iGhostType)
 		break;
 
 	}
+	UG::SetSpriteLayer(iSpriteID, 7);
 	initialise();//Reset directional and movement values
 	iCageY = 320;
 	
