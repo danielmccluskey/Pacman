@@ -11,15 +11,11 @@
 #include "CustomEnum.h"
 #include "GameStates.h"
 
-
 void GameStateProperties::CreateSprite(char* a_cImagePath, float a_fX, float a_fY, float a_fSizeX, float a_fSizeY)
 {
 	//Create the sprite and move it to the specified position
 	iSpriteID = UG::CreateSprite(a_cImagePath, a_fSizeX, a_fSizeY, true);
-	UG::SetSpriteLayer(iSpriteID, 9);
 	UG::MoveSprite(iSpriteID, a_fX, a_fY);
-	
-	
 
 }
 

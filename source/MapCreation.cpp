@@ -145,7 +145,6 @@ void TileProperties::SetTile(char* a_cImagePath, int a_iTileX, int a_iTileY)
 
 	//Creates, moves and draws the sprite
 	int iSpriteID = UG::CreateSprite(a_cImagePath, 16, 16, true);
-	UG::SetSpriteLayer(iSpriteID, 0);
 	UG::MoveSprite(iSpriteID, iRealTileX, iRealTileY);
 	UG::DrawSprite(iSpriteID);
 }
