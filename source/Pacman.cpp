@@ -145,6 +145,7 @@ void PacmanProperties::SetLives(PacmanProperties& a_pacSprite)
 void PacmanProperties::CreatePacman()
 {
 	iSpriteID = UG::CreateSprite("./images/pacman/pacmanSheet.png", iSpriteWidth, iSpriteWidth, true);//Create the sprite
+	UG::SetSpriteLayer(iSpriteID, 4);
 	UG::DrawSprite(iSpriteID);	//Draws it
 	initialise(); //Reset directional and movement values
 	UG::MoveSprite(iSpriteID, 32, 64); //Moves Pacman to starting Position

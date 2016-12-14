@@ -104,30 +104,35 @@ void GhostProperties::CreateGhost(int a_iGhostType)
 	{
 	case blinky:
 		iSpriteID = UG::CreateSprite("./images/ghosts/red.png", iGhostWidth, iGhostWidth, true);
+		UG::SetSpriteLayer(iSpriteID, 3);
 		iCageTime = 100;
 		iCageX = 256;
 		UG::DrawSprite(iSpriteID);
 		break;                                                                        
 	case pinky:
 		iSpriteID = UG::CreateSprite("./images/ghosts/pink.png", iGhostWidth, iGhostWidth, true);
+		UG::SetSpriteLayer(iSpriteID, 3);
 		iCageTime = 300;
 		iCageX = 240;
 		UG::DrawSprite(iSpriteID);
 		break;
 	case inky:
 		iSpriteID = UG::CreateSprite("./images/ghosts/blue.png", iGhostWidth, iGhostWidth, true);
+		UG::SetSpriteLayer(iSpriteID, 3);
 		iCageTime = 500;
 		iCageX = 224;
 		UG::DrawSprite(iSpriteID);
 		break;
 	case clyde:
 		iSpriteID = UG::CreateSprite("./images/ghosts/orange.png", iGhostWidth, iGhostWidth, true);
+		UG::SetSpriteLayer(iSpriteID, 3);
 		iCageTime = 600;
 		iCageX = 208;
 		UG::DrawSprite(iSpriteID);
 		break;
 	case edible:
 		iSpriteID = UG::CreateSprite("./images/ghosts/edible.png", iGhostWidth, iGhostWidth, true);
+		UG::SetSpriteLayer(iSpriteID, 4);
 		break;
 
 	}

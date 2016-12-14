@@ -67,17 +67,18 @@ void PelletProperties::CreatePellet(char* a_cImagePath, float a_fTileX, float a_
 
 	//Creates, moves and draws the sprite
 	iSpriteID = UG::CreateSprite(a_cImagePath, 4, 4, true);
+	UG::SetSpriteLayer(iSpriteID, 2);
 	UG::MoveSprite(iSpriteID, fRealTileX, fRealTileY);
 	UG::DrawSprite(iSpriteID);
 }
 
 void PelletProperties::DrawPellets(PelletProperties *a_pellet)
 {
-	for (float y = 0; y < fMapHeight; ++y)  //Counts through the Y axis of the array each time the X axis completes a row
+	for (int y = 0; y < iMapHeight; ++y)  //Counts through the Y axis of the array each time the X axis completes a row
 	{
-		for (float x = 0; x < fMapWidth; ++x) //Counts through the X axis
+		for (int x = 0; x < iMapWidth; ++x) //Counts through the X axis
 		{
-			PelletProperties &currentPellet = GetPellet(a_pellet, int(x), int(y));//Gets the current pellet at the point in the for loop
+			PelletProperties &currentPellet = GetPellet(a_pellet, x, y);//Gets the current pellet at the point in the for loop
 			int iCurrentTile = GetTile(int(x),int(y)); //Gets the current tile at the point in the for loop
 			if (iCurrentTile == 1)//If the current tile is a small pellet
 			{
@@ -87,6 +88,8 @@ void PelletProperties::DrawPellets(PelletProperties *a_pellet)
 
 				//Creates, moves and draws the sprite
 				currentPellet.iSpriteID = UG::CreateSprite("./images/pacman/pellet.png", 4, 4, true);
+				UG::SetSpriteLayer(currentPellet.iSpriteID, 2);
+				//UG::SetSpriteLayer(iSpriteID, 2);
 				UG::MoveSprite(currentPellet.iSpriteID, fRealTileX, fRealTileY);
 				UG::DrawSprite(currentPellet.iSpriteID);
 
@@ -99,6 +102,7 @@ void PelletProperties::DrawPellets(PelletProperties *a_pellet)
 
 				//Creates, moves and draws the sprite
 				currentPellet.iSpriteID = UG::CreateSprite("./images/pacman/pellet.png", 12, 12, true);
+				UG::SetSpriteLayer(currentPellet.iSpriteID, 2);
 				UG::MoveSprite(currentPellet.iSpriteID, fRealTileX, fRealTileY);
 				UG::DrawSprite(currentPellet.iSpriteID);
 
@@ -106,6 +110,7 @@ void PelletProperties::DrawPellets(PelletProperties *a_pellet)
 			
 		}
 	}
+	
 }
 void PelletProperties::FillPellets(PelletProperties *a_pellet)
 {
@@ -123,6 +128,7 @@ void PelletProperties::FillPellets(PelletProperties *a_pellet)
 
 				//Creates, moves and draws the sprite
 				currentPellet.iSpriteID = UG::CreateSprite("./images/pacman/pellet.png", 4, 4, true);
+				UG::SetSpriteLayer(currentPellet.iSpriteID, 2);
 				UG::MoveSprite(currentPellet.iSpriteID, fRealTileX, fRealTileY);
 				UG::DrawSprite(currentPellet.iSpriteID);
 
@@ -138,6 +144,7 @@ void PelletProperties::FillPellets(PelletProperties *a_pellet)
 
 				//Creates, moves and draws the sprite
 				currentPellet.iSpriteID = UG::CreateSprite("./images/pacman/pellet.png", 12, 12, true);
+				UG::SetSpriteLayer(currentPellet.iSpriteID, 2);
 				UG::MoveSprite(currentPellet.iSpriteID, fRealTileX, fRealTileY);
 				UG::DrawSprite(currentPellet.iSpriteID);
 
