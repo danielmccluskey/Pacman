@@ -8,8 +8,7 @@
 //==============================================================================================================================
 #ifndef _PADDLE_H_
 #define _PADDLE_H_
-const int iMapWidth = 28;
-const int iMapHeight = 36;
+
 
 class TileProperties
 {

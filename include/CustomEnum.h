@@ -9,6 +9,8 @@
 
 #ifndef _CUSTOMENUM_H_
 #define _CUSTOMENUM_H_
+const float fMapWidth = 28;
+const float fMapHeight = 36;
 typedef enum GameStates //Enumeration for the different gamestates
 {
 	SPLASH,

@@ -12,7 +12,7 @@
 #include "CustomEnum.h"
 
 //Map for drawing the walls and corners 
-int iMap[iMapWidth * iMapHeight] = {
+int iMap[1008] = {
 
 	8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,
 	8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,
@@ -55,9 +55,9 @@ int iMap[iMapWidth * iMapHeight] = {
 void TileProperties::DrawMap()
 {
 	//The following is the code that draws out the tiles from the Array map
-	for (int y = 0; y < iMapHeight; ++y)  //Counts through the Y axis of the array each time the X axis completes a row
+	for (int y = 0; y < fMapHeight; ++y)  //Counts through the Y axis of the array each time the X axis completes a row
 	{
-		for (int x = 0; x < iMapWidth; ++x) //Counts through the X axis
+		for (int x = 0; x < fMapWidth; ++x) //Counts through the X axis
 		{
 			int iTileType = GetTile(x, y); //Finds what type of tile needs to be placed at current place in map.
 
@@ -152,6 +152,6 @@ void TileProperties::SetTile(char* a_cImagePath, int a_iTileX, int a_iTileY)
 
 int TileProperties::GetTile(int a_iX, int a_iY)
 {
-	return iMap[(a_iY*iMapWidth) + a_iX];//Finds and returns what tile is at X,Y
+	return iMap[(a_iY*int(fMapWidth)) + a_iX];
 }
 
